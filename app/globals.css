@@ -154,6 +154,7 @@ body {
   background: rgba(20, 60, 95, 0.3);
   color: #ffffff;
 }
+<<<<<<< HEAD
 
 /* Hero mobile — pojačan overlay i heading weight */
 @media (max-width: 768px) {
@@ -167,3 +168,5 @@ body {
     font-weight: 800 !important;
   }
 }
+=======
+>>>>>>> d3d293180ec731a4305f256d37a995109187e020

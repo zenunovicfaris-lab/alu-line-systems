@@ -132,7 +132,11 @@ export default function ProductsSection() {
           <p className="text-gray-500 text-base leading-relaxed">
             Ne pristajte na prosjek. Prodaja i profesionalna ugradnja
             aluminijskih ograda, kapija, rolo vrata, sekcijskih vrata i roletni
+<<<<<<< HEAD
             - s garancijom kvaliteta.
+=======
+            — s garancijom kvaliteta.
+>>>>>>> d3d293180ec731a4305f256d37a995109187e020
           </p>
         </motion.div>
 
@@ -243,7 +247,11 @@ export default function ProductsSection() {
           className="flex flex-col items-center gap-5 text-center"
         >
           <p className="text-gray-400 text-sm font-medium">
+<<<<<<< HEAD
             Radimo brzo, precizno i pouzdano - izaberi profesionalce.
+=======
+            Radimo brzo, precizno i pouzdano — izaberi profesionalce.
+>>>>>>> d3d293180ec731a4305f256d37a995109187e020
           </p>
           <div className="flex flex-col sm:flex-row items-center gap-4">
             <motion.a
