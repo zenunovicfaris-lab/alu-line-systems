@@ -59,7 +59,6 @@ body {
     text-wrap: balance;
   }
 
-  /* Glassmorphism utility */
   .glass-effect {
     @apply backdrop-blur-md bg-white/70 border border-white/20;
   }
@@ -72,7 +71,6 @@ body {
     @apply backdrop-blur-md bg-alu-primary/10 border border-alu-primary/20;
   }
 
-  /* Glow effects */
   .glow-blue {
     box-shadow: 0 0 20px rgba(20, 60, 95, 0.4), 0 0 60px rgba(20, 60, 95, 0.2);
   }
@@ -85,13 +83,11 @@ body {
     text-shadow: 0 0 20px rgba(20, 60, 95, 0.6), 0 0 40px rgba(20, 60, 95, 0.3);
   }
 
-  /* Gradient text */
   .gradient-text-blue {
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(135deg, #143c5f, #5a9fd4, #143c5f);
   }
 
-  /* Noise texture overlay */
   .noise-overlay::before {
     content: '';
     position: absolute;
@@ -102,7 +98,6 @@ body {
   }
 }
 
-/* Floating animation keyframes */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-12px); }
@@ -154,9 +149,8 @@ body {
   background: rgba(20, 60, 95, 0.3);
   color: #ffffff;
 }
-<<<<<<< HEAD
 
-/* Hero mobile — pojačan overlay i heading weight */
+/* Hero mobile - pojačan overlay i heading weight */
 @media (max-width: 768px) {
   #pocetna .hero-solid-overlay {
     background: rgba(0, 0, 0, 0.68) !important;
@@ -168,5 +162,3 @@ body {
     font-weight: 800 !important;
   }
 }
-=======
->>>>>>> d3d293180ec731a4305f256d37a995109187e020

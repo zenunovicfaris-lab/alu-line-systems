@@ -9,11 +9,7 @@ const navLinks = [
   { label: "Početna", href: "#pocetna" },
   { label: "Projekti", href: "#projekti" },
   { label: "Usluge", href: "#usluge" },
-<<<<<<< HEAD
   { label: "Vrata", href: "#galerija-vrata" },
-=======
-  { label: "Galerija", href: "#galerija" },
->>>>>>> d3d293180ec731a4305f256d37a995109187e020
   { label: "Kontakt", href: "#kontakt" },
 ];
 
