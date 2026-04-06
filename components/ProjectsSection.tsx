@@ -214,38 +214,42 @@ function ProjectCard({
           priority={index === 0}
         />
 
+        {/* Overlay — jači na dnu da tekst ne preklapa badge */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to top, rgba(15,22,32,0.88) 0%, rgba(15,22,32,0.45) 35%, transparent 65%)",
+              "linear-gradient(to top, rgba(10,16,24,0.97) 0%, rgba(10,16,24,0.75) 40%, rgba(10,16,24,0.1) 70%, transparent 100%)",
           }}
         />
 
-        <div className="absolute top-5 left-5">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.12em] uppercase bg-black/50 backdrop-blur-sm text-white/80 border border-white/10">
+        {/* Location badge — top left */}
+        <div className="absolute top-4 left-4">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.12em] uppercase bg-black/60 backdrop-blur-sm text-white/85 border border-white/10">
             <MapPin size={9} />
             {project.location} · {project.year}
           </span>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 p-7 md:p-9 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5">
-          <div className="min-w-0">
-            <h3 className="text-xl md:text-2xl font-bold text-white leading-snug mb-1.5">
+        {/* Bottom content */}
+        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 flex flex-row items-end justify-between gap-3">
+          <div className="min-w-0 flex-1">
+            <h3 className="text-base sm:text-xl md:text-2xl font-bold text-white leading-tight mb-1">
               {project.title}
             </h3>
-            <p className="text-sm text-white/55 leading-relaxed">
+            <p className="hidden sm:block text-sm text-white/55 leading-relaxed">
               {project.subtitle}
             </p>
           </div>
 
           <button
-            className="group/btn flex-shrink-0 flex items-center gap-2.5 px-6 py-3 rounded-xl bg-alu-blue text-white text-sm font-semibold tracking-wide hover:bg-alu-light transition-colors duration-200 self-start sm:self-auto"
+            className="group/btn flex-shrink-0 flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-alu-blue text-white text-xs sm:text-sm font-semibold tracking-wide hover:bg-alu-light transition-colors duration-200"
             onClick={(e) => { e.stopPropagation(); setLightboxOpen(true); }}
           >
-            Pogledaj galeriju
+            <span className="sm:hidden">Galerija</span>
+            <span className="hidden sm:inline">Pogledaj galeriju</span>
             <ArrowRight
-              size={14}
+              size={13}
               className="transition-transform duration-200 group-hover/btn:translate-x-0.5"
             />
           </button>
@@ -295,7 +299,7 @@ export default function ProjectsSection() {
           className="mb-14"
         >
           <span className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-semibold tracking-[0.2em] uppercase border border-alu-blue/25 text-alu-blue mb-5">
-            Portfolio
+            Projekti
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-alu-dark leading-tight tracking-tight mb-4">
             Izvedeni projekti<br />
