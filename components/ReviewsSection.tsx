@@ -134,7 +134,7 @@ function ReviewCard({
 
       {/* Text */}
       <p className="text-sm text-gray-600 leading-relaxed flex-1">
-        "{review.text}"
+        &quot;{review.text}&quot;
       </p>
 
       {/* Footer */}
