@@ -24,6 +24,9 @@ export const metadata: Metadata = {
     "dvorišne ograde",
   ],
   authors: [{ name: "ALU LINE Systems" }],
+  verification: {
+    google: "70X2NB13DqvB717jOZB742Tqd-F1ayb4-hFkVeosmOs",
+  },
   openGraph: {
     title: "ALU LINE Systems | Aluminijske Ograde, Roletne & Nadstrešnice",
     description:
