@@ -3,7 +3,15 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { MapPin, ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  MapPin,
+  ArrowRight,
+  X,
+  ChevronLeft,
+  ChevronRight,
+  ChevronDown,
+  ChevronUp,
+} from "lucide-react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -341,6 +349,9 @@ export default function ProjectsSection() {
   const ctaRef = useRef<HTMLDivElement>(null);
   const ctaInView = useInView(ctaRef, { once: true, margin: "-60px" });
 
+  const [showAll, setShowAll] = useState(false);
+  const visibleProjects = showAll ? projects : projects.slice(0, 4);
+
   return (
     <section
       id="projekti"
@@ -378,10 +389,34 @@ export default function ProjectsSection() {
 
         {/* 2x2 grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects.map((project, i) => (
+          {visibleProjects.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}
         </div>
+
+        {/* Show more / less */}
+        {projects.length > 4 && (
+          <div className="mt-10 flex justify-center">
+            <motion.button
+              onClick={() => setShowAll((v) => !v)}
+              className="group flex items-center gap-2.5 px-7 py-3.5 rounded-xl border border-alu-dark/15 bg-white text-alu-dark font-semibold text-sm tracking-wide hover:border-alu-blue hover:text-alu-blue transition-colors duration-200"
+              whileTap={{ scale: 0.97 }}
+            >
+              {showAll ? "Prikaži manje" : "Prikaži više"}
+              {showAll ? (
+                <ChevronUp
+                  size={16}
+                  className="transition-transform duration-200 group-hover:-translate-y-0.5"
+                />
+              ) : (
+                <ChevronDown
+                  size={16}
+                  className="transition-transform duration-200 group-hover:translate-y-0.5"
+                />
+              )}
+            </motion.button>
+          </div>
+        )}
 
         {/* CTA */}
         <motion.div
