@@ -9,6 +9,48 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 const projects = [
   {
+    id: 5,
+    title: "Ograda sa kamenim stubovima",
+    subtitle: "Antracit lamele u kombinaciji s kamenom oblogom stubova",
+    location: "Austria, Graz",
+    year: "2026",
+    images: [
+      "/images/projekti/kamena-ograda-1.jpg",
+      "/images/projekti/kamena-ograda-2.jpg",
+      "/images/projekti/kamena-ograda-3.jpg",
+      "/images/projekti/kamena-ograda-4.jpg",
+      "/images/projekti/kamena-ograda-5.jpg",
+    ],
+  },
+  {
+    id: 6,
+    title: "Balkonska ograda - terasa",
+    subtitle: "Aluminijska ograda s okruglim profilima za krovnu terasu",
+    location: "Slovenia",
+    year: "2026",
+    images: [
+      "/images/projekti/terasa-ograda-1.jpg",
+      "/images/projekti/terasa-ograda-2.jpg",
+      "/images/projekti/terasa-ograda-3.jpg",
+      "/images/projekti/terasa-ograda-4.jpg",
+      "/images/projekti/terasa-ograda-5.jpg",
+    ],
+  },
+  {
+    id: 7,
+    title: "Dekorativna ograda - dizajn stabla",
+    subtitle: "Lasersko rezanje po mjeri, motiv stabla na balkonskim ogradama",
+    location: "BiH",
+    year: "2026",
+    images: [
+      "/images/projekti/stablo-ograda-1.jpg",
+      "/images/projekti/stablo-ograda-2.jpg",
+      "/images/projekti/stablo-ograda-3.jpg",
+      "/images/projekti/stablo-ograda-4.jpg",
+      "/images/projekti/stablo-ograda-5.jpg",
+    ],
+  },
+  {
     id: 1,
     title: "Grilje ograda - Međugorje",
     subtitle: "Balkonska ograda model Kruška sa stabilnim rukohvatom",
@@ -77,11 +119,11 @@ function Lightbox({
 
   const prev = useCallback(
     () => setCurrent((c) => (c - 1 + images.length) % images.length),
-    [images.length]
+    [images.length],
   );
   const next = useCallback(
     () => setCurrent((c) => (c + 1) % images.length),
-    [images.length]
+    [images.length],
   );
 
   useEffect(() => {
@@ -96,7 +138,9 @@ function Lightbox({
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, []);
 
   return (
@@ -123,7 +167,10 @@ function Lightbox({
 
       <button
         className="absolute left-4 md:left-8 z-10 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 flex items-center justify-center transition-colors"
-        onClick={(e) => { e.stopPropagation(); prev(); }}
+        onClick={(e) => {
+          e.stopPropagation();
+          prev();
+        }}
       >
         <ChevronLeft size={20} className="text-white" />
       </button>
@@ -145,7 +192,12 @@ function Lightbox({
               alt={`Projekt - slika ${current + 1}`}
               width={1200}
               height={900}
-              style={{ objectFit: "contain", maxHeight: "82vh", width: "100%", height: "auto" }}
+              style={{
+                objectFit: "contain",
+                maxHeight: "82vh",
+                width: "100%",
+                height: "auto",
+              }}
               className="rounded-xl shadow-2xl"
             />
           </motion.div>
@@ -154,7 +206,10 @@ function Lightbox({
 
       <button
         className="absolute right-4 md:right-8 z-10 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 flex items-center justify-center transition-colors"
-        onClick={(e) => { e.stopPropagation(); next(); }}
+        onClick={(e) => {
+          e.stopPropagation();
+          next();
+        }}
       >
         <ChevronRight size={20} className="text-white" />
       </button>
@@ -173,7 +228,13 @@ function Lightbox({
                 : "border-transparent opacity-35 hover:opacity-65"
             }`}
           >
-            <Image src={src} alt="" fill sizes="56px" style={{ objectFit: "cover" }} />
+            <Image
+              src={src}
+              alt=""
+              fill
+              sizes="56px"
+              style={{ objectFit: "cover" }}
+            />
           </button>
         ))}
       </div>
@@ -244,7 +305,10 @@ function ProjectCard({
 
           <button
             className="group/btn flex-shrink-0 flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-alu-blue text-white text-xs sm:text-sm font-semibold tracking-wide hover:bg-alu-light transition-colors duration-200"
-            onClick={(e) => { e.stopPropagation(); setLightboxOpen(true); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightboxOpen(true);
+            }}
           >
             <span className="sm:hidden">Galerija</span>
             <span className="hidden sm:inline">Pogledaj galeriju</span>
@@ -302,12 +366,13 @@ export default function ProjectsSection() {
             Projekti
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-alu-dark leading-tight tracking-tight mb-4">
-            Izvedeni projekti<br />
+            Izvedeni projekti
+            <br />
             <span className="text-alu-text font-normal">širom BiH.</span>
           </h2>
           <p className="text-gray-400 text-base leading-relaxed max-w-lg">
-            Svaki projekat rađen po mjeri - s pažnjom na kvalitet,
-            preciznost i dugotrajnost.
+            Svaki projekat rađen po mjeri - s pažnjom na kvalitet, preciznost i
+            dugotrajnost.
           </p>
         </motion.div>
 

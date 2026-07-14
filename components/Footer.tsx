@@ -1,4 +1,4 @@
-import { Phone } from "lucide-react";
+import { Phone, Facebook } from "lucide-react";
 
 const quickLinks = [
   { label: "Početna", href: "#pocetna" },
@@ -49,6 +49,27 @@ export default function Footer() {
                 <Phone size={16} />
               </a>
               <span className="text-gray-500 text-sm">062 543 464</span>
+            </div>
+
+            {/* Social */}
+            <div className="flex items-center gap-3">
+              <a
+                href="https://www.facebook.com/profile.php?id=61584092785799"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="ALU LINE Systems na Facebooku"
+                className="w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 text-white/40 hover:text-white hover:border-alu-blue/60 hover:bg-alu-blue/10 transition-all duration-300"
+              >
+                <Facebook size={16} />
+              </a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61584092785799"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 text-sm hover:text-white transition-colors duration-200"
+              >
+                Alu Line Systems Facebook
+              </a>
             </div>
           </div>
 

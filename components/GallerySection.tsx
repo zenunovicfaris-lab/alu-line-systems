@@ -57,6 +57,30 @@ const galleryItems = [
     tall: false,
     src: "/images/projekti/banovici-1.jpg",
   },
+  {
+    id: 7,
+    category: "Ograde" as Category,
+    title: "Ograda s Kamenim Stubovima",
+    subtitle: "Antracit lamele",
+    tall: true,
+    src: "/images/projekti/kamena-ograda-1.jpg",
+  },
+  {
+    id: 8,
+    category: "Ograde" as Category,
+    title: "Balkonska Ograda – Krovna Terasa",
+    subtitle: "Okrugli profili",
+    tall: false,
+    src: "/images/projekti/terasa-ograda-2.jpg",
+  },
+  {
+    id: 9,
+    category: "Ograde" as Category,
+    title: "Dekorativna Ograda – Motiv Stabla",
+    subtitle: "Lasersko rezanje",
+    tall: false,
+    src: "/images/projekti/stablo-ograda-3.jpg",
+  },
 ];
 
 function GalleryCard({
