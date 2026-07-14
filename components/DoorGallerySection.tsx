@@ -260,8 +260,7 @@ export default function DoorGallerySection() {
               Galerija vrata
             </h2>
             <p className="text-gray-400 text-base leading-relaxed max-w-lg">
-              Izaberite tab - pogledajte naše realizacije ili kataloške modele
-              koje nudimo.
+              Pogledajte naše ugrađene modele ili kataloške modele iz ponude.
             </p>
           </div>
 
@@ -341,8 +340,7 @@ export default function DoorGallerySection() {
               Naručite svoja vrata
             </p>
             <p className="text-sm text-gray-400">
-              Besplatna konsultacija - odaberite model, mi se pobrinemo za
-              sve ostalo.
+              Odaberite model, a mjerenje i montažu preuzimamo mi.
             </p>
           </div>
           <a

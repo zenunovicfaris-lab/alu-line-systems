@@ -134,8 +134,8 @@ export default function HeroSection() {
             className="max-w-xl text-base md:text-lg text-white/55 leading-relaxed tracking-wide"
             style={{ textShadow: "0 2px 8px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.9)" }}
           >
-            Profesionalna ugradnja aluminijskih ograda, roletni i nadstrešnica
-            - izvršena s preciznošću i pažnjom prema detaljima koji čine razliku.
+            Ugrađujemo aluminijske ograde, roletne i nadstrešnice po vašoj
+            mjeri. Sve izrađujemo i montiramo sami.
           </motion.p>
 
           {/* Trust pills */}

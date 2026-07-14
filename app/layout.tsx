@@ -10,9 +10,9 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "ALU LINE Systems | Aluminijske Ograde, Roletne & Nadstrešnice — Srebrenik",
+  title: "ALU LINE Systems | Aluminijske Ograde, Roletne i Nadstrešnice, Srebrenik",
   description:
-    "Profesionalna ugradnja aluminijskih ograda, roletni i nadstrešnica. Kvalitet, preciznost i moderan dizajn za vaš dom — Srebrenik, BiH.",
+    "Ugrađujemo aluminijske ograde, roletne i nadstrešnice po vašoj mjeri. Sve izrađujemo i montiramo sami. Srebrenik, BiH.",
   keywords: [
     "aluminijske ograde",
     "roletne",
@@ -28,9 +28,9 @@ export const metadata: Metadata = {
     google: "70X2NB13DqvB717jOZB742Tqd-F1ayb4-hFkVeosmOs",
   },
   openGraph: {
-    title: "ALU LINE Systems | Aluminijske Ograde, Roletne & Nadstrešnice",
+    title: "ALU LINE Systems | Aluminijske Ograde, Roletne i Nadstrešnice",
     description:
-      "Profesionalna ugradnja aluminijskih ograda, roletni i nadstrešnica. Kvalitet i moderan dizajn.",
+      "Ugrađujemo aluminijske ograde, roletne i nadstrešnice po vašoj mjeri. Sve izrađujemo i montiramo sami.",
     type: "website",
     locale: "bs_BA",
   },

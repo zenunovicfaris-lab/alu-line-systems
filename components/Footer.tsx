@@ -36,8 +36,8 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-gray-500 text-sm leading-relaxed max-w-xs">
-              Profesionalna ugradnja aluminijskih ograda, roletni i nadstrešnica.
-              Kvalitet i moderan dizajn bez kompromisa.
+              Ugrađujemo aluminijske ograde, roletne i nadstrešnice po vašoj
+              mjeri. Sve izrađujemo i montiramo sami.
             </p>
             {/* Phone */}
             <div className="flex items-center gap-3 mt-1">

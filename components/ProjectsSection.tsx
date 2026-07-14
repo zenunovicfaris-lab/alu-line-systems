@@ -79,7 +79,7 @@ const projects = [
   {
     id: 3,
     title: "Grilje ograda i kapija - ugradnja",
-    subtitle: "Moderni dizajn i sigurnost - projekt po mjeri klijenta",
+    subtitle: "Moderan dizajn i sigurnost, projekt po mjeri klijenta",
     location: "BiH",
     year: "2024",
     images: [
@@ -371,8 +371,8 @@ export default function ProjectsSection() {
             <span className="text-alu-text font-normal">širom BiH.</span>
           </h2>
           <p className="text-gray-400 text-base leading-relaxed max-w-lg">
-            Svaki projekat rađen po mjeri - s pažnjom na kvalitet, preciznost i
-            dugotrajnost.
+            Svaki projekat radimo po mjeri klijenta, od prvog mjerenja do
+            montaže.
           </p>
         </motion.div>
 
@@ -396,7 +396,7 @@ export default function ProjectsSection() {
               Vaš projekat ovdje?
             </p>
             <p className="text-sm text-gray-400">
-              Kontaktirajte nas - besplatna konsultacija i ponuda po mjeri.
+              Javite se za besplatnu konsultaciju i ponudu po mjeri.
             </p>
           </div>
           <a

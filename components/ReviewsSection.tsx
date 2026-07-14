@@ -179,7 +179,7 @@ export default function ReviewsSection() {
               Šta kažu naši klijenti
             </h2>
             <p className="text-gray-400 text-base leading-relaxed">
-              Prosječna ocjena 5.0 - bazirano na Google recenzijama
+              Prosječna ocjena 5.0, bazirano na Google recenzijama
             </p>
           </div>
 

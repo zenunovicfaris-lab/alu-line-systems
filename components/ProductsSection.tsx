@@ -51,9 +51,9 @@ const services = [
 ];
 
 const perks = [
-  { icon: Ruler, title: "Izrada po mjeri", desc: "Bez kompromisa" },
-  { icon: Zap, title: "Brzo i precizno", desc: "Pouzdana montaža" },
-  { icon: Shield, title: "Kvalitet koji traje", desc: "Garancija na rad" },
+  { icon: Ruler, title: "Izrada po mjeri", desc: "Po vašim dimenzijama" },
+  { icon: Zap, title: "Brza montaža", desc: "U dogovorenom roku" },
+  { icon: Shield, title: "Garancija na rad", desc: "Pisana garancija" },
   { icon: MapPin, title: "Široko područje", desc: "BiH · HR · SLO · AT" },
 ];
 
@@ -130,9 +130,8 @@ export default function ProductsSection() {
             Šta nudimo
           </h2>
           <p className="text-gray-500 text-base leading-relaxed">
-            Ne pristajte na prosjek. Prodaja i profesionalna ugradnja
-            aluminijskih ograda, kapija, rolo vrata, sekcijskih vrata i roletni
-            - s garancijom kvaliteta.
+            Prodajemo i ugrađujemo aluminijske ograde, kapije, rolo i sekcijska
+            vrata i roletne. Na svaki rad dajemo garanciju.
           </p>
         </motion.div>
 
@@ -243,7 +242,7 @@ export default function ProductsSection() {
           className="flex flex-col items-center gap-5 text-center"
         >
           <p className="text-gray-400 text-sm font-medium">
-            Radimo brzo, precizno i pouzdano - izaberi profesionalce.
+            Držimo se dogovorenog roka i cijene.
           </p>
           <div className="flex flex-col sm:flex-row items-center gap-4">
             <motion.a
