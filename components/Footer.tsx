@@ -1,9 +1,10 @@
 import { Phone } from "lucide-react";
 
 const quickLinks = [
-  { label: "O nama", href: "#o-nama" },
+  { label: "Početna", href: "#pocetna" },
+  { label: "Projekti", href: "#projekti" },
   { label: "Usluge", href: "#usluge" },
-  { label: "Galerija", href: "#galerija" },
+  { label: "Galerija", href: "#galerija-vrata" },
   { label: "Kontakt", href: "#kontakt" },
 ];
 
