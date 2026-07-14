@@ -126,8 +126,17 @@ export default function Footer() {
             &copy; 2026 ALU LINE Systems. Srebrenik. Sva prava zadržana.
           </p>
           <p className="text-gray-600 text-xs">
-            Dizajnirano s{" "}
-            <span className="text-alu-blue font-medium">preciznošću</span>.
+            Sajt izradio{" "}
+            <a
+              href="https://www.zt-media.digital/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium hover:text-white transition-colors duration-200"
+              style={{ color: "#F46129" }}
+            >
+              ZT Media
+            </a>
+            .
           </p>
         </div>
       </div>
