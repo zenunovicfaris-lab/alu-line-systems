@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { ArrowRight, X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 
@@ -77,7 +78,7 @@ function HeroCard({
     >
       <Image
         src={src}
-        alt={`Vrata — slika ${cardIndex + 1}`}
+        alt={`Drvena sobna vrata po mjeri, ALU LINE Systems, model ${cardIndex + 1}`}
         fill
         sizes="(max-width: 768px) 100vw, 33vw"
         style={{ objectFit: "cover" }}
@@ -179,7 +180,7 @@ function Lightbox({
           >
             <Image
               src={images[current]}
-              alt={`Vrata — slika ${current + 1}`}
+              alt={`Drvena sobna vrata po mjeri, ALU LINE Systems, model ${current + 1}`}
               width={1200}
               height={900}
               style={{ objectFit: "contain", maxHeight: "85vh", width: "100%", height: "auto" }}
@@ -343,16 +344,28 @@ export default function DoorGallerySection() {
               Odaberite model, a mjerenje i montažu preuzimamo mi.
             </p>
           </div>
-          <a
-            href="#kontakt"
-            className="group flex items-center gap-2.5 px-7 py-3.5 bg-alu-dark text-white font-semibold rounded-xl text-sm tracking-wide hover:bg-alu-blue transition-colors duration-200 flex-shrink-0"
-          >
-            Kontaktirajte nas
-            <ArrowRight
-              size={15}
-              className="transition-transform duration-200 group-hover:translate-x-0.5"
-            />
-          </a>
+          <div className="flex flex-col sm:flex-row items-center gap-3 flex-shrink-0">
+            <Link
+              href="/usluge/drvena-vrata"
+              className="group flex items-center gap-2 text-sm font-semibold text-alu-blue hover:underline underline-offset-4"
+            >
+              Pogledaj drvena vrata po mjeri
+              <ArrowRight
+                size={15}
+                className="transition-transform duration-200 group-hover:translate-x-0.5"
+              />
+            </Link>
+            <a
+              href="#kontakt"
+              className="group flex items-center gap-2.5 px-7 py-3.5 bg-alu-dark text-white font-semibold rounded-xl text-sm tracking-wide hover:bg-alu-blue transition-colors duration-200"
+            >
+              Kontaktirajte nas
+              <ArrowRight
+                size={15}
+                className="transition-transform duration-200 group-hover:translate-x-0.5"
+              />
+            </a>
+          </div>
         </motion.div>
       </div>
 

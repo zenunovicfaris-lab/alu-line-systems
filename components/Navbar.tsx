@@ -2,14 +2,16 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, ChevronRight } from "lucide-react";
 
 const navLinks = [
   { label: "Početna", href: "#pocetna" },
+  { label: "Usluge", href: "/usluge" },
+  { label: "Lokacije", href: "/lokacije" },
+  { label: "Blog", href: "/blog" },
   { label: "Projekti", href: "#projekti" },
-  { label: "Usluge", href: "#usluge" },
-  { label: "Vrata", href: "#galerija-vrata" },
   { label: "Kontakt", href: "#kontakt" },
 ];
 
@@ -17,6 +19,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("Početna");
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,12 +41,28 @@ export default function Navbar() {
     };
   }, [menuOpen]);
 
-  const handleNavClick = (label: string, href: string) => {
+  const handleNavClick = (
+    label: string,
+    href: string,
+    e?: React.MouseEvent
+  ) => {
+    e?.preventDefault();
     setActiveLink(label);
     setMenuOpen(false);
-    const el = document.querySelector(href);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
+
+    // Prava ruta (npr. /usluge) — koristi router
+    if (href.startsWith("/")) {
+      router.push(href);
+      return;
+    }
+
+    // Hash link (#sekcija)
+    if (pathname === "/") {
+      const el = document.querySelector(href);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // S podstranice — idi na početnu pa na sekciju
+      window.location.href = `/${href}`;
     }
   };
 
@@ -62,8 +82,8 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <motion.a
-              href="#pocetna"
-              onClick={() => handleNavClick("Početna", "#pocetna")}
+              href="/"
+              onClick={(e) => handleNavClick("Početna", "#pocetna", e)}
               className="flex items-center gap-3 group cursor-pointer"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
@@ -115,11 +135,6 @@ export default function Navbar() {
                       transition={{ type: "spring", stiffness: 400, damping: 30 }}
                     />
                   )}
-                  <span
-                    className={`absolute inset-0 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-200 ${
-                      scrolled ? "bg-gray-100" : "bg-white/10"
-                    }`}
-                  />
                 </motion.button>
               ))}
             </nav>
@@ -139,8 +154,8 @@ export default function Navbar() {
 
               {/* CTA Button */}
               <motion.a
-                href="#kontakt"
-                onClick={() => handleNavClick("Kontakt", "#kontakt")}
+                href="/#kontakt"
+                onClick={(e) => handleNavClick("Kontakt", "#kontakt", e)}
                 className="hidden lg:flex items-center gap-2 px-5 py-2.5 bg-alu-blue text-white text-sm font-semibold rounded-xl transition-all duration-300 hover:bg-alu-light"
                 whileHover={{
                   scale: 1.05,
@@ -282,8 +297,8 @@ export default function Navbar() {
                   Pozovite nas
                 </motion.a>
                 <motion.a
-                  href="#kontakt"
-                  onClick={() => handleNavClick("Kontakt", "#kontakt")}
+                  href="/#kontakt"
+                  onClick={(e) => handleNavClick("Kontakt", "#kontakt", e)}
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.5, duration: 0.4 }}

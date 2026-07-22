@@ -1,18 +1,14 @@
+import Link from "next/link";
 import { Phone, Facebook } from "lucide-react";
+import { SERVICE_PAGES, LOCATION_PAGES } from "@/lib/content";
 
 const quickLinks = [
-  { label: "Početna", href: "#pocetna" },
-  { label: "Projekti", href: "#projekti" },
-  { label: "Usluge", href: "#usluge" },
-  { label: "Galerija", href: "#galerija-vrata" },
-  { label: "Kontakt", href: "#kontakt" },
-];
-
-const services = [
-  "Aluminijske Ograde",
-  "Roletne (ALU & PVC)",
-  "Nadstrešnice",
-  "Balkonske Ograde",
+  { label: "Početna", href: "/#pocetna" },
+  { label: "Usluge", href: "/usluge" },
+  { label: "Lokacije", href: "/lokacije" },
+  { label: "Blog", href: "/blog" },
+  { label: "Projekti", href: "/#projekti" },
+  { label: "Kontakt", href: "/#kontakt" },
 ];
 
 export default function Footer() {
@@ -23,10 +19,10 @@ export default function Footer() {
     >
       {/* Main grid */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-12">
 
           {/* Col 1 — Brand */}
-          <div className="flex flex-col gap-5">
+          <div className="col-span-2 md:col-span-1 flex flex-col gap-5">
             <div className="flex flex-col leading-none">
               <span className="text-2xl font-black tracking-widest text-white">
                 ALU <span className="text-alu-blue">LINE</span>
@@ -99,15 +95,41 @@ export default function Footer() {
               Usluge
             </h4>
             <ul className="flex flex-col gap-2.5">
-              {services.map((service) => (
-                <li key={service}>
-                  <span className="group flex items-center gap-2 text-gray-500 text-sm cursor-default">
+              {SERVICE_PAGES.map((s) => (
+                <li key={s.slug}>
+                  <Link
+                    href={`/usluge/${s.slug}`}
+                    className="group flex items-center gap-2 text-gray-500 text-sm hover:text-white transition-colors duration-200"
+                  >
                     <span
                       className="w-1 h-1 rounded-full flex-shrink-0"
                       style={{ background: "#143c5f", opacity: 0.6 }}
                     />
-                    {service}
-                  </span>
+                    {s.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 4 — Locations */}
+          <div className="flex flex-col gap-5">
+            <h4 className="text-white text-sm font-bold tracking-widest uppercase">
+              Lokacije
+            </h4>
+            <ul className="flex flex-col gap-2.5">
+              {LOCATION_PAGES.map((l) => (
+                <li key={l.slug}>
+                  <Link
+                    href={`/lokacije/${l.slug}`}
+                    className="group flex items-center gap-2 text-gray-500 text-sm hover:text-white transition-colors duration-200"
+                  >
+                    <span
+                      className="w-1 h-1 rounded-full flex-shrink-0"
+                      style={{ background: "#143c5f", opacity: 0.6 }}
+                    />
+                    {l.city}
+                  </Link>
                 </li>
               ))}
             </ul>

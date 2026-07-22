@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import {
   Fence,
@@ -21,16 +22,20 @@ const services = [
   {
     icon: Fence,
     title: "Aluminijske Ograde & Kapije",
+    href: "/usluge/aluminijske-ograde",
+    linkLabel: "Više o aluminijskim ogradama",
     points: [
       "Dvorišne ograde",
       "Balkonske ograde",
       "Grilje ograde",
-      "Ulazne i pješačke kapije",
+      "Klizne i pješačke kapije",
     ],
   },
   {
     icon: DoorOpen,
     title: "Rolo & Sekcijska Vrata",
+    href: "/usluge/garazna-i-sekcijska-vrata",
+    linkLabel: "Više o garažnim vratima",
     points: [
       "Garažna rolo vrata",
       "Sekcijska vrata",
@@ -41,6 +46,8 @@ const services = [
   {
     icon: Blinds,
     title: "Roletne",
+    href: "/usluge/roletne",
+    linkLabel: "Više o roletnama",
     points: [
       "Nadgradne roletne",
       "Podgradne roletne",
@@ -143,7 +150,7 @@ export default function ProductsSection() {
           animate={gridInView ? "visible" : "hidden"}
           className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-20"
         >
-          {services.map(({ icon: Icon, title, points }) => (
+          {services.map(({ icon: Icon, title, href, linkLabel, points }) => (
             <motion.div
               key={title}
               variants={itemVariants}
@@ -185,22 +192,38 @@ export default function ProductsSection() {
               </ul>
 
               {/* CTA */}
-              <motion.a
-                href="#kontakt"
-                className="flex items-center gap-2 text-alu-blue text-sm font-semibold mt-6 pt-5 border-t border-gray-100"
-                whileHover="hover"
+              <Link
+                href={href}
+                className="group/link flex items-center gap-2 text-alu-blue text-sm font-semibold mt-6 pt-5 border-t border-gray-100"
               >
-                <span>Zatraži ponudu</span>
-                <motion.span
-                  variants={{ hover: { x: 5 } }}
-                  transition={{ duration: 0.25, ease: "easeOut" }}
-                >
-                  <ArrowRight size={14} />
-                </motion.span>
-              </motion.a>
+                <span>{linkLabel}</span>
+                <ArrowRight
+                  size={14}
+                  className="transition-transform duration-200 group-hover/link:translate-x-1"
+                />
+              </Link>
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Dodatne usluge */}
+        <p className="text-center text-sm text-gray-500 -mt-10 mb-16">
+          Nudimo i{" "}
+          <Link
+            href="/usluge/nadstresnice"
+            className="text-alu-blue font-semibold hover:underline underline-offset-4"
+          >
+            aluminijske nadstrešnice
+          </Link>{" "}
+          i{" "}
+          <Link
+            href="/usluge/drvena-vrata"
+            className="text-alu-blue font-semibold hover:underline underline-offset-4"
+          >
+            drvena vrata po mjeri
+          </Link>
+          .
+        </p>
 
         {/* Perks row */}
         <motion.div
