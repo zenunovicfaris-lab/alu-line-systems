@@ -41,6 +41,14 @@ export default function Navbar() {
     };
   }, [menuOpen]);
 
+  // Aktivna stavka prati stvarnu stranicu (ne ostaje na prethodnoj nakon navigacije)
+  useEffect(() => {
+    if (pathname.startsWith("/usluge")) setActiveLink("Usluge");
+    else if (pathname.startsWith("/lokacije")) setActiveLink("Lokacije");
+    else if (pathname.startsWith("/blog")) setActiveLink("Blog");
+    else if (pathname === "/") setActiveLink("Početna");
+  }, [pathname]);
+
   const handleNavClick = (
     label: string,
     href: string,
