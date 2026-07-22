@@ -15,20 +15,23 @@ export default function GalleryGrid({
   if (!images.length) return null;
 
   return (
-    <section className="relative py-20 lg:py-28 bg-alu-gray">
+    <section className="relative py-16 lg:py-24 bg-alu-gray">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-black text-alu-dark tracking-tight mb-12">
-          {heading}
-        </h2>
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+        <div className="mb-10">
+          <p className="eyebrow text-alu-blue mb-4">Galerija</p>
+          <h2 className="text-2xl md:text-3xl font-semibold text-alu-dark tracking-tight">
+            {heading}
+          </h2>
+        </div>
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
           {images.map((img, i) => (
             <motion.div
               key={img.src}
-              initial={{ opacity: 0, y: 28 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.55, ease: EASE, delay: (i % 3) * 0.08 }}
-              className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gray-100 shadow-md group"
+              transition={{ duration: 0.5, ease: EASE, delay: (i % 3) * 0.06 }}
+              className="relative aspect-[4/3] rounded-sm overflow-hidden bg-alu-dark group"
             >
               <Image
                 src={img.src}

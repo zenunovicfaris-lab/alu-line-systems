@@ -6,6 +6,7 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
   MapPin,
   ArrowRight,
+  Phone,
   X,
   ChevronLeft,
   ChevronRight,
@@ -250,7 +251,75 @@ function Lightbox({
   );
 }
 
-// Project card
+// Lead project — large, full width
+
+function LeadProject({ project }: { project: (typeof projects)[number] }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+
+  return (
+    <>
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 16 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7, ease: EASE }}
+        className="group relative w-full aspect-[16/10] md:aspect-[21/9] rounded-sm overflow-hidden bg-alu-dark cursor-pointer"
+        onClick={() => setLightboxOpen(true)}
+      >
+        <Image
+          src={project.images[0]}
+          alt={project.title}
+          fill
+          sizes="100vw"
+          style={{ objectFit: "cover" }}
+          className="transition-transform duration-700 group-hover:scale-[1.02]"
+          priority
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to top, rgba(15,18,23,0.95) 0%, rgba(15,18,23,0.4) 45%, rgba(15,18,23,0.05) 75%, transparent 100%)",
+          }}
+        />
+        {/* Spec label — top left */}
+        <div className="absolute top-5 left-5 flex items-center gap-2 text-[11px] font-semibold tracking-[0.16em] uppercase text-white/80">
+          <MapPin size={11} />
+          {project.location} · {project.year}
+        </div>
+        {/* Bottom */}
+        <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8 md:p-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+          <div className="max-w-2xl">
+            <h3 className="text-xl sm:text-3xl md:text-4xl font-semibold text-white leading-tight tracking-tight mb-2">
+              {project.title}
+            </h3>
+            <p className="text-sm md:text-base text-white/65 leading-relaxed">
+              {project.subtitle}
+            </p>
+          </div>
+          <span className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-sm bg-white text-alu-dark text-sm font-semibold tracking-wide group-hover:bg-alu-blue group-hover:text-white transition-colors duration-200 self-start">
+            Pogledaj galeriju
+            <ArrowRight size={14} />
+          </span>
+        </div>
+      </motion.div>
+
+      <AnimatePresence>
+        {lightboxOpen && (
+          <Lightbox
+            images={project.images}
+            startIndex={0}
+            onClose={() => setLightboxOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+
+// Catalog card — photo with caption below (index of real work)
 
 function ProjectCard({
   project,
@@ -267,64 +336,41 @@ function ProjectCard({
     <>
       <motion.div
         ref={ref}
-        initial={{ opacity: 0, y: 36 }}
+        initial={{ opacity: 0, y: 16 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.85, ease: EASE, delay: index * 0.07 }}
-        className="group relative w-full aspect-video rounded-2xl overflow-hidden bg-alu-dark cursor-pointer shadow-lg hover:shadow-2xl hover:shadow-black/20 transition-shadow duration-500"
+        transition={{ duration: 0.6, ease: EASE, delay: (index % 2) * 0.06 }}
+        className="group cursor-pointer"
         onClick={() => setLightboxOpen(true)}
       >
-        <Image
-          src={project.images[0]}
-          alt={project.title}
-          fill
-          sizes="(max-width: 768px) 100vw, 50vw"
-          style={{ objectFit: "cover" }}
-          className="transition-transform duration-700 group-hover:scale-[1.04]"
-          priority={index === 0}
-        />
-
-        {/* Overlay — jači na dnu da tekst ne preklapa badge */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to top, rgba(10,16,24,0.97) 0%, rgba(10,16,24,0.75) 40%, rgba(10,16,24,0.1) 70%, transparent 100%)",
-          }}
-        />
-
-        {/* Location badge — top left */}
-        <div className="absolute top-4 left-4">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.12em] uppercase bg-black/60 backdrop-blur-sm text-white/85 border border-white/10">
-            <MapPin size={9} />
-            {project.location} · {project.year}
-          </span>
+        <div className="relative w-full aspect-[4/3] rounded-sm overflow-hidden bg-alu-dark">
+          <Image
+            src={project.images[0]}
+            alt={project.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            style={{ objectFit: "cover" }}
+            className="transition-transform duration-700 group-hover:scale-[1.03]"
+          />
+          <div className="absolute inset-0 bg-alu-dark/0 group-hover:bg-alu-dark/25 transition-colors duration-300" />
         </div>
-
-        {/* Bottom content */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 flex flex-row items-end justify-between gap-3">
-          <div className="min-w-0 flex-1">
-            <h3 className="text-base sm:text-xl md:text-2xl font-bold text-white leading-tight mb-1">
+        {/* Caption below — spec-sheet style */}
+        <div className="flex items-start justify-between gap-4 pt-4">
+          <div className="min-w-0">
+            <div className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.14em] uppercase text-alu-text mb-1.5">
+              <MapPin size={11} className="text-alu-blue" />
+              {project.location} · {project.year}
+            </div>
+            <h3 className="text-base sm:text-lg font-semibold text-alu-dark leading-snug">
               {project.title}
             </h3>
-            <p className="hidden sm:block text-sm text-white/55 leading-relaxed">
+            <p className="text-sm text-alu-text leading-relaxed mt-1">
               {project.subtitle}
             </p>
           </div>
-
-          <button
-            className="group/btn flex-shrink-0 flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-alu-blue text-white text-xs sm:text-sm font-semibold tracking-wide hover:bg-alu-light transition-colors duration-200"
-            onClick={(e) => {
-              e.stopPropagation();
-              setLightboxOpen(true);
-            }}
-          >
-            <span className="sm:hidden">Galerija</span>
-            <span className="hidden sm:inline">Pogledaj galeriju</span>
-            <ArrowRight
-              size={13}
-              className="transition-transform duration-200 group-hover/btn:translate-x-0.5"
-            />
-          </button>
+          <ArrowRight
+            size={16}
+            className="flex-shrink-0 mt-1 text-alu-steel group-hover:text-alu-blue group-hover:translate-x-0.5 transition-all duration-200"
+          />
         </div>
       </motion.div>
 
@@ -350,100 +396,93 @@ export default function ProjectsSection() {
   const ctaInView = useInView(ctaRef, { once: true, margin: "-60px" });
 
   const [showAll, setShowAll] = useState(false);
-  const visibleProjects = showAll ? projects : projects.slice(0, 4);
+  const [lead, ...rest] = projects;
+  const visibleRest = showAll ? rest : rest.slice(0, 4);
 
   return (
     <section
       id="projekti"
-      className="relative py-24 lg:py-32 bg-alu-gray overflow-hidden"
+      className="relative py-20 lg:py-28 bg-alu-gray overflow-hidden"
     >
-      <div
-        className="absolute top-0 left-0 w-full h-px opacity-20"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent, #143c5f 30%, #143c5f 70%, transparent)",
-        }}
-      />
-
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
           ref={headingRef}
-          initial={{ opacity: 0, y: 36 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={headingInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: EASE }}
-          className="mb-14"
+          transition={{ duration: 0.6, ease: EASE }}
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10"
         >
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-semibold tracking-[0.2em] uppercase border border-alu-blue/25 text-alu-blue mb-5">
-            Projekti
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-alu-dark leading-tight tracking-tight mb-4">
-            Izvedeni projekti
-            <br />
-            <span className="text-alu-text font-normal">širom BiH.</span>
-          </h2>
-          <p className="text-gray-400 text-base leading-relaxed max-w-lg">
-            Svaki projekat radimo po mjeri klijenta, od prvog mjerenja do
-            montaže.
+          <div className="max-w-2xl">
+            <p className="eyebrow text-alu-blue mb-4">Izvedeni radovi</p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-alu-dark leading-[1.08] tracking-tight">
+              Stvarni projekti, izrađeni i montirani po mjeri
+            </h2>
+          </div>
+          <p className="text-alu-text text-sm leading-relaxed max-w-xs md:text-right">
+            Od prvog mjerenja na terenu do montaže. Kliknite na projekat za
+            galeriju fotografija.
           </p>
         </motion.div>
 
-        {/* 2x2 grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {visibleProjects.map((project, i) => (
+        {/* Lead project */}
+        <LeadProject project={lead} />
+
+        {/* Catalog grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-10 mt-10">
+          {visibleRest.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}
         </div>
 
         {/* Show more / less */}
-        {projects.length > 4 && (
-          <div className="mt-10 flex justify-center">
-            <motion.button
+        {rest.length > 4 && (
+          <div className="mt-12 flex justify-center">
+            <button
               onClick={() => setShowAll((v) => !v)}
-              className="group flex items-center gap-2.5 px-7 py-3.5 rounded-xl border border-alu-dark/15 bg-white text-alu-dark font-semibold text-sm tracking-wide hover:border-alu-blue hover:text-alu-blue transition-colors duration-200"
-              whileTap={{ scale: 0.97 }}
+              className="group flex items-center gap-2.5 px-7 py-3.5 rounded-sm border border-alu-dark/20 bg-transparent text-alu-dark font-semibold text-sm tracking-wide hover:border-alu-blue hover:text-alu-blue transition-colors duration-200"
             >
-              {showAll ? "Prikaži manje" : "Prikaži više"}
+              {showAll ? "Prikaži manje" : `Prikaži još projekata`}
               {showAll ? (
-                <ChevronUp
-                  size={16}
-                  className="transition-transform duration-200 group-hover:-translate-y-0.5"
-                />
+                <ChevronUp size={16} />
               ) : (
-                <ChevronDown
-                  size={16}
-                  className="transition-transform duration-200 group-hover:translate-y-0.5"
-                />
+                <ChevronDown size={16} />
               )}
-            </motion.button>
+            </button>
           </div>
         )}
 
-        {/* CTA */}
+        {/* CTA band */}
         <motion.div
           ref={ctaRef}
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={ctaInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: EASE }}
-          className="mt-16 flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-gray-200 pt-12"
+          transition={{ duration: 0.6, ease: EASE }}
+          className="mt-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 border-t border-alu-line pt-10"
         >
           <div>
             <p className="text-lg font-semibold text-alu-dark mb-1">
-              Vaš projekat ovdje?
+              Želite ovakav rad kod sebe?
             </p>
-            <p className="text-sm text-gray-400">
-              Javite se za besplatnu konsultaciju i ponudu po mjeri.
+            <p className="text-sm text-alu-text">
+              Javite se za izlazak na teren i ponudu po mjeri, bez obaveze.
             </p>
           </div>
-          <a
-            href="#kontakt"
-            className="group flex items-center gap-2.5 px-7 py-3.5 bg-alu-dark text-white font-semibold rounded-xl text-sm tracking-wide hover:bg-alu-blue transition-colors duration-200 flex-shrink-0"
-          >
-            Kontaktirajte nas
-            <ArrowRight
-              size={15}
-              className="transition-transform duration-200 group-hover:translate-x-0.5"
-            />
-          </a>
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+            <a
+              href="tel:+38762543464"
+              className="flex items-center justify-center gap-2.5 px-7 py-3.5 bg-alu-blue text-white font-semibold rounded-sm text-sm tracking-wide hover:bg-alu-light transition-colors duration-200"
+            >
+              <Phone size={15} />
+              062 543 464
+            </a>
+            <a
+              href="#kontakt"
+              className="group flex items-center justify-center gap-2 px-7 py-3.5 rounded-sm border border-alu-dark/20 text-alu-dark font-semibold text-sm tracking-wide hover:border-alu-blue hover:text-alu-blue transition-colors duration-200"
+            >
+              Zatraži ponudu
+              <ArrowRight size={15} />
+            </a>
+          </div>
         </motion.div>
       </div>
     </section>

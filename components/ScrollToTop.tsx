@@ -26,12 +26,8 @@ export default function ScrollToTop() {
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
           onClick={scrollUp}
           aria-label="Scroll to top"
-          className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-alu-blue text-white flex items-center justify-center shadow-lg shadow-alu-blue/40 hover:bg-alu-light transition-colors duration-300"
-          whileHover={{
-            scale: 1.12,
-            boxShadow: "0 0 24px rgba(12,51,124,0.6), 0 8px 30px rgba(12,51,124,0.35)",
-          }}
-          whileTap={{ scale: 0.92 }}
+          className="fixed bottom-6 right-6 z-50 w-11 h-11 rounded-sm bg-alu-dark text-white flex items-center justify-center border border-white/10 hover:bg-alu-blue transition-colors duration-200"
+          whileTap={{ scale: 0.94 }}
         >
           <ArrowUp size={18} />
         </motion.button>

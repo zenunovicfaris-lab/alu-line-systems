@@ -5,13 +5,11 @@ export default function FaqSection({ items }: { items: FaqItem[] }) {
   if (!items.length) return null;
 
   return (
-    <section className="relative py-20 lg:py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase border border-alu-blue/30 bg-alu-blue/5 text-alu-blue mb-5">
-            Česta pitanja
-          </span>
-          <h2 className="text-3xl md:text-4xl font-black text-alu-dark tracking-tight">
+    <section className="relative py-16 lg:py-24 bg-white">
+      <div className="max-w-3xl mx-auto px-6 lg:px-8">
+        <div className="mb-10">
+          <p className="eyebrow text-alu-blue mb-4">Česta pitanja</p>
+          <h2 className="text-2xl md:text-3xl font-semibold text-alu-dark tracking-tight">
             Pitanja i odgovori
           </h2>
         </div>

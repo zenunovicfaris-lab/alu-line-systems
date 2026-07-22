@@ -82,8 +82,8 @@ export default function Navbar() {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "backdrop-blur-xl bg-white/80 border-b border-white/30 shadow-lg shadow-black/5"
-            : "bg-transparent"
+            ? "backdrop-blur-xl bg-white/90 border-b border-alu-line"
+            : "bg-transparent border-b border-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -161,20 +161,14 @@ export default function Navbar() {
               </a>
 
               {/* CTA Button */}
-              <motion.a
+              <a
                 href="/#kontakt"
                 onClick={(e) => handleNavClick("Kontakt", "#kontakt", e)}
-                className="hidden lg:flex items-center gap-2 px-5 py-2.5 bg-alu-blue text-white text-sm font-semibold rounded-xl transition-all duration-300 hover:bg-alu-light"
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 0 20px rgba(20, 60, 95, 0.5), 0 8px 25px rgba(20, 60, 95, 0.3)",
-                }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ duration: 0.2 }}
+                className="hidden lg:flex items-center gap-2 px-5 py-2.5 bg-alu-blue text-white text-sm font-semibold rounded-sm transition-colors duration-200 hover:bg-alu-light"
               >
                 Zatraži Ponudu
                 <ChevronRight size={14} />
-              </motion.a>
+              </a>
 
               {/* Mobile Menu Button */}
               <motion.button

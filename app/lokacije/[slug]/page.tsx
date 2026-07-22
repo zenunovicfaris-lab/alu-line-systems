@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactSection from "@/components/ContactSection";
-import ScrollToTop from "@/components/ScrollToTop";
+import WhatsAppFAB from "@/components/WhatsAppFAB";
 import SubPageHero from "@/components/subpage/SubPageHero";
 import ProseSection from "@/components/subpage/ProseSection";
 import FeatureGrid from "@/components/subpage/FeatureGrid";
@@ -154,7 +154,7 @@ export default function LocationPageRoute({
       <InternalLinks heading="Radimo i u drugim gradovima" links={otherCities} />
       <ContactSection />
       <Footer />
-      <ScrollToTop />
+      <WhatsAppFAB />
     </main>
   );
 }

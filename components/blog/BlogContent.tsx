@@ -1,4 +1,4 @@
-import { CheckCircle2 } from "lucide-react";
+import { Check } from "lucide-react";
 import type { Block } from "@/lib/blog";
 
 export default function BlogContent({ body }: { body: Block[] }) {
@@ -9,7 +9,7 @@ export default function BlogContent({ body }: { body: Block[] }) {
           return (
             <h2
               key={i}
-              className="text-2xl md:text-3xl font-black text-alu-dark tracking-tight mt-6"
+              className="text-2xl md:text-3xl font-semibold text-alu-dark tracking-tight mt-6"
             >
               {block.text}
             </h2>
@@ -24,7 +24,7 @@ export default function BlogContent({ body }: { body: Block[] }) {
                     {block.headers.map((h) => (
                       <th
                         key={h}
-                        className="text-left font-bold text-alu-dark bg-alu-gray border border-gray-200 px-4 py-3"
+                        className="text-left font-semibold text-alu-dark bg-alu-gray border border-alu-line px-4 py-3"
                       >
                         {h}
                       </th>
@@ -37,7 +37,7 @@ export default function BlogContent({ body }: { body: Block[] }) {
                       {row.map((cell, ci) => (
                         <td
                           key={ci}
-                          className={`border border-gray-200 px-4 py-3 text-gray-600 ${
+                          className={`border border-alu-line px-4 py-3 text-alu-text ${
                             ci === 0 ? "font-semibold text-alu-dark" : ""
                           }`}
                         >
@@ -56,18 +56,17 @@ export default function BlogContent({ body }: { body: Block[] }) {
             <ul key={i} className="flex flex-col gap-3">
               {block.items.map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <CheckCircle2
-                    size={18}
-                    className="text-alu-blue flex-shrink-0 mt-0.5"
-                  />
-                  <span className="text-gray-600 leading-relaxed">{item}</span>
+                  <span className="flex-shrink-0 mt-1 w-5 h-5 rounded-sm bg-alu-blue/10 flex items-center justify-center">
+                    <Check size={12} className="text-alu-blue" />
+                  </span>
+                  <span className="text-alu-text leading-relaxed">{item}</span>
                 </li>
               ))}
             </ul>
           );
         }
         return (
-          <p key={i} className="text-gray-600 text-base leading-relaxed">
+          <p key={i} className="text-alu-text text-base leading-relaxed">
             {block.text}
           </p>
         );

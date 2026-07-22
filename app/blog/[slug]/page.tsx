@@ -5,7 +5,7 @@ import { CalendarDays, Clock, ArrowRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactSection from "@/components/ContactSection";
-import ScrollToTop from "@/components/ScrollToTop";
+import WhatsAppFAB from "@/components/WhatsAppFAB";
 import SubPageHero from "@/components/subpage/SubPageHero";
 import FaqSection from "@/components/subpage/FaqSection";
 import BlogContent from "@/components/blog/BlogContent";
@@ -139,7 +139,7 @@ export default function BlogPostRoute({
       <article className="relative py-16 lg:py-24 bg-white">
         <div className="max-w-3xl mx-auto px-6 lg:px-8">
           {/* Meta */}
-          <div className="flex items-center gap-5 text-sm text-gray-400 mb-10 pb-8 border-b border-gray-100">
+          <div className="flex items-center gap-5 text-sm text-alu-text mb-10 pb-8 border-b border-alu-line">
             <span className="flex items-center gap-2">
               <CalendarDays size={15} className="text-alu-blue" />
               {formatDate(post.date)}
@@ -153,15 +153,15 @@ export default function BlogPostRoute({
           <BlogContent body={post.body} />
 
           {/* Related service CTA */}
-          <div className="mt-12 p-8 rounded-2xl bg-alu-dark text-center">
-            <p className="text-white/70 text-sm mb-1">Trebate ponudu?</p>
-            <h3 className="text-xl font-bold text-white mb-5">
+          <div className="mt-12 p-8 rounded-sm bg-alu-dark">
+            <p className="eyebrow text-alu-steel mb-3">Trebate ponudu?</p>
+            <h3 className="text-xl font-semibold text-white mb-6">
               {post.relatedService.label} po mjeri, uz garanciju
             </h3>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <a
                 href="tel:+38762543464"
-                className="inline-flex items-center gap-2 px-6 py-3.5 bg-alu-blue text-white font-semibold rounded-2xl text-sm hover:bg-alu-light transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3.5 bg-alu-blue text-white font-semibold rounded-sm text-sm hover:bg-alu-light transition-colors"
               >
                 Pozovi: 062 543 464
               </a>
@@ -181,22 +181,22 @@ export default function BlogPostRoute({
 
       {/* Other posts */}
       {otherPosts.length > 0 && (
-        <section className="py-16 lg:py-20 bg-alu-gray border-t border-gray-100">
+        <section className="py-14 lg:py-20 bg-alu-gray border-t border-alu-line">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <h2 className="text-xl font-bold text-alu-dark mb-8">
+            <h2 className="text-lg font-semibold text-alu-dark mb-7">
               Pročitajte i ovo
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {otherPosts.map((p) => (
                 <Link
                   key={p.slug}
                   href={`/blog/${p.slug}`}
-                  className="group p-6 rounded-2xl border border-gray-100 bg-white hover:border-alu-blue/30 hover:shadow-lg hover:shadow-alu-blue/5 transition-all duration-300"
+                  className="group p-6 rounded-sm border border-alu-line bg-white hover:border-alu-blue transition-colors duration-200"
                 >
-                  <h3 className="text-base font-bold text-alu-dark mb-2 group-hover:text-alu-blue transition-colors">
+                  <h3 className="text-base font-semibold text-alu-dark mb-2 group-hover:text-alu-blue transition-colors">
                     {p.title}
                   </h3>
-                  <p className="text-sm text-gray-500 leading-relaxed line-clamp-3">
+                  <p className="text-sm text-alu-text leading-relaxed line-clamp-3">
                     {p.excerpt}
                   </p>
                 </Link>
@@ -208,7 +208,7 @@ export default function BlogPostRoute({
 
       <ContactSection />
       <Footer />
-      <ScrollToTop />
+      <WhatsAppFAB />
     </main>
   );
 }

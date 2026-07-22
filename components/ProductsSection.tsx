@@ -2,294 +2,200 @@
 
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
-import {
-  Fence,
-  DoorOpen,
-  ArrowRight,
-  Phone,
-  MapPin,
-  Shield,
-  Ruler,
-  Zap,
-  Blinds,
-  CheckCircle2,
-} from "lucide-react";
+import { ArrowRight, Phone, Ruler, Zap, Shield, MapPin } from "lucide-react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 const services = [
   {
-    icon: Fence,
-    title: "Aluminijske Ograde & Kapije",
+    n: "01",
+    title: "Aluminijske ograde i kapije",
+    desc: "Dvorišne, balkonske i grilje ograde te klizne i pješačke kapije. Po mjeri vašeg placa, u boji koja se uklapa uz fasadu.",
+    tags: ["Dvorišne", "Balkonske", "Klizne kapije"],
     href: "/usluge/aluminijske-ograde",
-    linkLabel: "Više o aluminijskim ogradama",
-    points: [
-      "Dvorišne ograde",
-      "Balkonske ograde",
-      "Grilje ograde",
-      "Klizne i pješačke kapije",
-    ],
+    image: "/images/projekti/terasa-ograda-1.jpg",
   },
   {
-    icon: DoorOpen,
-    title: "Rolo & Sekcijska Vrata",
+    n: "02",
+    title: "Rolo i sekcijska vrata",
+    desc: "Garažna rolo vrata, sekcijska i industrijska vrata s daljinskim upravljanjem. Isporuka, ugradnja i podešavanje.",
+    tags: ["Rolo", "Sekcijska", "Daljinski"],
     href: "/usluge/garazna-i-sekcijska-vrata",
-    linkLabel: "Više o garažnim vratima",
-    points: [
-      "Garažna rolo vrata",
-      "Sekcijska vrata",
-      "Industrijska vrata",
-      "Daljinsko upravljanje",
-    ],
+    image: "/images/garazna i sekcijska vrata/Garazna vrata.jpg",
   },
   {
-    icon: Blinds,
+    n: "03",
     title: "Roletne",
+    desc: "Nadgradne i podgradne roletne za aluminijske i PVC sisteme. Zaštita od sunca, buke i toplotni gubici pod kontrolom.",
+    tags: ["Nadgradne", "Podgradne", "ALU i PVC"],
     href: "/usluge/roletne",
-    linkLabel: "Više o roletnama",
-    points: [
-      "Nadgradne roletne",
-      "Podgradne roletne",
-      "Za ALU i PVC sisteme",
-      "Energetska efikasnost",
-    ],
+    image: "/images/roletne/roletna1.jpg",
+  },
+  {
+    n: "04",
+    title: "Drvena vrata po mjeri",
+    desc: "Sobna i ulazna drvena vrata po narudžbi, s dovratnikom. Odaberete model, a mjerenje i montažu preuzimamo mi.",
+    tags: ["Sobna", "Ulazna", "S dovratnikom"],
+    href: "/usluge/drvena-vrata",
+    image: "/images/vrata katalog/Model mo-1.jpeg",
+  },
+  {
+    n: "05",
+    title: "Nadstrešnice",
+    desc: "Aluminijske nadstrešnice za auto, ulaz i terasu. Trajan zaklon koji ne rđa i ne traži održavanje.",
+    tags: ["Carport", "Ulaz", "Terasa"],
+    href: "/usluge/nadstresnice",
+    image: "/images/hero-img.jpg",
   },
 ];
 
 const perks = [
-  { icon: Ruler, title: "Izrada po mjeri", desc: "Po vašim dimenzijama" },
-  { icon: Zap, title: "Brza montaža", desc: "U dogovorenom roku" },
-  { icon: Shield, title: "Garancija na rad", desc: "Pisana garancija" },
-  { icon: MapPin, title: "Široko područje", desc: "BiH · HR · SLO · AT" },
+  { icon: Ruler, label: "Izrada po vašim dimenzijama" },
+  { icon: Zap, label: "Montaža u dogovorenom roku" },
+  { icon: Shield, label: "Pisana garancija na rad" },
+  { icon: MapPin, label: "BiH · HR · SLO · AT" },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.1, delayChildren: 0.1 },
-  },
-};
+function ServiceRow({
+  service,
+  index,
+}: {
+  service: (typeof services)[number];
+  index: number;
+}) {
+  const ref = useRef<HTMLAnchorElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: EASE },
-  },
-};
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 14 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.55, ease: EASE, delay: (index % 2) * 0.05 }}
+    >
+      <Link
+        ref={ref}
+        href={service.href}
+        className="group grid grid-cols-[80px_1fr] sm:grid-cols-[40px_150px_1fr] items-center gap-x-4 sm:gap-x-8 py-7 sm:py-8 border-t border-alu-line hover:bg-white/70 transition-colors duration-200 -mx-4 px-4"
+      >
+        {/* Index — architectural */}
+        <span className="hidden sm:block text-3xl font-light text-alu-steel/70 tabular-nums leading-none self-start pt-1">
+          {service.n}
+        </span>
+
+        {/* Thumbnail */}
+        <div className="relative aspect-square sm:aspect-[4/3] rounded-sm overflow-hidden bg-alu-dark">
+          <Image
+            src={service.image}
+            alt={service.title}
+            fill
+            sizes="150px"
+            style={{ objectFit: "cover" }}
+            className="transition-transform duration-500 group-hover:scale-[1.06]"
+          />
+        </div>
+
+        {/* Text — clear micro-hierarchy */}
+        <div className="min-w-0">
+          <div className="flex items-start justify-between gap-3">
+            <h3 className="text-xl sm:text-2xl font-semibold text-alu-dark leading-tight tracking-tight group-hover:text-alu-blue transition-colors duration-200">
+              {service.title}
+            </h3>
+            <ArrowRight
+              size={18}
+              className="flex-shrink-0 mt-1 text-alu-steel group-hover:text-alu-blue group-hover:translate-x-1 transition-all duration-200"
+            />
+          </div>
+          <p className="text-sm text-alu-text leading-relaxed mt-2 max-w-xl">
+            {service.desc}
+          </p>
+          <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 mt-3.5 text-[11px] font-semibold tracking-[0.14em] uppercase text-alu-steel">
+            {service.tags.map((tag, ti) => (
+              <span key={tag} className="flex items-center gap-2.5">
+                {ti > 0 && <span className="w-1 h-1 rounded-full bg-alu-line" />}
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </Link>
+    </motion.div>
+  );
+}
 
 export default function ProductsSection() {
-  const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
-  const perksRef = useRef<HTMLDivElement>(null);
-
   const headingInView = useInView(headingRef, { once: true, margin: "-80px" });
-  const gridInView = useInView(gridRef, { once: true, margin: "-60px" });
+  const perksRef = useRef<HTMLDivElement>(null);
   const perksInView = useInView(perksRef, { once: true, margin: "-60px" });
 
   return (
-    <section
-      id="usluge"
-      ref={sectionRef}
-      className="relative py-24 lg:py-32 bg-white overflow-hidden"
-    >
-      {/* Background accents */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div
-          className="absolute top-0 left-0 w-full h-px opacity-15"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent, #143c5f 30%, #143c5f 70%, transparent)",
-          }}
-        />
-        <div
-          className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full opacity-[0.03]"
-          style={{
-            background: "radial-gradient(circle, #143c5f 0%, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute bottom-0 left-0 w-96 h-96 opacity-[0.02]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(20,60,95,1) 1px, transparent 1px), linear-gradient(90deg, rgba(20,60,95,1) 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-          }}
-        />
-      </div>
-
+    <section id="usluge" className="relative py-20 lg:py-28 bg-white">
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         {/* Heading */}
         <motion.div
           ref={headingRef}
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={headingInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: EASE }}
-          className="text-center max-w-3xl mx-auto mb-16 lg:mb-20"
+          transition={{ duration: 0.6, ease: EASE }}
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-4"
         >
-          <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase border border-alu-blue/30 bg-alu-blue/5 text-alu-blue mb-5">
-            Prodaja & Ugradnja
-          </span>
-          <h2 className="text-4xl md:text-5xl font-black text-alu-dark leading-tight tracking-tight mb-5">
-            Šta nudimo
-          </h2>
-          <p className="text-gray-500 text-base leading-relaxed">
-            Prodajemo i ugrađujemo aluminijske ograde, kapije, rolo i sekcijska
-            vrata i roletne. Na svaki rad dajemo garanciju.
+          <div className="max-w-2xl">
+            <p className="eyebrow text-alu-blue mb-4">Šta radimo</p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-alu-dark leading-[1.08] tracking-tight">
+              Aluminijski sistemi i vrata, izrađeni i montirani sami
+            </h2>
+          </div>
+          <p className="text-alu-text text-sm leading-relaxed max-w-xs md:text-right">
+            Bez podizvođača. Za kvalitet, rok i cijenu odgovaramo mi, uz pisanu
+            garanciju na svaki rad.
           </p>
         </motion.div>
 
-        {/* Services — 3 columns */}
-        <motion.div
-          ref={gridRef}
-          variants={containerVariants}
-          initial="hidden"
-          animate={gridInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-20"
-        >
-          {services.map(({ icon: Icon, title, href, linkLabel, points }) => (
-            <motion.div
-              key={title}
-              variants={itemVariants}
-              className="group relative p-8 rounded-2xl border border-gray-100 bg-alu-gray hover:border-alu-blue/30 hover:shadow-xl hover:shadow-alu-blue/5 transition-all duration-500"
-            >
-              {/* Accent line top */}
-              <div className="absolute top-0 left-8 right-8 h-[2px] bg-alu-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-full" />
-
-              {/* Icon */}
-              <div
-                className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110"
-                style={{
-                  background: "rgba(20,60,95,0.07)",
-                  border: "1px solid rgba(20,60,95,0.12)",
-                }}
-              >
-                <Icon size={24} className="text-alu-blue" />
-              </div>
-
-              {/* Title */}
-              <h3 className="text-xl font-bold text-alu-dark tracking-tight mb-5">
-                {title}
-              </h3>
-
-              {/* Points */}
-              <ul className="space-y-3">
-                {points.map((point) => (
-                  <li
-                    key={point}
-                    className="flex items-center gap-3 text-sm text-gray-500"
-                  >
-                    <CheckCircle2
-                      size={16}
-                      className="text-alu-blue flex-shrink-0"
-                    />
-                    {point}
-                  </li>
-                ))}
-              </ul>
-
-              {/* CTA */}
-              <Link
-                href={href}
-                className="group/link flex items-center gap-2 text-alu-blue text-sm font-semibold mt-6 pt-5 border-t border-gray-100"
-              >
-                <span>{linkLabel}</span>
-                <ArrowRight
-                  size={14}
-                  className="transition-transform duration-200 group-hover/link:translate-x-1"
-                />
-              </Link>
-            </motion.div>
+        {/* Service rows */}
+        <div className="border-b border-alu-line mb-14">
+          {services.map((service, i) => (
+            <ServiceRow key={service.href} service={service} index={i} />
           ))}
-        </motion.div>
+        </div>
 
-        {/* Dodatne usluge */}
-        <p className="text-center text-sm text-gray-500 -mt-10 mb-16">
-          Nudimo i{" "}
-          <Link
-            href="/usluge/nadstresnice"
-            className="text-alu-blue font-semibold hover:underline underline-offset-4"
-          >
-            aluminijske nadstrešnice
-          </Link>{" "}
-          i{" "}
-          <Link
-            href="/usluge/drvena-vrata"
-            className="text-alu-blue font-semibold hover:underline underline-offset-4"
-          >
-            drvena vrata po mjeri
-          </Link>
-          .
-        </p>
-
-        {/* Perks row */}
+        {/* Perks — thin spec line */}
         <motion.div
           ref={perksRef}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={perksInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: EASE }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-14"
+          transition={{ duration: 0.6, ease: EASE }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-4 mb-14"
         >
-          {perks.map(({ icon: Icon, title, desc }) => (
-            <div
-              key={title}
-              className="flex items-center gap-3 p-4 rounded-xl bg-alu-gray border border-gray-100"
-            >
-              <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                style={{
-                  background: "rgba(20,60,95,0.07)",
-                  border: "1px solid rgba(20,60,95,0.1)",
-                }}
-              >
-                <Icon size={18} className="text-alu-blue" />
-              </div>
-              <div>
-                <p className="text-sm font-bold text-alu-dark leading-tight">
-                  {title}
-                </p>
-                <p className="text-xs text-gray-400 mt-0.5">{desc}</p>
-              </div>
+          {perks.map(({ icon: Icon, label }) => (
+            <div key={label} className="flex items-center gap-3">
+              <Icon size={18} className="text-alu-blue flex-shrink-0" />
+              <p className="text-sm font-medium text-alu-dark">{label}</p>
             </div>
           ))}
         </motion.div>
 
         {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={perksInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.3, duration: 0.7, ease: EASE }}
-          className="flex flex-col items-center gap-5 text-center"
-        >
-          <p className="text-gray-400 text-sm font-medium">
-            Držimo se dogovorenog roka i cijene.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center gap-4">
-            <motion.a
-              href="tel:+38762543464"
-              className="flex items-center gap-2.5 px-6 py-3.5 bg-alu-blue text-white font-semibold rounded-2xl text-sm transition-all duration-300"
-              whileHover={{
-                scale: 1.05,
-                boxShadow:
-                  "0 0 25px rgba(20,60,95,0.5), 0 12px 40px rgba(20,60,95,0.25)",
-              }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <Phone size={16} />
-              Pozovi: 062 543 464
-            </motion.a>
-            <a
-              href="#kontakt"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-alu-blue hover:underline underline-offset-4 transition-all"
-            >
-              Ili pošalji upit online
-              <ArrowRight size={14} />
-            </a>
-          </div>
-        </motion.div>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <a
+            href="tel:+38762543464"
+            className="flex items-center justify-center gap-2.5 px-7 py-4 bg-alu-blue text-white font-semibold rounded-sm text-sm tracking-wide hover:bg-alu-light transition-colors duration-200 w-full sm:w-auto"
+          >
+            <Phone size={16} />
+            Pozovi: 062 543 464
+          </a>
+          <a
+            href="#kontakt"
+            className="group inline-flex items-center gap-2 text-sm font-semibold text-alu-blue hover:text-alu-light transition-colors"
+          >
+            Ili pošalji upit online
+            <ArrowRight
+              size={14}
+              className="transition-transform duration-200 group-hover:translate-x-0.5"
+            />
+          </a>
+        </div>
       </div>
     </section>
   );

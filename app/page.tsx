@@ -2,11 +2,10 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import ProductsSection from "@/components/ProductsSection";
-import DoorGallerySection from "@/components/DoorGallerySection";
 import ReviewsSection from "@/components/ReviewsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
-import ScrollToTop from "@/components/ScrollToTop";
+import WhatsAppFAB from "@/components/WhatsAppFAB";
 
 export default function Home() {
   return (
@@ -15,11 +14,10 @@ export default function Home() {
       <HeroSection />
       <ProjectsSection />
       <ProductsSection />
-      <DoorGallerySection />
       <ReviewsSection />
       <ContactSection />
       <Footer />
-      <ScrollToTop />
+      <WhatsAppFAB />
     </main>
   );
 }

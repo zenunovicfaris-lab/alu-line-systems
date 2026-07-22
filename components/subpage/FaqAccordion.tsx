@@ -11,20 +11,17 @@ export default function FaqAccordion({ items }: { items: FaqItem[] }) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <div className="max-w-3xl mx-auto flex flex-col gap-3">
+    <div className="flex flex-col border-t border-alu-line">
       {items.map((item, i) => {
         const isOpen = open === i;
         return (
-          <div
-            key={item.q}
-            className="rounded-2xl border border-gray-100 bg-alu-gray overflow-hidden"
-          >
+          <div key={item.q} className="border-b border-alu-line">
             <button
               onClick={() => setOpen(isOpen ? null : i)}
-              className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
+              className="w-full flex items-center justify-between gap-4 py-5 text-left"
               aria-expanded={isOpen}
             >
-              <span className="faq-question text-base font-bold text-alu-dark">
+              <span className="faq-question text-base font-semibold text-alu-dark">
                 {item.q}
               </span>
               <motion.span
@@ -43,7 +40,7 @@ export default function FaqAccordion({ items }: { items: FaqItem[] }) {
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.3, ease: EASE }}
                 >
-                  <p className="faq-answer px-6 pb-5 text-sm leading-relaxed text-gray-500">
+                  <p className="faq-answer pb-5 pr-8 text-sm leading-relaxed text-alu-text">
                     {item.a}
                   </p>
                 </motion.div>

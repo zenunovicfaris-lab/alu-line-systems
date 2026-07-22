@@ -101,10 +101,7 @@ export default function Footer() {
                     href={`/usluge/${s.slug}`}
                     className="group flex items-center gap-2 text-gray-500 text-sm hover:text-white transition-colors duration-200"
                   >
-                    <span
-                      className="w-1 h-1 rounded-full flex-shrink-0"
-                      style={{ background: "#143c5f", opacity: 0.6 }}
-                    />
+                    <span className="w-2.5 h-px flex-shrink-0 bg-alu-blue opacity-70" />
                     {s.name}
                   </Link>
                 </li>
@@ -124,10 +121,7 @@ export default function Footer() {
                     href={`/lokacije/${l.slug}`}
                     className="group flex items-center gap-2 text-gray-500 text-sm hover:text-white transition-colors duration-200"
                   >
-                    <span
-                      className="w-1 h-1 rounded-full flex-shrink-0"
-                      style={{ background: "#143c5f", opacity: 0.6 }}
-                    />
+                    <span className="w-2.5 h-px flex-shrink-0 bg-alu-blue opacity-70" />
                     {l.city}
                   </Link>
                 </li>

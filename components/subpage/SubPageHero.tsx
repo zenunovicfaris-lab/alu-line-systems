@@ -70,20 +70,20 @@ export default function SubPageHero({
           ))}
         </motion.nav>
 
-        <motion.span
+        <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: EASE, delay: 0.05 }}
-          className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase border border-alu-blue/40 bg-alu-blue/10 text-white/90 mb-5"
+          className="eyebrow text-alu-steel mb-5"
         >
           {badge}
-        </motion.span>
+        </motion.p>
 
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: EASE, delay: 0.1 }}
-          className="text-4xl md:text-6xl font-black text-white leading-[1.05] tracking-tight max-w-3xl"
+          className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white leading-[1.06] tracking-tight max-w-3xl"
         >
           {title}
         </motion.h1>
@@ -109,7 +109,7 @@ export default function SubPageHero({
         >
           <a
             href="tel:+38762543464"
-            className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-alu-blue text-white font-semibold rounded-2xl text-sm hover:bg-alu-light transition-colors duration-200"
+            className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-alu-blue text-white font-semibold rounded-sm text-sm hover:bg-alu-light transition-colors duration-200"
           >
             <Phone size={16} />
             Pozovi: 062 543 464

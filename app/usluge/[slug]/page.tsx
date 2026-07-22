@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactSection from "@/components/ContactSection";
-import ScrollToTop from "@/components/ScrollToTop";
+import WhatsAppFAB from "@/components/WhatsAppFAB";
 import SubPageHero from "@/components/subpage/SubPageHero";
 import ProseSection from "@/components/subpage/ProseSection";
 import FeatureGrid from "@/components/subpage/FeatureGrid";
@@ -149,7 +149,7 @@ export default function ServicePageRoute({
       <InternalLinks heading="Radimo u vašem gradu" links={locationLinks} />
       <ContactSection />
       <Footer />
-      <ScrollToTop />
+      <WhatsAppFAB />
     </main>
   );
 }

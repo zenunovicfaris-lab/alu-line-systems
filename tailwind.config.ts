@@ -11,34 +11,27 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        // Refined architectural palette: graphite, warm paper, steel-blue accent.
         alu: {
-          blue: "#143c5f",
-          dark: "#0f1620",
-          gray: "#f8fafc",
-          light: "#1e5a8a",
-          text: "#556f7e",
+          blue: "#143c5f", // restrained steel-blue accent
+          dark: "#15181d", // graphite (warmer, less blue-black)
+          gray: "#f3f1ec", // warm off-white / paper (was cold slate)
+          light: "#1e5a8a", // hover on accent
+          text: "#5b6b78", // muted body / captions
+          steel: "#8a949c", // aluminium mid-gray
+          line: "#e3e0d8", // hairline on paper
           glow: "#143c5f33",
         },
       },
       fontFamily: {
         outfit: ["var(--font-outfit)", "sans-serif"],
       },
-      animation: {
-        float: "float 6s ease-in-out infinite",
-        "float-delay": "float 6s ease-in-out 2s infinite",
-        "float-slow": "float 8s ease-in-out 1s infinite",
-        "bounce-slow": "bounce 2s ease-in-out infinite",
-        "glow-pulse": "glowPulse 2s ease-in-out infinite",
-      },
-      keyframes: {
-        float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-12px)" },
-        },
-        glowPulse: {
-          "0%, 100%": { boxShadow: "0 0 10px #143c5f40" },
-          "50%": { boxShadow: "0 0 30px #143c5f80, 0 0 60px #143c5f40" },
-        },
+      borderRadius: {
+        // Tightened, architectural radius scale. Nothing rounder than ~6px.
+        lg: "0.375rem",
+        xl: "0.375rem",
+        "2xl": "0.5rem",
+        "3xl": "0.5rem",
       },
       backdropBlur: {
         xs: "2px",
