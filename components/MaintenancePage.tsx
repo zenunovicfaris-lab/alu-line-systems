@@ -80,10 +80,10 @@ export default function MaintenancePage() {
           </svg>
           <div>
             <p className="warning-text text-red-400 text-xs font-bold tracking-widest uppercase leading-none mb-1">
-              Upozorenje
+              Zamrznuto
             </p>
             <p className="text-white/65 text-[11px] leading-snug">
-              Neovlašteni pristup je strogo zabranjen
+              Web stranica je privremeno deaktivirana
             </p>
           </div>
         </div>
@@ -98,8 +98,8 @@ export default function MaintenancePage() {
         >
           {/* Notice */}
           <p className="text-white/50 text-sm leading-relaxed text-center mb-7">
-            Pristup je dozvoljen samo autorizovanim korisnicima nakon
-            finalizacije ugovora o saradnji.
+            Ova web stranica je trenutno zamrznuta i nedostupna javnosti. Za
+            ponovnu aktivaciju obratite se administratoru sistema.
           </p>
 
           {/* Form */}
@@ -143,7 +143,7 @@ export default function MaintenancePage() {
 
         {/* Contact */}
         <div className="mt-8 text-center">
-          <p className="text-white/20 text-xs mb-1">Za više informacija kontaktirajte</p>
+          <p className="text-white/20 text-xs mb-1">Za ponovnu aktivaciju kontaktirajte administratora</p>
           <a
             href="https://www.fariszenunovic.com"
             target="_blank"
