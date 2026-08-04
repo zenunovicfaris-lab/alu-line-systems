@@ -18,6 +18,32 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 const projects = [
   {
+    id: 9,
+    title: "Aluminijska ograda - Siegendorf",
+    subtitle: "Ograda izrađena i montirana po mjeri, Gradišće (Burgenland)",
+    location: "Siegendorf, Austrija",
+    year: "2026",
+    images: [
+      "/images/projekti/siegendorf-1.jpg",
+      "/images/projekti/siegendorf-2.jpg",
+      "/images/projekti/siegendorf-3.jpg",
+      "/images/projekti/siegendorf-4.jpg",
+    ],
+  },
+  {
+    id: 8,
+    title: "Ograda model Elegant, boja Čoko",
+    subtitle: "Model Elegant u boji Čoko. Hvala Nerminu na ukazanom povjerenju.",
+    location: "BiH",
+    year: "2026",
+    images: [
+      "/images/projekti/elegant-coko-1.jpg",
+      "/images/projekti/elegant-coko-2.jpg",
+      "/images/projekti/elegant-coko-3.jpg",
+      "/images/projekti/elegant-coko-4.jpg",
+    ],
+  },
+  {
     id: 5,
     title: "Ograda sa kamenim stubovima",
     subtitle: "Antracit lamele u kombinaciji s kamenom oblogom stubova",
