@@ -18,6 +18,20 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 const projects = [
   {
+    id: 10,
+    title: "Dvorišna ograda model Grilja - Wels",
+    subtitle:
+      "Ograda model Grilja s elegantnom dvokrilnom kapijom, precizna montaža do posljednjeg detalja",
+    location: "Wels, Austrija",
+    year: "2026",
+    images: [
+      "/images/projekti/wels-1.jpg",
+      "/images/projekti/wels-2.jpg",
+      "/images/projekti/wels-3.jpg",
+      "/images/projekti/wels-4.jpg",
+    ],
+  },
+  {
     id: 9,
     title: "Aluminijska ograda - Siegendorf",
     subtitle: "Ograda izrađena i montirana po mjeri, Gradišće (Burgenland)",
