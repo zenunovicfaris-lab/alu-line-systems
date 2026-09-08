@@ -4,13 +4,22 @@
 export type FaqItem = { q: string; a: string };
 export type Feature = { title: string; desc: string };
 
-export type ProseSection = { heading: string; paragraphs: string[] };
+export type ProseTable = { caption?: string; head: string[]; rows: string[][] };
+
+export type ProseSection = {
+  heading: string;
+  paragraphs: string[];
+  /** Opciona tabela ispod pasusa (cilja table featured snippet). */
+  table?: ProseTable;
+};
 
 export type ServicePage = {
   slug: string;
   name: string;
   h1: string;
   metaTitle: string;
+  /** Pun <title> (zaobilazi brend template). Koristi kad treba precizna duzina <= 60. */
+  metaTitleFull?: string;
   metaDescription: string;
   keywords: string[];
   heroImage: string;
@@ -28,6 +37,8 @@ export type LocationPage = {
   cityLocative: string; // "u Tuzli"
   h1: string;
   metaTitle: string;
+  /** Pun <title> (zaobilazi brend template). */
+  metaTitleFull?: string;
   metaDescription: string;
   keywords: string[];
   heroImage: string;
@@ -74,10 +85,26 @@ export const SERVICE_PAGES: ServicePage[] = [
         ],
       },
       {
-        heading: "Vrste ograda i kapija koje radimo",
+        heading: "Vrste aluminijskih ograda koje radimo",
         paragraphs: [
-          "Radimo dvorišne ograde za okućnice, balkonske ograde, grilje ograde klasičnog izgleda te ulazne kapije. Uz pješačke kapije izrađujemo i klizne kapije koje štede prostor jer se otvaraju bočno, s ručnim ili daljinskim upravljanjem.",
+          "Radimo dvorišne ograde za okućnice, balkonske ograde za stanove i kuće te grilje ograde klasičnog izgleda. Uz ogradu izrađujemo i ulazne kapije, klizne ili krilne, u istom modelu i boji.",
           "Sve se radi po mjeri vašeg otvora i placa. Visinu, gustinu ispune i model biramo zajedno, prema tome koliko želite privatnosti i kakav izgled tražite.",
+          "Ispuna je najveća razlika u izgledu. Vertikalne šipke daju klasičan izgled i propuštaju pogled, horizontalne lamele izgledaju moderno i zaklanjaju više, a puni paneli daju potpunu privatnost prema ulici.",
+        ],
+      },
+      {
+        heading: "Balkonske ograde za stanove i terase",
+        paragraphs: [
+          "Balkonska ograda ima dva zadatka odjednom. Mora biti sigurna jer stoji na visini, a lagana da ne opterećuje balkonsku ploču. Aluminij zadovoljava oba uslova, pa je čest izbor i na novogradnji i pri zamjeni stare željezne ograde.",
+          "Balkonske ograde radimo s vertikalnim ili horizontalnim šipkama, s punim panelima za više zaklona ili u kombinaciji sa staklom kada želite otvoren pogled. Boju usklađujemo sa stolarijom i fasadom, tako da se ograda uklopi u zgradu.",
+          "Montaža na visini traži sigurno sidrenje u ploču ili u parapetni zid, pa spojeve prilagođavamo podlozi koju zateknemo. Sve mjerimo na licu mjesta prije izrade.",
+        ],
+      },
+      {
+        heading: "Dvorišne ograde i ulazne kapije",
+        paragraphs: [
+          "Dvorišna ograda i kapija najbolje rade kada se rade zajedno, u istom modelu ispune i istoj boji. Tako se linije poklapaju i ulaz ne izgleda kao naknadno dodan dio.",
+          "Kapije radimo klizne, krilne i pješačke, s ručnim ili daljinskim upravljanjem. Detaljan opis tipova kapija, automatike i prostora koji svaka traži nalazi se na posebnoj stranici o aluminijskim kapijama.",
         ],
       },
       {
@@ -116,8 +143,130 @@ export const SERVICE_PAGES: ServicePage[] = [
         a: "Da. Svaku ogradu izrađujemo prema vašim dimenzijama, u boji i modelu koji odaberete. Sve izrađujemo i montiramo sami.",
       },
       {
+        q: "Radite li balkonske ograde?",
+        a: "Da. Balkonske ograde radimo po mjeri, s vertikalnim ili horizontalnim šipkama, punim panelima ili staklenom ispunom. Aluminij je lagan pa ne opterećuje balkonsku ploču, a ne rđa ni pri stalnoj izloženosti kiši i suncu.",
+      },
+      {
+        q: "Koja ispuna daje najviše privatnosti?",
+        a: "Puni paneli daju potpunu privatnost prema ulici. Horizontalne lamele zaklanjaju pogled pod uglom, a propuštaju svjetlo i zrak. Vertikalne šipke daju klasičan izgled, ali najmanje zaklona. Izbor dogovaramo pri mjerenju.",
+      },
+      {
         q: "Dajete li garanciju?",
         a: "Da, na svaki rad dajemo pisanu garanciju i držimo se dogovorenog roka i cijene.",
+      },
+    ],
+  },
+  {
+    slug: "aluminijske-kapije",
+    name: "Aluminijske kapije",
+    h1: "Aluminijske kapije po mjeri",
+    metaTitle: "Aluminijske Kapije po Mjeri",
+    metaTitleFull: "Aluminijske Kapije: Klizne i Krilne | ALU LINE",
+    metaDescription:
+      "Izrađujemo aluminijske dvorišne kapije po mjeri: klizne, krilne i pješačke, s motorom i daljinskim. Ne rđaju, uklapaju se uz ogradu. Mjerenje: 062 543 464.",
+    keywords: [
+      "aluminijska kapija",
+      "aluminijske kapije",
+      "dvorišne ograde i kapije",
+      "klizna kapija",
+      "kapija na daljinski",
+      "pješačka kapija",
+      "kapije po mjeri",
+    ],
+    heroImage: "/images/Wels-Austrija/Kapija.jpg",
+    relatedPostSlugs: ["ograda-za-dvoriste-vrste-i-kako-izabrati"],
+    intro: [
+      "Aluminijska kapija je prvo što se vidi na ulazu u dvorište i jedini dio ograde koji se pomjera svaki dan. Zato mora biti lagana za rukovanje, čvrsta i otporna na vrijeme.",
+      "Izrađujemo klizne, krilne i pješačke kapije po mjeri otvora, s ručnim ili daljinskim upravljanjem. Kapiju usklađujemo s ogradom, tako da ulaz izgleda kao jedna cjelina.",
+      "Izađemo na teren, izmjerimo otvor i provjerimo prostor za otvaranje, pa dobijete cijenu bez obaveze. Nazovite 062 543 464.",
+    ],
+    body: [
+      {
+        heading: "Klizne kapije",
+        paragraphs: [
+          "Klizna kapija se otvara bočno, uz ogradu, pa ne traži prostor ispred sebe. To je velika prednost kada prilaz ima nagib ili kada auto stoji blizu ulaza, jer krilo ne mora imati mjesta da se raširi.",
+          "Radimo samonoseće klizne kapije, gdje krilo nosi donja greda i kolica, tako da nema šine preko prilaza koja se puni snijegom i šljunkom. Za pomjeranje treba slobodan prostor uz ogradu, otprilike u dužini samog krila.",
+          "Klizne kapije se najčešće rade s motorom, jer je krilo šire i teže. Motor s daljinskim tada radi cijeli posao, a kapija ostaje zaključana dok je ne otvorite.",
+        ],
+      },
+      {
+        heading: "Krilne i pješačke kapije",
+        paragraphs: [
+          "Krilna kapija otvara se prema unutra ili prema vani, u jednom ili dva krila. Jeftinija je od klizne i jednostavnija za montažu, ali traži ravan prilaz i slobodan prostor u luku otvaranja.",
+          "Pješačku kapiju radimo uz ulaznu, u istom modelu i boji, s bravom i kvakom ili s elektronskom bravom na interfon. Za dvorišta s više ulaza radimo i zasebne pješačke kapije na bočnim stranama.",
+        ],
+      },
+      {
+        heading: "Kapija na daljinski: motor, interfon i sigurnost",
+        paragraphs: [
+          "Motor s daljinskim je najčešći dodatak. Kapiju otvarate iz auta, bez izlaska po kiši, a mogu se dodati i tipkovnica sa šifrom te interfon s pozivom u kuću.",
+          "Uz motor ide i sigurnosna oprema. Fotoćelije zaustave kapiju ako nešto uđe u putanju, a signalna lampa upozorava dok se kapija kreće. Kod kliznih kapija to je posebno važno jer krilo ide brzo i tiho.",
+          "Za motor treba dovod struje do stuba kapije. Ako ga nema, dogovorimo trasu prije montaže, tako da se kabl ne provlači naknadno kroz gotov prilaz.",
+        ],
+      },
+      {
+        heading: "Kapija i ograda kao cjelina",
+        paragraphs: [
+          "Kapiju najčešće radimo zajedno s ogradom, u istom modelu ispune i istoj boji po RAL kartici. Tako se linije poklapaju i ulaz ne izgleda kao naknadno dodan dio.",
+          "Ako već imate ogradu, kapiju prilagođavamo postojećem izgledu. Donesite fotografiju ili je pogledamo pri izlasku na teren, pa uskladimo visinu, razmak šipki i ton boje koliko je moguće.",
+          "Više o modelima ispune i izboru ograde pročitajte na stranici aluminijskih ograda, gdje su opisane dvorišne, balkonske i grilje ograde.",
+        ],
+      },
+      {
+        heading: "Zašto aluminijska kapija, a ne željezna",
+        paragraphs: [
+          "Aluminij ne sadrži željezo, pa kapija ne može zarđati. Kod željezne kapije rđa se prvo javlja na donjem dijelu krila i oko šarki, tamo gdje stoji voda, pa je nakon nekoliko sezona potrebno brušenje i ličenje.",
+          "Aluminijsko krilo je i znatno lakše pri istoj veličini. Manja masa znači manje opterećenje na šarke i motor, pa oprema duže traje, a ručno otvaranje je lakše.",
+          "Konstrukciju plastificiramo u boji po izboru, tako da površina drži izgled godinama uz obično pranje vodom.",
+        ],
+      },
+      {
+        heading: "Mjerenje, izrada i montaža",
+        paragraphs: [
+          "Pri izlasku izmjerimo otvor, provjerimo nagib prilaza, prostor za otvaranje i mjesto za stubove. Na osnovu toga predlažemo kliznu ili krilnu kapiju i dogovorimo model, boju i automatiku.",
+          "Kapiju izrađujemo u vlastitoj radionici i montiramo sami, zajedno sa stubovima i motorom. Sve radimo bez podizvođača, uz pisanu garanciju na rad.",
+          "Radimo po cijeloj BiH, a po dogovoru i u Hrvatskoj, Sloveniji i Austriji. Javite se na telefon, WhatsApp ili Viber: 062 543 464.",
+        ],
+      },
+    ],
+    features: [
+      { title: "Klizne kapije", desc: "Otvaraju se bočno, ne traže prostor ispred prilaza." },
+      { title: "Krilne kapije", desc: "Jedno ili dva krila, povoljnije rješenje za ravan prilaz." },
+      { title: "Pješačke kapije", desc: "U istom modelu i boji kao ulazna kapija." },
+      { title: "Motor i daljinski", desc: "Automatika s fotoćelijama, tipkovnicom i interfonom." },
+      { title: "Usklađeno s ogradom", desc: "Isti model ispune i boja po RAL kartici." },
+      { title: "Bez rđe", desc: "Aluminij ne sadrži željezo, pa krilo ne rđa." },
+    ],
+    gallery: [
+      { src: "/images/Wels-Austrija/Kapija.jpg", alt: "Aluminijska ulazna kapija, ALU LINE Systems" },
+      { src: "/images/klizna-ograda-na-daljinski/klizna1.jpg", alt: "Klizna aluminijska kapija na daljinski, ALU LINE Systems" },
+      { src: "/images/klizna-ograda-na-daljinski/motor za kliznu ogradu bft.jpg", alt: "Motor BFT za kliznu kapiju, ALU LINE Systems" },
+      { src: "/images/projekti/medjugorje-1.jpg", alt: "Aluminijska ograda i kapija, ALU LINE Systems" },
+    ],
+    faq: [
+      {
+        q: "Klizna ili krilna kapija, šta izabrati?",
+        a: "Kliznu birajte kada nema prostora ispred kapije ili kada prilaz ima nagib, jer se krilo pomjera bočno uz ogradu. Krilnu birajte kada je prilaz ravan i ima slobodnog mjesta u luku otvaranja, jer je povoljnija i jednostavnija za montažu.",
+      },
+      {
+        q: "Koliko košta aluminijska kapija?",
+        a: "Cijena zavisi od širine otvora, tipa kapije, modela ispune i toga da li ide motor s daljinskim. Klizna kapija košta više od krilne jer traži jaču konstrukciju i kolica. Izađemo, izmjerimo i damo tačnu cijenu bez obaveze.",
+      },
+      {
+        q: "Može li se kapija otvarati daljinskim?",
+        a: "Da. Ugrađujemo motor s daljinskim, a po želji i tipkovnicu sa šifrom ili interfon s pozivom u kuću. Uz motor idu fotoćelije koje zaustave kapiju ako nešto uđe u putanju. Za automatiku treba dovod struje do stuba kapije.",
+      },
+      {
+        q: "Koliko prostora traži klizna kapija?",
+        a: "Za pomjeranje treba slobodan prostor uz ogradu, otprilike u dužini samog krila. Ako tog prostora nema, bolje rješenje je krilna kapija ili kapija u dva krila. To provjeravamo pri izlasku na teren, prije nego što se išta izrađuje.",
+      },
+      {
+        q: "Radite li kapiju uz postojeću ogradu?",
+        a: "Da. Kapiju prilagođavamo izgledu ograde koju već imate, po visini, razmaku šipki i tonu boje. Pošaljite fotografiju ili je pogledamo pri mjerenju, pa dogovorimo model koji se najbolje uklapa.",
+      },
+      {
+        q: "Da li aluminijska kapija rđa?",
+        a: "Ne. Aluminij ne sadrži željezo, pa krilo ne može zarđati ni na donjem dijelu ni oko šarki, gdje se rđa prvo javlja kod željeznih kapija. Površinu plastificiramo u boji po izboru, pa je dovoljno povremeno pranje vodom.",
       },
     ],
   },
@@ -269,78 +418,158 @@ export const SERVICE_PAGES: ServicePage[] = [
   {
     slug: "nadstresnice",
     name: "Nadstrešnice",
-    h1: "Aluminijske nadstrešnice",
+    h1: "Aluminijske nadstrešnice po mjeri",
     metaTitle: "Aluminijske Nadstrešnice po Mjeri",
+    metaTitleFull: "Aluminijske Nadstrešnice za Auto i Terasu | ALU LINE",
     metaDescription:
-      "Izrađujemo aluminijske nadstrešnice po mjeri za automobil, ulaz i terasu. Otporne na kišu, snijeg i sunce, bez rđe. Montaža i garancija. Srebrenik, BiH.",
+      "Aluminijske nadstrešnice po mjeri za auto, terasu i ulaz. Ne rđaju i nose snijeg. Besplatno mjerenje i cijena na licu mjesta, cijela BiH: 062 543 464.",
     keywords: [
-      "nadstrešnice",
       "aluminijske nadstrešnice",
+      "alu nadstrešnice",
       "nadstrešnica za auto",
+      "nadstrešnica za auto uz kuću",
+      "aluminijske nadstrešnice za terase",
       "nadstrešnica za terasu",
       "nadstrešnice po mjeri",
+      "aluminijske nadstrešnice cijena",
+      "carport",
     ],
     heroImage: "/images/hero-img.jpg",
     intro: [
-      "Nadstrešnica štiti automobil, ulaz ili terasu od kiše, snijega i sunca, a objektu daje dovršen izgled. Aluminijska konstrukcija je lagana, čvrsta i ne zahtijeva održavanje.",
-      "Svaku nadstrešnicu izrađujemo po mjeri prostora i montiramo sami, u boji po izboru, uz garanciju na rad.",
+      "Aluminijske nadstrešnice štite automobil, terasu i ulaz od kiše, snijega i sunca, a kući daju dovršen izgled. Nosiva konstrukcija je od aluminija, pa je lagana, čvrsta i ne traži održavanje.",
+      "Svaku nadstrešnicu izrađujemo po mjeri prostora i montiramo sami, u boji i s pokrovom po vašem izboru. Radimo po cijeloj BiH, a po dogovoru i u Hrvatskoj, Sloveniji i Austriji.",
+      "Izlazimo na teren, izmjerimo i damo cijenu na licu mjesta, bez obaveze. Za dogovor nazovite 062 543 464.",
     ],
     body: [
       {
-        heading: "Nadstrešnice za auto, ulaz i terasu",
+        heading: "Nadstrešnica za auto (carport)",
         paragraphs: [
-          "Aluminijska nadstrešnica štiti od kiše, snijega i sunca, a objektu daje dovršen izgled. Za automobil radimo carport nadstrešnice koje čuvaju vozilo na otvorenom, bez zidanja garaže.",
-          "Radimo i nadstrešnice nad ulaznim vratima i stepeništem te nad terasama, gdje daju više sjene i zaštićen prostor za boravak vani.",
+          "Nadstrešnica za auto čuva vozilo na otvorenom, bez zidanja garaže. Ljeti spušta temperaturu u kabini, zimi štedi vrijeme jer nema struganja leda sa stakala, a lak trpi manje od grada, smole i ptica.",
+          "Radimo samostojeće carporte na sredini dvorišta i nadstrešnice uz kuću, gdje se jedna strana veže za fasadu pa je konstrukcija diskretnija i jeftinija. Standardno pravimo mjesto za jedan ili dva automobila, ali dužinu i širinu prilagođavamo dvorištu i prilazu.",
+          "Prije izrade provjerimo dubinu prilaza, pad terena i mjesto za stope, tako da nadstrešnica ne smeta otvaranju kapije ni ulaznih vrata.",
         ],
       },
       {
-        heading: "Zašto aluminij za nadstrešnicu",
+        heading: "Aluminijske nadstrešnice za terase",
         paragraphs: [
-          "Aluminijska konstrukcija je lagana, ali dovoljno čvrsta da izdrži snijeg i vjetar. Aluminij ne rđa i ne treba ga bojiti, pa nadstrešnica dugo zadrži izgled uz malo održavanja.",
-          "Pokrov i boju biramo po vašoj želji, tako da se nadstrešnica uklopi uz kuću i ostalu stolariju.",
+          "Nadstrešnica nad terasom produžava sezonu boravka vani. Sto i garnitura ostaju suhi, a prostor uz kuću postaje upotrebljiv i po kiši i po jakom suncu.",
+          "Za terase najčešće radimo nadstrešnicu vezanu za fasadu, s padom prema dvorištu i olukom koji vodu odvodi dalje od zida. Ako terasa ima ogradu, konstrukciju uskladimo s njom da sve izgleda kao jedna cjelina.",
+          "Kada želite zatvoreniji prostor, nadstrešnicu kombinujemo s bočnim staklenim ispunama ili roletnama, pa terasu možete koristiti i po vjetru.",
+        ],
+      },
+      {
+        heading: "Nadstrešnica nad ulaznim vratima",
+        paragraphs: [
+          "Manja nadstrešnica nad ulazom štiti vrata i stepenice od kiše i leda. Vrata duže traju jer voda ne stoji na krilu i pragu, a stepenice su zimi sigurnije.",
+          "Ove nadstrešnice radimo po mjeri otvora, tako da prate širinu vrata i ne štrče preko fasade. Ista logika vrijedi i za ulaze u poslovne prostore, gdje nadstrešnica pokriva prilaz i natpis.",
+        ],
+      },
+      {
+        heading: "Koji pokrov izabrati: polikarbonat, staklo ili lim",
+        paragraphs: [
+          "Konstrukcija je uvijek aluminijska, a razlika u izgledu i cijeni dolazi od pokrova. Tri rješenja pokrivaju gotovo sve situacije, pa se izbor svodi na to koliko svjetla želite propustiti ispod nadstrešnice.",
+          "Za carport ispred kuće najčešće se bira komorni polikarbonat, za terasu kaljeno staklo, a za dvorišne i ekonomske objekte trapezni lim.",
+        ],
+        table: {
+          caption: "Poređenje pokrova za aluminijsku nadstrešnicu",
+          head: ["Pokrov", "Svjetlo ispod", "Prednost", "Najbolje za"],
+          rows: [
+            [
+              "Komorni polikarbonat",
+              "Propušta, difuzno",
+              "Lagan, otporan na udar i grad, povoljniji od stakla",
+              "Carport, prilaz, ulaz",
+            ],
+            [
+              "Kaljeno staklo",
+              "Propušta, bistro",
+              "Najčistiji izgled, lako se pere, ne žuti",
+              "Terasa uz kuću",
+            ],
+            [
+              "Trapezni lim",
+              "Ne propušta",
+              "Puna sjena i najniža cijena, dobro nosi snijeg",
+              "Dvorište, ekonomski objekti",
+            ],
+          ],
+        },
+      },
+      {
+        heading: "Koliko košta aluminijska nadstrešnica",
+        paragraphs: [
+          "Cijena aluminijske nadstrešnice računa se po kvadratu natkrivene površine i zavisi od nekoliko stavki koje se razlikuju od dvorišta do dvorišta. Zato cijenu dajemo tek nakon mjerenja, ali evo šta na nju utiče.",
+          "Prvo, površina i raspon. Veći raspon bez srednjeg stuba traži jači profil, pa nosiva konstrukcija poskupi. Drugo, pokrov: trapezni lim je najpovoljniji, komorni polikarbonat je u sredini, a kaljeno staklo je najskuplje. Treće, tip montaže, jer je samostojeći carport skuplji od nadstrešnice vezane za fasadu, koja ima manje stubova i stopa.",
+          "Na cijenu utiču i podloga i pripremni radovi. Ako nema betonske ploče, treba izliti temeljne stope. Boja po RAL kartici, oluk, rasvjeta i bočne ispune dodaju se posebno.",
+          "Mjerenje i ponuda su besplatni i bez obaveze. Nazovite 062 543 464, dogovorimo izlazak i dobijete tačnu cijenu za svoj prostor, a ne procjenu preko telefona.",
+        ],
+      },
+      {
+        heading: "Zašto aluminij, a ne čelik ili drvo",
+        paragraphs: [
+          "Aluminij ne sadrži željezo, pa ne može zarđati. Na površini se stvara tanak sloj oksida koji sam štiti metal, a mi konstrukciju dodatno plastificiramo, tako da boja drži godinama bez ličenja.",
+          "U poređenju s čelikom, aluminijska konstrukcija je znatno lakša pri istoj nosivosti, pa manje opterećuje fasadu i traži manje temelje. U poređenju s drvetom, ne radi na vlagu, ne puca i ne treba je svake sezone premazivati.",
+          "Profile dimenzionišemo prema rasponu i očekivanom snijegu za naše podneblje, tako da nadstrešnica nosi zimsko opterećenje bez ugibanja.",
         ],
       },
       {
         heading: "Mjerenje, izrada i montaža",
         paragraphs: [
-          "Svaku nadstrešnicu prilagođavamo prostoru. Izmjerimo, dogovorimo model i pokrov, pa izradimo i montiramo sami. Radimo po cijeloj BiH te u Hrvatskoj, Sloveniji i Austriji.",
-          "Na svaki rad dajemo pisanu garanciju. Za mjerenje i ponudu javite se na telefon, WhatsApp ili Viber: 062 543 464.",
+          "Posao ide u četiri koraka. Izađemo na teren i izmjerimo prostor, dogovorimo model, pokrov i boju, izradimo konstrukciju u vlastitoj radionici, pa je montiramo u dogovorenom roku.",
+          "Sve radimo sami, bez podizvođača, pa za mjeru, izradu i montažu odgovara jedna ekipa. Na svaki rad dajemo pisanu garanciju i držimo se dogovorene cijene.",
+          "Radimo po cijeloj BiH, a po dogovoru izlazimo i u Hrvatsku, Sloveniju i Austriju. Javite se na telefon, WhatsApp ili Viber: 062 543 464.",
         ],
       },
     ],
     features: [
-      { title: "Carport za automobil", desc: "Zaštita vozila na otvorenom, bez zidanja garaže." },
-      { title: "Za ulaz", desc: "Natkrivanje ulaznih vrata i stepeništa." },
-      { title: "Za terasu", desc: "Više sjene i zaštite za vanjski prostor." },
-      { title: "Bez održavanja", desc: "Aluminij ne rđa i ne treba ga bojiti." },
+      { title: "Carport za auto", desc: "Samostojeći ili uz kuću, za jedno ili dva vozila." },
+      { title: "Za terasu", desc: "Vezana za fasadu, s olukom i padom prema dvorištu." },
+      { title: "Za ulaz", desc: "Natkrivanje ulaznih vrata i stepeništa, po mjeri otvora." },
+      { title: "Pokrov po izboru", desc: "Polikarbonat, kaljeno staklo ili trapezni lim." },
+      { title: "Bez rđe", desc: "Aluminij ne sadrži željezo, plastifikacija drži boju." },
+      { title: "Besplatno mjerenje", desc: "Izlazak na teren i cijena bez obaveze." },
     ],
     gallery: [],
     faq: [
       {
-        q: "Od čega su nadstrešnice?",
-        a: "Nosiva konstrukcija je od aluminija koji ne rđa, s pokrovom po izboru. Rješenje je lagano, ali dovoljno čvrsto da izdrži snijeg i vjetar.",
+        q: "Koliko košta aluminijska nadstrešnica?",
+        a: "Cijena se računa po kvadratu natkrivene površine i zavisi od raspona, pokrova i načina montaže. Trapezni lim je najpovoljniji, polikarbonat u sredini, kaljeno staklo najskuplje. Samostojeći carport košta više od nadstrešnice vezane za fasadu. Izađemo, izmjerimo i damo tačnu cijenu besplatno.",
+      },
+      {
+        q: "Koji pokrov je najbolji za nadstrešnicu?",
+        a: "Za carport se najčešće bira komorni polikarbonat jer je lagan, propušta difuzno svjetlo i dobro podnosi grad. Za terasu uz kuću bira se kaljeno staklo zbog čistog izgleda. Trapezni lim daje punu sjenu i najnižu cijenu, pa je čest u dvorištu.",
+      },
+      {
+        q: "Da li aluminijska nadstrešnica rđa?",
+        a: "Ne. Aluminij ne sadrži željezo, pa ne može zarđati. Na površini se stvara zaštitni sloj oksida, a konstrukciju dodatno plastificiramo u boji po izboru. Zato nadstrešnica godinama drži izgled bez ličenja i posebnog održavanja.",
+      },
+      {
+        q: "Može li nadstrešnica zamijeniti garažu?",
+        a: "Za svakodnevnu zaštitu vozila od sunca, kiše, snijega i grada, da. Carport je jeftiniji i brži od zidanja garaže, a vozilo ostaje natkriveno. Garaža ostaje bolji izbor kada vam treba zaključan prostor za alat i opremu.",
+      },
+      {
+        q: "Izdrži li nadstrešnica snijeg?",
+        a: "Da. Profile i razmak stubova dimenzionišemo prema rasponu i zimskom opterećenju za naše podneblje, pa konstrukcija nosi snijeg bez ugibanja. Kod velikih raspona bez srednjeg stuba koristimo jače profile, što uzimamo u obzir već pri mjerenju.",
       },
       {
         q: "Radite li nadstrešnice po mjeri?",
-        a: "Da, svaku nadstrešnicu prilagođavamo prostoru i montiramo sami. Pozovite 062 543 464 za mjerenje i ponudu.",
+        a: "Da, svaku nadstrešnicu radimo po mjeri prostora, u dužini, širini i visini koja odgovara vašem prilazu ili terasi. Model, pokrov i boju birate vi. Sve izrađujemo i montiramo sami, uz pisanu garanciju. Pozovite 062 543 464 za mjerenje.",
       },
       {
-        q: "Koliko košta nadstrešnica?",
-        a: "Cijena zavisi od veličine, tipa pokrova i mjesta montaže. Zato izađemo na teren, izmjerimo i damo ponudu po mjeri, bez obaveze. Pozovite 062 543 464.",
-      },
-      {
-        q: "Može li carport zamijeniti garažu?",
-        a: "Za svakodnevnu zaštitu vozila od sunca, kiše i snijega, da. Carport nadstrešnica je jeftinija i brža od zidanja garaže, a vozilo ostaje natkriveno.",
+        q: "Koliko traje izrada i montaža nadstrešnice?",
+        a: "Rok dogovaramo pri mjerenju i zavisi od veličine i tipa pokrova. Konstrukciju izrađujemo u vlastitoj radionici, pa montaža na terenu obično traje kratko. Ako treba izliti temeljne stope, računa se i vrijeme da beton očvrsne.",
       },
     ],
+    relatedPostSlugs: ["koliko-kosta-aluminijska-nadstresnica"],
   },
   {
     slug: "drvena-vrata",
     name: "Drvena vrata",
     h1: "Drvena sobna i ulazna vrata po mjeri",
     metaTitle: "Drvena Sobna i Ulazna Vrata",
+    metaTitleFull: "Drvena Vrata po Mjeri, Katalog Modela | ALU LINE",
     metaDescription:
-      "Izrađujemo i ugrađujemo drvena sobna i ulazna vrata po mjeri i po narudžbi, u dekoru i boji po izboru. S dovratnikom, uz garanciju. Javite se: 062 543 464.",
+      "Drvena sobna i ulazna vrata po mjeri, zajedno s dovratnikom. Pogledajte katalog modela, birajte dekor i boju. Izrada, montaža i garancija: 062 543 464.",
     keywords: [
       "drvena vrata",
       "sobna vrata",
@@ -422,7 +651,7 @@ export const LOCATION_PAGES: LocationPage[] = [
     h1: "Aluminijske ograde, roletne i vrata u Srebreniku",
     metaTitle: "Aluminijske Ograde Srebrenik",
     metaDescription:
-      "ALU LINE Systems iz Srebrenika izrađuje i montira aluminijske ograde, kapije, roletne te garažna vrata. Sve radimo sami, uz garanciju. Pozovite 062 543 464.",
+      "ALU LINE Systems iz Srebrenika izrađuje i montira alu ograde i kapije, roletne, nadstrešnice te garažna vrata. Sve radimo sami, uz garanciju: 062 543 464.",
     keywords: [
       "aluminijske ograde Srebrenik",
       "roletne Srebrenik",

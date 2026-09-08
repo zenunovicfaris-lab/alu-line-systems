@@ -31,12 +31,14 @@ export function generateMetadata({
   if (!service) return {};
   const url = `${SITE_URL}/usluge/${service.slug}`;
   return {
-    title: service.metaTitle,
+    title: service.metaTitleFull
+      ? { absolute: service.metaTitleFull }
+      : service.metaTitle,
     description: service.metaDescription,
     keywords: service.keywords,
     alternates: { canonical: `/usluge/${service.slug}` },
     openGraph: {
-      title: service.metaTitle,
+      title: service.metaTitleFull ?? service.metaTitle,
       description: service.metaDescription,
       url,
       type: "website",

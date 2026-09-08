@@ -29,12 +29,14 @@ export function generateMetadata({
   if (!loc) return {};
   const url = `${SITE_URL}/lokacije/${loc.slug}`;
   return {
-    title: loc.metaTitle,
+    title: loc.metaTitleFull
+      ? { absolute: loc.metaTitleFull }
+      : loc.metaTitle,
     description: loc.metaDescription,
     keywords: loc.keywords,
     alternates: { canonical: `/lokacije/${loc.slug}` },
     openGraph: {
-      title: loc.metaTitle,
+      title: loc.metaTitleFull ?? loc.metaTitle,
       description: loc.metaDescription,
       url,
       type: "website",
