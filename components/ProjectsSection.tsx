@@ -18,6 +18,21 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 const projects = [
   {
+    id: 11,
+    title: "Aluminijska ograda - otok Krk",
+    subtitle:
+      "Stubovi 45×45 mm, ispuna cijev 2×2 cm, moderna i elegantna izvedba po mjeri",
+    location: "Otok Krk, Hrvatska",
+    year: "2026",
+    images: [
+      "/images/projekti/krk-1.jpg",
+      "/images/projekti/krk-2.jpg",
+      "/images/projekti/krk-3.jpg",
+      "/images/projekti/krk-4.jpg",
+      "/images/projekti/krk-5.jpg",
+    ],
+  },
+  {
     id: 10,
     title: "Dvorišna ograda model Grilja - Wels",
     subtitle:
