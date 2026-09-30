@@ -128,6 +128,9 @@ export const SERVICE_PAGES: ServicePage[] = [
       { src: "/images/projekti/kamena-ograda-1.jpg", alt: "Aluminijska ograda na kamenom zidu, ALU LINE Systems" },
       { src: "/images/projekti/banovici-1.jpg", alt: "Ugrađena aluminijska ograda, Banovići, ALU LINE Systems" },
       { src: "/images/projekti/medjugorje-1.jpg", alt: "Aluminijska ograda i kapija, ALU LINE Systems" },
+      { src: "/images/elegantna-bocna-montaza/montaza-aluminijske-ograde-terasa.jpg", alt: "Montaža aluminijske ograde na krovnoj terasi, ekipa ALU LINE Systems" },
+      { src: "/images/elegantna-bocna-montaza/balkonska-ograda-aluminij-antracit.jpg", alt: "Balkonska aluminijska ograda u antracit boji s horizontalnim lamelama" },
+      { src: "/images/elegantna-bocna-montaza/aluminijska-ograda-terasa-horizontalne-lamele.jpg", alt: "Aluminijska ograda za terasu s horizontalnim lamelama 100x20 mm" },
     ],
     faq: [
       {

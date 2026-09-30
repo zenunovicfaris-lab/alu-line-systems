@@ -198,7 +198,7 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
     excerpt:
       "Balkonska ograda mora biti sigurna, lagana i otporna na vremenske uslove. Evo vrsta ispune, na šta paziti kod visine i montaže, i šta pomjera cijenu.",
-    heroImage: "/images/projekti/terasa-ograda-1.jpg",
+    heroImage: "/images/elegantna-bocna-montaza/balkonska-ograda-aluminij-antracit.jpg",
     date: "2026-07-10",
     readingMinutes: 6,
     body: [

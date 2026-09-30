@@ -18,6 +18,22 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 const projects = [
   {
+    id: 12,
+    title: "Bočna montaža ograde na krovnoj terasi",
+    subtitle:
+      "Stub 80×50 mm, lamela 100×20 mm. Montaža s unutarnje strane terase, čiste linije i moderan završni izgled.",
+    year: "2026",
+    images: [
+      "/images/elegantna-bocna-montaza/aluminijska-ograda-terasa-horizontalne-lamele.jpg",
+      "/images/elegantna-bocna-montaza/montaza-aluminijske-ograde-terasa.jpg",
+      "/images/elegantna-bocna-montaza/balkonska-ograda-aluminij-antracit.jpg",
+      "/images/elegantna-bocna-montaza/aluminijska-ograda-krovna-terasa.jpg",
+      "/images/elegantna-bocna-montaza/ograda-za-terasu-pogled-s-terase.jpg",
+      "/images/elegantna-bocna-montaza/aluminijska-ograda-lamela-100x20.jpg",
+      "/images/elegantna-bocna-montaza/bocna-montaza-aluminijske-ograde.jpg",
+    ],
+  },
+  {
     id: 11,
     title: "Aluminijska ograda - otok Krk",
     subtitle:
@@ -342,7 +358,7 @@ function LeadProject({ project }: { project: (typeof projects)[number] }) {
         {/* Spec label — top left */}
         <div className="absolute top-5 left-5 flex items-center gap-2 text-[11px] font-semibold tracking-[0.16em] uppercase text-white/80">
           <MapPin size={11} />
-          {project.location} · {project.year}
+          {project.location ? `${project.location} · ${project.year}` : project.year}
         </div>
         {/* Bottom */}
         <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8 md:p-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
@@ -413,7 +429,7 @@ function ProjectCard({
           <div className="min-w-0">
             <div className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.14em] uppercase text-alu-text mb-1.5">
               <MapPin size={11} className="text-alu-blue" />
-              {project.location} · {project.year}
+              {project.location ? `${project.location} · ${project.year}` : project.year}
             </div>
             <h3 className="text-base sm:text-lg font-semibold text-alu-dark leading-snug">
               {project.title}
