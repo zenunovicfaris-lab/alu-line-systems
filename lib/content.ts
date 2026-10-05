@@ -29,6 +29,10 @@ export type ServicePage = {
   gallery: { src: string; alt: string }[];
   faq: FaqItem[];
   relatedPostSlugs?: string[];
+  /** Kurirani linkovi na srodne usluge. Ako je prazno, linkuje se na sve ostale. */
+  relatedServiceSlugs?: string[];
+  /** Keyword-rich anchor tekst kad na ovu stranicu linkuje neka druga. */
+  linkLabel?: string;
 };
 
 export type LocationPage = {
@@ -51,6 +55,7 @@ export const SERVICE_PAGES: ServicePage[] = [
   {
     slug: "aluminijske-ograde",
     name: "Aluminijske ograde",
+    linkLabel: "Aluminijske ograde po mjeri",
     h1: "Aluminijske ograde po mjeri",
     metaTitle: "Aluminijske Ograde po Mjeri",
     metaDescription:
@@ -60,17 +65,21 @@ export const SERVICE_PAGES: ServicePage[] = [
       "dvorišne ograde",
       "balkonske ograde",
       "grilje ograde",
-      "aluminijske kapije",
       "ograde po mjeri",
-      "aluminijske ograde cijena",
+      "ograde aluminijske",
+      "antracit ograda",
+      "aluminijska ograda",
     ],
     heroImage: "/images/projekti/terasa-ograda-1.jpg",
     relatedPostSlugs: [
-      "ograda-za-dvoriste-vrste-i-kako-izabrati",
       "panelna-ili-aluminijska-ograda",
       "aluminijska-ili-kovana-ograda",
-      "ograda-za-balkon-aluminijske-balkonske-ograde",
-      "koliko-kosta-aluminijska-ograda",
+    ],
+    relatedServiceSlugs: [
+      "ograde-za-dvoriste",
+      "balkonske-ograde",
+      "aluminijske-kapije",
+      "aluminijske-ograde-cijena",
     ],
     intro: [
       "Aluminijske ograde spajaju trajnost, čist izgled i minimalno održavanje. Za razliku od željeza, aluminij ne rđa, ne treba ga bojiti i podnosi našu klimu godinama bez propadanja.",
@@ -93,18 +102,19 @@ export const SERVICE_PAGES: ServicePage[] = [
         ],
       },
       {
-        heading: "Balkonske ograde za stanove i terase",
+        heading: "Gdje se ograda postavlja",
         paragraphs: [
-          "Balkonska ograda ima dva zadatka odjednom. Mora biti sigurna jer stoji na visini, a lagana da ne opterećuje balkonsku ploču. Aluminij zadovoljava oba uslova, pa je čest izbor i na novogradnji i pri zamjeni stare željezne ograde.",
-          "Balkonske ograde radimo s vertikalnim ili horizontalnim šipkama, s punim panelima za više zaklona ili u kombinaciji sa staklom kada želite otvoren pogled. Boju usklađujemo sa stolarijom i fasadom, tako da se ograda uklopi u zgradu.",
-          "Montaža na visini traži sigurno sidrenje u ploču ili u parapetni zid, pa spojeve prilagođavamo podlozi koju zateknemo. Sve mjerimo na licu mjesta prije izrade.",
+          "Mjesto ugradnje mijenja i izbor ispune i način montaže, pa za svaku namjenu imamo zasebnu stranicu s detaljima.",
+          "Za okućnicu radimo ograde za dvorište, gdje se bira koliko zaklona treba prema ulici i kako se izvodi na nagibu. Za stanove i kuće radimo balkonske ograde i ograde za terasu, gdje su visina i sidrenje propisani zbog sigurnosti na visini.",
+          "Uz svaku ogradu radimo i ulaznu kapiju, kliznu ili krilnu, u istom modelu i boji. Linkovi na sve tri stranice su na dnu.",
         ],
       },
       {
-        heading: "Dvorišne ograde i ulazne kapije",
+        heading: "Boje: antracit i RAL karta",
         paragraphs: [
-          "Dvorišna ograda i kapija najbolje rade kada se rade zajedno, u istom modelu ispune i istoj boji. Tako se linije poklapaju i ulaz ne izgleda kao naknadno dodan dio.",
-          "Kapije radimo klizne, krilne i pješačke, s ručnim ili daljinskim upravljanjem. Detaljan opis tipova kapija, automatike i prostora koji svaka traži nalazi se na posebnoj stranici o aluminijskim kapijama.",
+          "Antracit ograda je danas najtraženija, i to s razlogom. Tamno siva se slaže sa sivom stolarijom, tamnim olucima i antracit krovnim limom koji su postali standard na novogradnji, pa fasada dobije jedinstvenu liniju bez šarenila.",
+          "Osim antracita, boju birate po RAL kartici. Standardni tonovi su povoljniji od posebnih narudžbi i od dekora koji imitiraju drvo. Bijela i smeđa ostaju česte na starijim kućama gdje se ograda usklađuje s postojećom stolarijom.",
+          "Površina se plastificira, pa boja drži godinama bez ličenja. Aluminij ispod ne sadrži željezo i ne može zarđati, tako da se ni ogrebotina ne pretvara u žarište rđe kao kod željezne ograde.",
         ],
       },
       {
@@ -161,23 +171,31 @@ export const SERVICE_PAGES: ServicePage[] = [
   },
   {
     slug: "aluminijske-kapije",
-    name: "Aluminijske kapije",
-    h1: "Aluminijske kapije po mjeri",
-    metaTitle: "Aluminijske Kapije po Mjeri",
-    metaTitleFull: "Aluminijske Kapije: Klizne i Krilne | ALU LINE",
+    name: "Klizne i ulazne kapije",
+    linkLabel: "Klizne i ulazne kapije po mjeri",
+    h1: "Klizne i ulazne aluminijske kapije po mjeri",
+    metaTitle: "Klizne i Ulazne Kapije po Mjeri",
+    metaTitleFull: "Klizne Kapije i Ulazne Kapije po Mjeri | ALU LINE",
     metaDescription:
-      "Izrađujemo aluminijske dvorišne kapije po mjeri: klizne, krilne i pješačke, s motorom i daljinskim. Ne rđaju, uklapaju se uz ogradu. Mjerenje: 062 543 464.",
+      "Izrađujemo klizne, krilne i pješačke aluminijske kapije po mjeri, s motorom i daljinskim. Ne rđaju i uklapaju se uz ogradu. Mjerenje: 062 543 464.",
     keywords: [
-      "aluminijska kapija",
-      "aluminijske kapije",
-      "dvorišne ograde i kapije",
       "klizna kapija",
+      "kapija klizna",
+      "alu kapije",
+      "ulazna kapija za dvorište",
+      "klizna kapija sa motorom",
       "kapija na daljinski",
+      "samonosiva kapija",
+      "aluminijska kapija",
       "pješačka kapija",
-      "kapije po mjeri",
     ],
     heroImage: "/images/Wels-Austrija/Kapija.jpg",
     relatedPostSlugs: ["ograda-za-dvoriste-vrste-i-kako-izabrati"],
+    relatedServiceSlugs: [
+      "ograde-za-dvoriste",
+      "aluminijske-ograde",
+      "aluminijske-ograde-cijena",
+    ],
     intro: [
       "Aluminijska kapija je prvo što se vidi na ulazu u dvorište i jedini dio ograde koji se pomjera svaki dan. Zato mora biti lagana za rukovanje, čvrsta i otporna na vrijeme.",
       "Izrađujemo klizne, krilne i pješačke kapije po mjeri otvora, s ručnim ili daljinskim upravljanjem. Kapiju usklađujemo s ogradom, tako da ulaz izgleda kao jedna cjelina.",
@@ -274,8 +292,416 @@ export const SERVICE_PAGES: ServicePage[] = [
     ],
   },
   {
+    slug: "ograde-za-dvoriste",
+    name: "Ograde za dvorište",
+    linkLabel: "Ograde za dvorište po mjeri",
+    h1: "Ograde za dvorište po mjeri",
+    metaTitle: "Ograde za Dvorište po Mjeri",
+    metaTitleFull: "Ograde za Dvorište po Mjeri, BiH | ALU LINE",
+    metaDescription:
+      "Izrađujemo i montiramo ograde za dvorište po mjeri u cijeloj BiH. Moderne aluminijske ograde koje ne rđaju, s kapijom u istom modelu. Mjerenje: 062 543 464.",
+    keywords: [
+      "ograde za dvoriste",
+      "ograde za dvorište",
+      "ograde za dvorište bih",
+      "moderne ograde za dvorište",
+      "dvorišne ograde",
+      "ograda za dvorište po mjeri",
+      "najjeftinije ograde za dvorišta",
+    ],
+    heroImage: "/images/projekti/stablo-ograda-1.jpg",
+    relatedPostSlugs: [
+      "ograda-za-dvoriste-vrste-i-kako-izabrati",
+      "panelna-ili-aluminijska-ograda",
+      "aluminijska-ili-kovana-ograda",
+    ],
+    relatedServiceSlugs: [
+      "aluminijske-kapije",
+      "aluminijske-ograde-cijena",
+      "aluminijske-ograde",
+      "balkonske-ograde",
+    ],
+    intro: [
+      "Ograde za dvorište rade tri posla odjednom: odvajaju posjed, čuvaju privatnost od ulice i daju kući dovršen izgled. Izrađujemo ih po mjeri vašeg placa, od aluminija koji ne rđa i ne traži održavanje.",
+      "Svaku ogradu za dvorište mjerimo na terenu, izrađujemo u vlastitoj radionici i montiramo sami, bez podizvođača. Uz ogradu radimo i ulaznu kapiju u istom modelu i boji.",
+      "Radimo po cijeloj BiH, a po dogovoru i u Hrvatskoj, Sloveniji i Austriji. Mjerenje i ponuda su besplatni: 062 543 464.",
+    ],
+    body: [
+      {
+        heading: "Koliko privatnosti vam zapravo treba",
+        paragraphs: [
+          "Ovo je prvo pitanje koje postavljamo na terenu, jer od njega zavisi i izgled i cijena. Dvorište prema prometnoj ulici traži drugačiju ogradu od onog prema susjedovoj livadi.",
+          "Gustina ispune određuje koliko se vidi unutra. Što je ispuna gušća, to je više materijala, pa raste i cijena. Zato ne preporučujemo punu ispunu po cijelom obimu ako vam treba zaklon samo na jednoj strani. Često je najbolje rješenje mješovito: puni paneli prema ulici, rjeđa ispuna prema vrtu.",
+        ],
+        table: {
+          caption: "Vrste ispune za ogradu za dvorište",
+          head: ["Ispuna", "Privatnost", "Relativna cijena", "Kada je birati"],
+          rows: [
+            [
+              "Vertikalne šipke",
+              "Niska",
+              "Najpovoljnija",
+              "Dvorište prema vrtu ili polju",
+            ],
+            [
+              "Horizontalne lamele",
+              "Srednja do visoka",
+              "Srednja",
+              "Moderan izgled, zaklon uz strujanje zraka",
+            ],
+            [
+              "Puni paneli",
+              "Potpuna",
+              "Viša",
+              "Dvorište uz prometnu ulicu",
+            ],
+            [
+              "Grilje",
+              "Srednja",
+              "Srednja",
+              "Klasičan izgled uz stariju kuću",
+            ],
+          ],
+        },
+      },
+      {
+        heading: "Moderne ograde za dvorište: horizontalne lamele",
+        paragraphs: [
+          "Posljednjih godina najviše se traže moderne ograde za dvorište s horizontalnim lamelama. Razlog je praktičan koliko i estetski: lamele zaklanjaju pogled pod uglom, a propuštaju zrak i dio svjetla, pa dvorište ne postaje zatvorena kutija.",
+          "Lamele radimo u više dimenzija, najčešće 100x20 mm, na stubovima 80x50 mm. Razmak između lamela biramo zajedno, jer on direktno određuje koliko se vidi kroz ogradu. Manji razmak znači više zaklona i više materijala.",
+          "Antracit je daleko najtraženija boja za ovakve ograde, jer se slaže sa sivom stolarijom i tamnim olucima koji su danas standard na novogradnji.",
+        ],
+      },
+      {
+        heading: "Ograda i kapija kao jedna cjelina",
+        paragraphs: [
+          "Ogradu i ulaznu kapiju radimo zajedno, u istom modelu ispune i istoj boji. Kada se rade odvojeno i kod različitih izvođača, linije se rijetko poklope, pa ulaz izgleda kao naknadno dodan dio.",
+          "Kapiju biramo prema prilazu. Klizna se otvara bočno i ne traži prostor ispred sebe, krilna je povoljnija ali traži ravan prilaz i slobodan luk otvaranja. Uz ulaznu obično ide i pješačka kapija u istom modelu.",
+        ],
+      },
+      {
+        heading: "Teren, nagib i temelji",
+        paragraphs: [
+          "Rijetko koje dvorište je potpuno ravno. Kod nagiba se ograda radi stepenasto, tako da svako polje ostane vodoravno, ili se prati pad terena ako je blag. O tome se odlučuje na licu mjesta, jer se na papiru ne vidi.",
+          "Stubovi se sidre u temeljne stope ili u postojeći betonski zidić. Ako dvorište ima potporni zid od kamena ili betona, ograda se montira na njega i tada je kraća, pa je i cijena niža. To je čest slučaj kod kuća na kosini.",
+          "Na terenu provjeravamo i gdje prolaze instalacije, da bušenje za stope ne pogodi vod.",
+        ],
+      },
+      {
+        heading: "Zašto aluminij, a ne panel ili kovano željezo",
+        paragraphs: [
+          "Panelna ograda je najjeftinija, ali je i najjednostavnija: pocinčana žičana mreža u okviru, bez mogućnosti prilagodbe izgleda. Dobro služi za ogradu parcele, slabije za reprezentativan ulaz.",
+          "Kovano željezo izgleda bogato, ali rđa. Prva rđa javlja se pri tlu, gdje stoji voda, pa nakon nekoliko sezona slijedi brušenje i ličenje. Aluminij ne sadrži željezo, pa taj problem ne postoji.",
+          "Aluminijska ograda stoji između po cijeni, a iznad oba po trajnosti. Plastificirana je u boji po izboru i godinama drži izgled uz obično pranje vodom.",
+        ],
+      },
+      {
+        heading: "Kako dolazimo do cijene",
+        paragraphs: [
+          "Cijena ograde za dvorište računa se po dužnom metru i zavisi od visine, gustine ispune, broja kapija i stanja terena. Dvorište iste površine zna imati vrlo različitu cijenu ako jedno ima ravan betonski zidić, a drugo kosinu bez temelja.",
+          "Zato ne dajemo cifru preko telefona. Izađemo, izmjerimo, provjerimo podlogu i dogovorimo model, pa dobijete tačnu ponudu koje se držimo. Detaljan pregled svih stavki koje ulaze u cijenu nalazi se na stranici o cijeni aluminijske ograde.",
+          "Mjerenje i ponuda su bez obaveze. Nazovite, pošaljite poruku na WhatsApp ili Viber: 062 543 464.",
+        ],
+      },
+    ],
+    features: [
+      { title: "Po mjeri placa", desc: "Visina, dužina i razmak ispune prema vašem dvorištu." },
+      { title: "Moderne lamele", desc: "Horizontalne lamele 100x20 mm na stubovima 80x50 mm." },
+      { title: "Kapija u kompletu", desc: "Klizna, krilna i pješačka u istom modelu i boji." },
+      { title: "Za kosi teren", desc: "Stepenasta izvedba ili praćenje pada terena." },
+      { title: "Bez rđe", desc: "Aluminij ne sadrži željezo, plastifikacija drži boju." },
+      { title: "Besplatno mjerenje", desc: "Izlazak na teren i ponuda bez obaveze." },
+    ],
+    gallery: [
+      { src: "/images/projekti/stablo-ograda-1.jpg", alt: "Ograda za dvorište od aluminija, ALU LINE Systems" },
+      { src: "/images/projekti/kamena-ograda-2.jpg", alt: "Aluminijska ograda za dvorište na kamenom potpornom zidu" },
+      { src: "/images/projekti/siegendorf-1.jpg", alt: "Dvorišna aluminijska ograda po mjeri, Siegendorf" },
+      { src: "/images/projekti/wels-1.jpg", alt: "Dvorišna ograda model Grilja s dvokrilnom kapijom, Wels" },
+      { src: "/images/projekti/krk-1.jpg", alt: "Moderna aluminijska ograda za dvorište, otok Krk" },
+      { src: "/images/projekti/banovici-2.jpg", alt: "Ugrađena ograda za dvorište, Banovići" },
+    ],
+    faq: [
+      {
+        q: "Koliko košta ograda za dvorište?",
+        a: "Cijena se računa po dužnom metru i zavisi od visine, gustine ispune, broja kapija i stanja terena. Gušća ispuna i viša ograda troše više materijala. Izađemo, izmjerimo i damo tačnu cijenu besplatno, bez obaveze.",
+      },
+      {
+        q: "Koja je najjeftinija ograda za dvorište?",
+        a: "Po cijeni je najpovoljnija panelna ograda, pa aluminijska s rijetkim vertikalnim šipkama. Ako tražite najnižu cijenu u aluminiju, birajte manju visinu i rjeđu ispunu, a puni paneli samo na strani prema ulici gdje vam zaista treba zaklon.",
+      },
+      {
+        q: "Koja ograda daje najviše privatnosti?",
+        a: "Puni paneli potpuno zatvaraju pogled prema ulici. Horizontalne lamele su srednje rješenje jer zaklanjaju pod uglom, a propuštaju zrak i svjetlo. Vertikalne šipke daju najmanje zaklona i biraju se kada privatnost nije cilj.",
+      },
+      {
+        q: "Može li se ograda postaviti na kosom terenu?",
+        a: "Da. Na nagibu ogradu radimo stepenasto, tako da svako polje ostane vodoravno, ili pratimo pad terena ako je blag. Kako ćemo izvesti odlučuje se na licu mjesta, jer se nagib ne vidi iz dimenzija na papiru.",
+      },
+      {
+        q: "Radite li ogradu i kapiju zajedno?",
+        a: "Da, i to preporučujemo. Ogradu i kapiju radimo u istom modelu ispune i istoj boji, pa se linije poklapaju i ulaz izgleda kao jedna cjelina. Kapija može biti klizna, krilna ili pješačka, s ručnim ili daljinskim upravljanjem.",
+      },
+      {
+        q: "Koliko traje izrada i montaža ograde za dvorište?",
+        a: "Rok dogovaramo pri mjerenju i zavisi od dužine ograde i broja kapija. Konstrukciju izrađujemo u vlastitoj radionici, pa montaža na terenu ide brzo. Ako treba izliti temeljne stope, računa se i vrijeme da beton očvrsne.",
+      },
+    ],
+  },
+  {
+    slug: "balkonske-ograde",
+    name: "Balkonske ograde",
+    linkLabel: "Balkonske ograde i ograde za terasu",
+    h1: "Balkonske ograde i ograde za terasu",
+    metaTitle: "Balkonske Ograde po Mjeri",
+    metaTitleFull: "Balkonske Ograde i Ograde za Terasu | ALU LINE",
+    metaDescription:
+      "Aluminijske ograde za balkone i terase po mjeri. Lagane, sigurne na visini i ne rđaju. Šipke, lamele, puni paneli ili staklo. Mjerenje: 062 543 464.",
+    keywords: [
+      "ograde za balkone",
+      "balkonske ograde",
+      "aluminijske ograde za balkone",
+      "moderne ograde za balkone",
+      "ograde za terase",
+      "ograde za terasu",
+      "balkonska ograda po mjeri",
+    ],
+    heroImage: "/images/elegantna-bocna-montaza/balkonska-ograda-aluminij-antracit.jpg",
+    relatedPostSlugs: ["ograda-za-balkon-aluminijske-balkonske-ograde"],
+    relatedServiceSlugs: [
+      "aluminijske-ograde",
+      "ograde-za-dvoriste",
+      "aluminijske-ograde-cijena",
+    ],
+    intro: [
+      "Balkonske ograde moraju biti sigurne jer stoje na visini, a lagane da ne opterećuju ploču. Aluminij zadovoljava oba uslova, pa je najčešći izbor i na novogradnji i pri zamjeni stare željezne ograde.",
+      "Radimo ograde za balkone, lođe i terase, po mjeri svakog otvora. Ispunu birate vi: vertikalne ili horizontalne šipke, puni paneli za zaklon ili staklo kada želite otvoren pogled.",
+      "Izlazimo na teren, provjerimo podlogu za sidrenje i damo cijenu bez obaveze: 062 543 464.",
+    ],
+    body: [
+      {
+        heading: "Ispuna određuje izgled i privatnost",
+        paragraphs: [
+          "Konstrukcija je kod svih varijanti slična, a razliku pravi ispuna. Na balkonu je odluka drugačija nego u dvorištu, jer ovdje gubitak pogleda osjetite svaki dan dok sjedite.",
+          "Balkoni okrenuti prema ulici ili prema susjednoj zgradi najčešće dobiju horizontalne lamele ili pune panele. Balkoni s pogledom dobiju staklo ili rijetke vertikalne šipke, da se pogled ne kvari.",
+        ],
+        table: {
+          caption: "Ispune za balkonsku ogradu",
+          head: ["Ispuna", "Privatnost", "Pogled", "Napomena"],
+          rows: [
+            ["Vertikalne šipke", "Niska", "Otvoren", "Klasičan izgled, najpovoljnije"],
+            ["Horizontalne lamele", "Srednja do visoka", "Zaklonjen pod uglom", "Moderan izgled, propušta zrak"],
+            ["Puni paneli", "Potpuna", "Zatvoren", "Najviše zaklona od susjeda"],
+            ["Kaljeno staklo", "Niska", "Potpuno otvoren", "Najčistiji izgled, traži pranje"],
+          ],
+        },
+      },
+      {
+        heading: "Moderne ograde za balkone: antracit i lamele",
+        paragraphs: [
+          "Najtraženija kombinacija danas je horizontalna lamela u antracit boji. Razlog je uklapanje: siva stolarija, tamni oluci i antracit ograda daju jedinstvenu liniju na fasadi, bez šarenila.",
+          "Lamele najčešće radimo u dimenziji 100x20 mm, na stubovima 80x50 mm. Razmak biramo prema tome koliko zaklona tražite. Manji razmak znači više privatnosti i više materijala.",
+          "Ako zgrada traži da sve ograde na fasadi budu istog izgleda, uskladimo se s postojećim tonom i visinom. To je dobro provjeriti s upraviteljem prije izrade, a ne nakon montaže.",
+        ],
+      },
+      {
+        heading: "Visina i sigurnost na balkonu",
+        paragraphs: [
+          "Balkonska ograda je sigurnosni element, ne samo ukras. Visina i razmak ispune propisani su građevinskim propisima, a zahtjev raste sa visinom balkona iznad terena.",
+          "Kod stanova na višim spratovima i tamo gdje na balkon izlaze djeca, razmak između ispuna drži se malim, tako da se kroz njega ne može proći ni provući. Horizontalne lamele treba izvesti tako da se po njima ne može penjati, što rješavamo razmakom i unutrašnjim rasporedom.",
+        ],
+      },
+      {
+        heading: "Montaža: ploča, parapet ili bočno",
+        paragraphs: [
+          "Način sidrenja bira se prema onome što se zatekne. Ograda se najčešće sidri odozgo u parapetni zid, bočno u čelo balkonske ploče ili odozgo u samu ploču.",
+          "Bočna montaža ostavlja punu širinu balkona i daje najčišću liniju, ali traži zdrav beton na čelu ploče. Kod starijih zgrada rub ploče zna biti oštećen ili prekriven slojevima estriha, pa se mjesta sidrenja biraju prema stvarnom stanju.",
+          "Zato balkonske ograde uvijek mjerimo i pregledamo na licu mjesta. Dimenzije date preko telefona nisu dovoljne da bi se znalo kako se ograda može pričvrstiti.",
+        ],
+      },
+      {
+        heading: "Ograde za terase i krovne terase",
+        paragraphs: [
+          "Terasa u prizemlju i krovna terasa traže isto rješenje kao balkon, samo na većoj dužini. Kod krovnih terasa posebno pazimo da sidrenje ne naruši hidroizolaciju, pa se vezujemo za parapet ili za ojačanje koje već postoji.",
+          "Na terasi se ograda često kombinuje s nadstrešnicom, tako da se dobije natkriven i zaklonjen prostor. Kada se oboje radi odjednom, profili i boja se usklade pa sve izgleda kao jedan sistem.",
+        ],
+      },
+      {
+        heading: "Zamjena stare željezne ograde",
+        paragraphs: [
+          "Zamjena zarđale željezne ograde je čest posao. Staru ogradu skinemo, pregledamo stanje ploče ili parapeta i prilagodimo sidrenje onome što zateknemo. Ako je beton oštećen oko starih sidara, mjesta se pomjeraju ili saniraju prije montaže.",
+          "Aluminijska ograda je znatno lakša od željezne pri istoj veličini, pa manje opterećuje konstrukciju, a rđa se više ne vraća.",
+          "Za mjerenje i ponudu javite se na telefon, WhatsApp ili Viber: 062 543 464.",
+        ],
+      },
+    ],
+    features: [
+      { title: "Za balkone i lođe", desc: "Po mjeri otvora, sa sidrenjem prilagođenim podlozi." },
+      { title: "Za terase", desc: "Prizemne i krovne terase, bez narušavanja hidroizolacije." },
+      { title: "Ispuna po izboru", desc: "Šipke, lamele, puni paneli ili kaljeno staklo." },
+      { title: "Antracit i RAL", desc: "Boja usklađena sa stolarijom i fasadom." },
+      { title: "Lagano na ploči", desc: "Aluminij ne opterećuje balkonsku konstrukciju." },
+      { title: "Zamjena željezne", desc: "Skidamo staru ogradu i saniramo mjesta sidrenja." },
+    ],
+    gallery: [
+      { src: "/images/elegantna-bocna-montaza/balkonska-ograda-aluminij-antracit.jpg", alt: "Balkonska aluminijska ograda u antracit boji s horizontalnim lamelama" },
+      { src: "/images/elegantna-bocna-montaza/aluminijska-ograda-terasa-horizontalne-lamele.jpg", alt: "Ograda za terasu s horizontalnim lamelama 100x20 mm" },
+      { src: "/images/elegantna-bocna-montaza/ograda-za-terasu-pogled-s-terase.jpg", alt: "Aluminijska ograda za krovnu terasu, pogled s terase" },
+      { src: "/images/elegantna-bocna-montaza/bocna-montaza-aluminijske-ograde.jpg", alt: "Bočna montaža balkonske ograde na parapetni zid" },
+      { src: "/images/projekti/terasa-ograda-1.jpg", alt: "Aluminijska ograda za terasu, ALU LINE Systems" },
+      { src: "/images/projekti/terasa-ograda-3.jpg", alt: "Balkonska ograda po mjeri, ALU LINE Systems" },
+    ],
+    faq: [
+      {
+        q: "Koliko košta balkonska ograda?",
+        a: "Cijena zavisi od dužine, visine, vrste ispune i načina sidrenja. Vertikalne šipke su najpovoljnije, a puni paneli i staklo koštaju više. Broj uglova također utiče, jer svaki ugao traži dodatnu obradu. Mjerenje i ponuda su besplatni.",
+      },
+      {
+        q: "Je li aluminijska ograda za balkon sigurna?",
+        a: "Da. Profili su čvrsti, a sidrenje se prilagođava podlozi i visini balkona. Visina ograde i razmak ispune izvode se prema građevinskim propisima, koji su stroži što je balkon viši iznad terena.",
+      },
+      {
+        q: "Može li se stara željezna ograda zamijeniti aluminijskom?",
+        a: "Da, to je čest posao. Staru ogradu skinemo, pregledamo stanje ploče ili parapeta i prilagodimo sidrenje. Aluminijska ograda je lakša od željezne, pa manje opterećuje konstrukciju i ne rđa.",
+      },
+      {
+        q: "Koja ispuna daje najviše privatnosti na balkonu?",
+        a: "Puni paneli potpuno zatvaraju pogled prema ulici i susjedima. Horizontalne lamele su srednje rješenje jer zaklanjaju pod uglom, a propuštaju zrak i svjetlo. Staklo i vertikalne šipke ostavljaju pogled otvorenim.",
+      },
+      {
+        q: "Radite li ograde za krovne terase?",
+        a: "Da. Kod krovnih terasa pazimo da sidrenje ne naruši hidroizolaciju, pa se vezujemo za parapet ili postojeće ojačanje. Ogradu po želji kombinujemo s nadstrešnicom, u istoj boji i profilu.",
+      },
+      {
+        q: "Može li se ograda uklopiti uz boju fasade?",
+        a: "Da, boju birate po RAL kartici, a antracit je najtraženiji jer se slaže sa sivom stolarijom i tamnim olucima. Ako zgrada traži jedinstven izgled svih ograda na fasadi, uskladimo se s tim tonom.",
+      },
+    ],
+  },
+  {
+    slug: "aluminijske-ograde-cijena",
+    name: "Cijena aluminijske ograde",
+    linkLabel: "Cijena aluminijske ograde po metru",
+    h1: "Aluminijske ograde: cijena po metru",
+    metaTitle: "Aluminijske Ograde Cijena po Metru",
+    metaTitleFull: "Aluminijske Ograde Cijena po Metru BiH | ALU LINE",
+    metaDescription:
+      "Kako se formira cijena aluminijske ograde po dužnom metru u BiH. Sve stavke koje ulaze u ponudu, šta poskupljuje posao i kako do tačne cijene bez obaveze.",
+    keywords: [
+      "aluminijske ograde cijena po metru bih",
+      "aluminijske ograde cijena",
+      "cijena ograde po metru",
+      "cijena aluminijske ograde",
+      "aluminijska ograda cijena po metru",
+      "balkonske ograde cijene u bih",
+    ],
+    heroImage: "/images/projekti/kamena-ograda-1.jpg",
+    relatedPostSlugs: ["koliko-kosta-aluminijska-ograda"],
+    relatedServiceSlugs: [
+      "aluminijske-ograde",
+      "ograde-za-dvoriste",
+      "balkonske-ograde",
+      "aluminijske-kapije",
+    ],
+    intro: [
+      "Cijena aluminijske ograde računa se po dužnom metru, ali taj metar nije isti za svaku ogradu. Ista dužina zna imati bitno različitu cijenu zavisno od visine, gustine ispune i stanja terena.",
+      "Na ovoj stranici je razloženo šta tačno ulazi u ponudu, da znate na čemu se cijena zasniva i da možete uporediti dvije ponude po istim stavkama.",
+      "Mjerenje i ponuda su besplatni i bez obaveze. Nazovite 062 543 464 i dogovorite izlazak.",
+    ],
+    body: [
+      {
+        heading: "Šest stavki koje određuju cijenu po metru",
+        paragraphs: [
+          "Ponuda za aluminijsku ogradu gotovo uvijek stoji na istih šest stavki. Kad ih znate, lako vidite zašto se dvije ponude razlikuju i gdje se može uštedjeti bez gubitka kvaliteta.",
+        ],
+        table: {
+          caption: "Šta pomjera cijenu aluminijske ograde",
+          head: ["Stavka", "Utjecaj na cijenu", "Zašto"],
+          rows: [
+            ["Dužina", "Direktan", "Više metara, više profila i rada"],
+            ["Visina", "Značajan", "Viša ograda troši više ispune po metru"],
+            ["Gustina ispune", "Najveći poslije visine", "Puni paneli troše višestruko više od rijetkih šipki"],
+            ["Kapije", "Stavka za sebe", "Klizna traži jaču konstrukciju i kolica, motor se računa posebno"],
+            ["Teren i temelji", "Varira", "Nagib, tvrda podloga ili nepostojeće stope dodaju rad"],
+            ["Boja i obrada", "Mali do srednji", "Standardni RAL tonovi su povoljniji od posebnih i dekora"],
+          ],
+        },
+      },
+      {
+        heading: "Zašto visina poskupljuje više nego što se očekuje",
+        paragraphs: [
+          "Mnogi računaju da je ograda od 180 cm za petinu skuplja od one od 150 cm, jer je petinu viša. U praksi razlika zna biti veća, jer uz dodatnu ispunu po svakom metru često treba i jači profil stuba i dublja stopa, da ograda podnese vjetar na većoj površini.",
+          "Zato se isplati biti precizan oko toga koliko vam visine zaista treba. Ako zaklon tražite samo prema ulici, viša ograda na toj strani i niža prema vrtu je jeftinija od visoke ograde po cijelom obimu.",
+        ],
+      },
+      {
+        heading: "Gdje se realno može uštedjeti",
+        paragraphs: [
+          "Prva ušteda je u ispuni. Rjeđe vertikalne šipke troše znatno manje materijala od punih panela, a na stranama gdje privatnost nije bitna razlika u izgledu je mala. Mješovito rješenje, puni paneli prema ulici i rjeđa ispuna prema vrtu, obično daje najbolji odnos.",
+          "Druga je u podlozi. Ako već imate betonski zidić ili potporni zid, ograda se montira na njega pa je kraća i nema izlijevanja stopa. To je dvostruka ušteda, i na materijalu i na radu.",
+          "Treća je u boji. Standardni RAL tonovi, uključujući antracit, povoljniji su od posebnih narudžbi i dekora koji imitiraju drvo.",
+          "Ono na čemu ne treba štedjeti je debljina profila i kvalitet okova na kapiji, jer se tu ušteda vrati kroz par godina kao problem.",
+        ],
+      },
+      {
+        heading: "Šta se često previdi u računici",
+        paragraphs: [
+          "Dvije stavke najčešće iznenade. Prva su temeljne stope: ako se ograda postavlja na zemlju ili šljunak, stope treba izliti i sačekati da beton očvrsne, što produžava i rok. Druga je automatika kapije, jer uz motor idu i fotoćelije, signalna lampa i dovod struje do stuba.",
+          "Obje se lako previde kad se cijena procjenjuje preko telefona, a vide se odmah na terenu. Zato izlazak i mjerenje daju tačniju cifru od bilo kakvog opisa.",
+        ],
+      },
+      {
+        heading: "Zašto ne objavljujemo fiksnu cijenu po metru",
+        paragraphs: [
+          "Cifra po metru na internetu gotovo uvijek pripada najjednostavnijoj mogućoj ogradi: najniža visina, najrjeđa ispuna, ravan teren, bez kapije. Čim dodate bilo šta od toga, broj više ne važi, a vi ste već računali s njim.",
+          "Umjesto toga dajemo ponudu po mjeri, s razloženim stavkama. Nakon ponude cijena je fiksna i držimo je se, kao i dogovorenog roka. To je poštenije i prema vama i prema nama.",
+        ],
+      },
+      {
+        heading: "Kako do tačne cijene",
+        paragraphs: [
+          "Pozovite 062 543 464 i dogovorite izlazak. Izmjerimo dužinu i visinu, provjerimo podlogu i nagib, dogovorimo model ispune, boju i tip kapije, pa dobijete razloženu ponudu.",
+          "Mjerenje i ponuda su besplatni i bez obaveze. Sve izrađujemo i montiramo sami, bez podizvođača, uz pisanu garanciju na rad. Radimo po cijeloj BiH, a po dogovoru i u Hrvatskoj, Sloveniji i Austriji.",
+        ],
+      },
+    ],
+    features: [
+      { title: "Ponuda po mjeri", desc: "Razložene stavke, bez skrivenih troškova." },
+      { title: "Fiksna nakon dogovora", desc: "Držimo se dogovorene cijene i roka." },
+      { title: "Besplatan izlazak", desc: "Mjerenje i ponuda bez obaveze." },
+      { title: "Bez podizvođača", desc: "Izrada i montaža u vlastitoj režiji." },
+    ],
+    gallery: [
+      { src: "/images/projekti/kamena-ograda-1.jpg", alt: "Aluminijska ograda na kamenom zidu, ALU LINE Systems" },
+      { src: "/images/projekti/stablo-ograda-2.jpg", alt: "Dvorišna aluminijska ograda po mjeri, ALU LINE Systems" },
+      { src: "/images/elegantna-bocna-montaza/aluminijska-ograda-lamela-100x20.jpg", alt: "Aluminijska ograda s lamelama 100x20 mm u antracit boji" },
+    ],
+    faq: [
+      {
+        q: "Koliko košta aluminijska ograda po metru u BiH?",
+        a: "Cijena po dužnom metru zavisi od visine, gustine ispune, kapija i stanja terena. Ista dužina košta bitno različito za nisku ogradu s rijetkim šipkama i za visoku s punim panelima. Tačnu cijenu dajemo nakon mjerenja, besplatno i bez obaveze.",
+      },
+      {
+        q: "Zašto ne objavljujete fiksnu cijenu po metru?",
+        a: "Jer bi bila netačna. Cifra po metru pripada najjednostavnijoj ogradi bez kapije, na ravnom terenu. Čim se doda visina, gušća ispuna ili kapija, broj više ne važi. Ponuda po mjeri je tačnija i poštenija.",
+      },
+      {
+        q: "Gdje se može uštedjeti na cijeni ograde?",
+        a: "Najviše na ispuni: rjeđe šipke troše znatno manje materijala od punih panela. Zatim na podlozi, jer montaža na postojeći betonski zidić izbjegava izlijevanje stopa. I na boji, jer su standardni RAL tonovi povoljniji od posebnih narudžbi.",
+      },
+      {
+        q: "Je li mjerenje i ponuda besplatno?",
+        a: "Da, izlazak na teren, mjerenje i ponuda su bez obaveze. Tek kad se dogovorimo oko modela i cijene, krećemo u izradu. Nakon ponude cijena je fiksna i držimo se dogovorenog roka.",
+      },
+      {
+        q: "Ulazi li montaža u cijenu?",
+        a: "Da, ponuda obuhvata izradu i montažu, jer sve radimo sami bez podizvođača. Posebno se iskazuju samo pripremni radovi poput izlijevanja temeljnih stopa i automatika kapije s motorom i fotoćelijama.",
+      },
+    ],
+  },
+  {
     slug: "roletne",
     name: "Roletne",
+    linkLabel: "Roletne po mjeri, ALU i PVC",
     h1: "Roletne za ALU i PVC sisteme",
     metaTitle: "Roletne po Mjeri, ALU i PVC",
     metaDescription:
@@ -287,6 +713,11 @@ export const SERVICE_PAGES: ServicePage[] = [
       "aluminijske roletne",
       "roletne po mjeri",
       "roletne cijena",
+    ],
+    relatedServiceSlugs: [
+      "garazna-i-sekcijska-vrata",
+      "nadstresnice",
+      "drvena-vrata",
     ],
     heroImage: "/images/roletne/roletna1.jpg",
     intro: [
@@ -352,6 +783,7 @@ export const SERVICE_PAGES: ServicePage[] = [
   {
     slug: "garazna-i-sekcijska-vrata",
     name: "Garažna i sekcijska vrata",
+    linkLabel: "Garažna rolo i sekcijska vrata",
     h1: "Rolo i sekcijska garažna vrata",
     metaTitle: "Garažna Rolo i Sekcijska Vrata",
     metaDescription:
@@ -363,6 +795,11 @@ export const SERVICE_PAGES: ServicePage[] = [
       "industrijska vrata",
       "garažna vrata daljinsko",
       "garažna vrata cijena",
+    ],
+    relatedServiceSlugs: [
+      "roletne",
+      "aluminijske-kapije",
+      "drvena-vrata",
     ],
     heroImage: "/images/garazna i sekcijska vrata/Garazna vrata.jpg",
     intro: [
@@ -421,6 +858,7 @@ export const SERVICE_PAGES: ServicePage[] = [
   {
     slug: "nadstresnice",
     name: "Nadstrešnice",
+    linkLabel: "Aluminijske nadstrešnice za auto i terasu",
     h1: "Aluminijske nadstrešnice po mjeri",
     metaTitle: "Aluminijske Nadstrešnice po Mjeri",
     metaTitleFull: "Aluminijske Nadstrešnice za Auto i Terasu | ALU LINE",
@@ -564,10 +1002,16 @@ export const SERVICE_PAGES: ServicePage[] = [
       },
     ],
     relatedPostSlugs: ["koliko-kosta-aluminijska-nadstresnica"],
+    relatedServiceSlugs: [
+      "aluminijske-ograde",
+      "roletne",
+      "garazna-i-sekcijska-vrata",
+    ],
   },
   {
     slug: "drvena-vrata",
     name: "Drvena vrata",
+    linkLabel: "Drvena vrata po mjeri",
     h1: "Drvena sobna i ulazna vrata po mjeri",
     metaTitle: "Drvena Sobna i Ulazna Vrata",
     metaTitleFull: "Drvena Vrata po Mjeri, Katalog Modela | ALU LINE",
@@ -581,6 +1025,11 @@ export const SERVICE_PAGES: ServicePage[] = [
       "ulazna drvena vrata",
       "drvena vrata po narudžbi",
       "sobna vrata cijena",
+    ],
+    relatedServiceSlugs: [
+      "roletne",
+      "garazna-i-sekcijska-vrata",
+      "aluminijske-ograde",
     ],
     heroImage: "/images/vrata katalog/Model mo-1.jpeg",
     intro: [

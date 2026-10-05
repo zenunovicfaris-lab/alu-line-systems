@@ -98,7 +98,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { q: "Je li aluminijska ograda dovoljno čvrsta?", a: "Da. Aluminijski profili su dizajnirani za nosivost, a laganiji su od željeza što olakšava montažu. Za dvorišne ograde su više nego dovoljno čvrsti." },
       { q: "Možete li napraviti ogradu po mjeri?", a: "Da, svaku ogradu izrađujemo prema dimenzijama vašeg dvorišta, u boji i modelu po izboru. Pozovite 062 543 464 za mjerenje i ponudu." },
     ],
-    relatedService: { label: "Aluminijske ograde", href: "/usluge/aluminijske-ograde" },
+    relatedService: { label: "Ograde za dvorište po mjeri", href: "/usluge/ograde-za-dvoriste" },
   },
   {
     slug: "panelna-ili-aluminijska-ograda",
@@ -184,7 +184,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "ograda-za-balkon-aluminijske-balkonske-ograde",
     title: "Ograda za balkon: aluminijske balkonske ograde",
-    metaTitle: "Aluminijske Ograde za Balkone i Terase",
+    metaTitle: "Kako Izabrati Ogradu za Balkon",
     metaDescription:
       "Aluminijska ograda za balkon je lagana, sigurna i ne rđa. Vrste ispune, visina po propisu, montaža na ploču i šta utiče na cijenu balkonske ograde.",
     keywords: [
@@ -245,7 +245,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { q: "Može li se stara željezna ograda zamijeniti aluminijskom?", a: "Da, i to je čest posao. Staru ogradu skinemo, pregledamo stanje ploče ili parapeta i prilagodimo sidrenje onome što zateknemo. Aluminijska ograda je lakša od željezne, pa manje opterećuje konstrukciju." },
       { q: "Koja ispuna daje najviše privatnosti na balkonu?", a: "Puni paneli daju potpunu privatnost prema ulici i susjedima. Horizontalne lamele su srednje rješenje jer zaklanjaju pogled pod uglom, ali propuštaju zrak i svjetlo. Staklo i vertikalne šipke ostavljaju pogled otvorenim." },
     ],
-    relatedService: { label: "Aluminijske ograde", href: "/usluge/aluminijske-ograde" },
+    relatedService: { label: "Balkonske ograde i ograde za terasu", href: "/usluge/balkonske-ograde" },
   },
   {
     slug: "koliko-kosta-aluminijska-ograda",
@@ -286,7 +286,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { q: "Je li mjerenje i ponuda besplatno?", a: "Da, izlazak, mjerenje i ponuda su bez obaveze. Tek kad se dogovorimo, krećemo u izradu." },
       { q: "Držite li se dogovorene cijene?", a: "Da. Nakon ponude cijena je fiksna i držimo se dogovorenog roka i cijene." },
     ],
-    relatedService: { label: "Aluminijske ograde", href: "/usluge/aluminijske-ograde" },
+    relatedService: { label: "Cijena aluminijske ograde po metru", href: "/usluge/aluminijske-ograde-cijena" },
   },
   {
     slug: "koliko-kosta-aluminijska-nadstresnica",

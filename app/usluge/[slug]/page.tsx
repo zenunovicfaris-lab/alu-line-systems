@@ -112,9 +112,18 @@ export default function ServicePageRoute({
     ],
   };
 
-  const otherServices = SERVICE_PAGES.filter(
-    (s) => s.slug !== service.slug
-  ).map((s) => ({ label: s.name, href: `/usluge/${s.slug}` }));
+  const anchor = (s: (typeof SERVICE_PAGES)[number]) => ({
+    label: s.linkLabel ?? s.name,
+    href: `/usluge/${s.slug}`,
+  });
+  // Kurirani linkovi drze link equity u klasteru; bez njih se linkuje na sve ostale.
+  const curated = (service.relatedServiceSlugs ?? [])
+    .map((slug) => SERVICE_PAGES.find((s) => s.slug === slug))
+    .filter((s): s is (typeof SERVICE_PAGES)[number] => Boolean(s))
+    .map(anchor);
+  const otherServices = curated.length
+    ? curated
+    : SERVICE_PAGES.filter((s) => s.slug !== service.slug).map(anchor);
   const locationLinks = LOCATION_PAGES.map((l) => ({
     label: `${service.name} ${l.city}`,
     href: `/lokacije/${l.slug}`,
@@ -147,7 +156,7 @@ export default function ServicePageRoute({
       <GalleryGrid heading="Naši radovi" images={service.gallery} />
       <FaqSection items={service.faq} />
       <InternalLinks heading="Savjeti i vodiči" links={blogLinks} />
-      <InternalLinks heading="Ostale usluge" links={otherServices} />
+      <InternalLinks heading="Povezane usluge" links={otherServices} />
       <InternalLinks heading="Radimo u vašem gradu" links={locationLinks} />
       <ContactSection />
       <Footer />
