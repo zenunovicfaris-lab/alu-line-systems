@@ -18,6 +18,21 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 const projects = [
   {
+    id: 13,
+    title: "Žalužina ograda u antracitu, Njemačka",
+    subtitle:
+      "Dugačka dvorišna ograda uz prometnu ulicu, sa žalužina lamelama koje daju potpunu privatnost. Montirana na betonski sokl i vođena segmentno uz luk ulice.",
+    location: "Njemačka",
+    year: "2026",
+    images: [
+      "/images/njemacka/aluminijska-ograda-zaluzina-antracit-ugao.jpg",
+      "/images/njemacka/dvorisna-ograda-zaluzina-lamele-antracit.jpg",
+      "/images/njemacka/zaluzina-ograda-detalj-lamele-antracit.jpg",
+      "/images/njemacka/aluminijska-ograda-uz-ulicu-puna-privatnost.jpg",
+      "/images/njemacka/ograda-za-dvoriste-njemacka-antracit.jpg",
+    ],
+  },
+  {
     id: 12,
     title: "Bočna montaža ograde na krovnoj terasi",
     subtitle:

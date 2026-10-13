@@ -141,6 +141,9 @@ export const SERVICE_PAGES: ServicePage[] = [
       { src: "/images/elegantna-bocna-montaza/montaza-aluminijske-ograde-terasa.jpg", alt: "Montaža aluminijske ograde na krovnoj terasi, ekipa ALU LINE Systems" },
       { src: "/images/elegantna-bocna-montaza/balkonska-ograda-aluminij-antracit.jpg", alt: "Balkonska aluminijska ograda u antracit boji s horizontalnim lamelama" },
       { src: "/images/elegantna-bocna-montaza/aluminijska-ograda-terasa-horizontalne-lamele.jpg", alt: "Aluminijska ograda za terasu s horizontalnim lamelama 100x20 mm" },
+      { src: "/images/njemacka/zaluzina-ograda-detalj-lamele-antracit.jpg", alt: "Detalj žaluzina lamela aluminijske ograde u antracit boji" },
+      { src: "/images/njemacka/aluminijska-ograda-uz-ulicu-puna-privatnost.jpg", alt: "Aluminijska ograda uz ulicu s punom privatnošću, antracit" },
+      { src: "/images/njemacka/dvorisna-ograda-zaluzina-lamele-antracit.jpg", alt: "Dvorišna aluminijska ograda sa žaluzina lamelama, antracit" },
     ],
     faq: [
       {
@@ -308,6 +311,8 @@ export const SERVICE_PAGES: ServicePage[] = [
       "dvorišne ograde",
       "ograda za dvorište po mjeri",
       "najjeftinije ograde za dvorišta",
+      "žaluzina ograda",
+      "antracit ograda",
     ],
     heroImage: "/images/projekti/stablo-ograda-1.jpg",
     relatedPostSlugs: [
@@ -350,6 +355,12 @@ export const SERVICE_PAGES: ServicePage[] = [
               "Moderan izgled, zaklon uz strujanje zraka",
             ],
             [
+              "Žaluzina lamele",
+              "Potpuna",
+              "Viša",
+              "Privatnost uz zrak i bez zatvorenog zida",
+            ],
+            [
               "Puni paneli",
               "Potpuna",
               "Viša",
@@ -369,6 +380,7 @@ export const SERVICE_PAGES: ServicePage[] = [
         paragraphs: [
           "Posljednjih godina najviše se traže moderne ograde za dvorište s horizontalnim lamelama. Razlog je praktičan koliko i estetski: lamele zaklanjaju pogled pod uglom, a propuštaju zrak i dio svjetla, pa dvorište ne postaje zatvorena kutija.",
           "Lamele radimo u više dimenzija, najčešće 100x20 mm, na stubovima 80x50 mm. Razmak između lamela biramo zajedno, jer on direktno određuje koliko se vidi kroz ogradu. Manji razmak znači više zaklona i više materijala.",
+          "Kada treba potpuna privatnost, a da ograda ne izgleda kao zid, radimo žaluzina lamele. One se preklapaju pod uglom, pa se kroz njih ne vidi ni iz jednog pravca, a zrak i dalje prolazi. To je najbolje rješenje za dvorište uz prometnu ulicu ili uz pješački prolaz.",
           "Antracit je daleko najtraženija boja za ovakve ograde, jer se slaže sa sivom stolarijom i tamnim olucima koji su danas standard na novogradnji.",
         ],
       },
@@ -419,6 +431,9 @@ export const SERVICE_PAGES: ServicePage[] = [
       { src: "/images/projekti/wels-1.jpg", alt: "Dvorišna ograda model Grilja s dvokrilnom kapijom, Wels" },
       { src: "/images/projekti/krk-1.jpg", alt: "Moderna aluminijska ograda za dvorište, otok Krk" },
       { src: "/images/projekti/banovici-2.jpg", alt: "Ugrađena ograda za dvorište, Banovići" },
+      { src: "/images/njemacka/aluminijska-ograda-zaluzina-antracit-ugao.jpg", alt: "Dvorišna ograda sa žaluzina lamelama u antracit boji, Njemačka" },
+      { src: "/images/njemacka/dvorisna-ograda-zaluzina-lamele-antracit.jpg", alt: "Ograda za dvorište uz ulicu, žaluzina lamele i puna privatnost" },
+      { src: "/images/njemacka/ograda-za-dvoriste-njemacka-antracit.jpg", alt: "Antracit ograda za dvorište na betonskom soklu, Njemačka" },
     ],
     faq: [
       {
@@ -431,7 +446,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       },
       {
         q: "Koja ograda daje najviše privatnosti?",
-        a: "Puni paneli potpuno zatvaraju pogled prema ulici. Horizontalne lamele su srednje rješenje jer zaklanjaju pod uglom, a propuštaju zrak i svjetlo. Vertikalne šipke daju najmanje zaklona i biraju se kada privatnost nije cilj.",
+        a: "Žaluzina lamele i puni paneli potpuno zatvaraju pogled prema ulici. Razlika je u tome što žaluzine propuštaju zrak jer se preklapaju pod uglom, pa ograda ne izgleda kao zid. Horizontalne lamele su srednje rješenje, a vertikalne šipke daju najmanje zaklona.",
       },
       {
         q: "Može li se ograda postaviti na kosom terenu?",
