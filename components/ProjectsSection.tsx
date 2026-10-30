@@ -18,6 +18,41 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 const projects = [
   {
+    id: 15,
+    title: "Nadstrešnica, klizna kapija i žalužina ograda",
+    subtitle:
+      "Cijelo dvorište u jednom antracitu: carport za dva vozila, klizna kapija s motorom za automatsko otvaranje i dvorišna ograda sa žalužina lamelama uz ulicu.",
+    year: "2026",
+    images: [
+      "/images/nadstresnica/aluminijska-nadstresnica-za-dva-auta.jpg",
+      "/images/nadstresnica/carport-nadstresnica-parking-mjesta.jpg",
+      "/images/nadstresnica/nadstresnica-krovni-panel-antracit.jpg",
+      "/images/nadstresnica/klizna-kapija-motor-automatsko-otvaranje.jpg",
+      "/images/nadstresnica/klizna-kapija-vodilica-i-motor.jpg",
+      "/images/nadstresnica/zaluzina-ograda-uz-ulicu-antracit.jpg",
+      "/images/nadstresnica/aluminijska-ograda-i-nadstresnica-ugao.jpg",
+      "/images/nadstresnica/nadstresnica-i-klizna-kapija-antracit.jpg",
+    ],
+  },
+  {
+    id: 14,
+    title: "Ograda model Ratan, Gradiška",
+    subtitle:
+      "Balkonska ograda, vanjsko stepenište i ulazni podest na novoj kući, sve u modelu Ratan s vertikalnom ispunom i u istoj antracit boji.",
+    location: "Gradiška",
+    year: "2026",
+    images: [
+      "/images/gradiska-model-ratan/balkonska-ograda-model-ratan-gradiska.jpg",
+      "/images/gradiska-model-ratan/ograda-za-balkon-i-stepenice-antracit.jpg",
+      "/images/gradiska-model-ratan/stepenisna-ograda-aluminij-antracit.jpg",
+      "/images/gradiska-model-ratan/ograda-za-vanjske-stepenice-aluminij.jpg",
+      "/images/gradiska-model-ratan/balkonska-ograda-vertikalne-sipke-aluminij.jpg",
+      "/images/gradiska-model-ratan/ograda-za-ulazni-podest-aluminij.jpg",
+      "/images/gradiska-model-ratan/aluminijska-ograda-ulaz-u-kucu.jpg",
+      "/images/gradiska-model-ratan/ograda-podest-model-ratan-antracit.jpg",
+    ],
+  },
+  {
     id: 13,
     title: "Žalužina ograda u antracitu, Njemačka",
     subtitle:

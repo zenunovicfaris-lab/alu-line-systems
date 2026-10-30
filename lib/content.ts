@@ -144,6 +144,8 @@ export const SERVICE_PAGES: ServicePage[] = [
       { src: "/images/njemacka/zaluzina-ograda-detalj-lamele-antracit.jpg", alt: "Detalj žaluzina lamela aluminijske ograde u antracit boji" },
       { src: "/images/njemacka/aluminijska-ograda-uz-ulicu-puna-privatnost.jpg", alt: "Aluminijska ograda uz ulicu s punom privatnošću, antracit" },
       { src: "/images/njemacka/dvorisna-ograda-zaluzina-lamele-antracit.jpg", alt: "Dvorišna aluminijska ograda sa žaluzina lamelama, antracit" },
+      { src: "/images/gradiska-model-ratan/ograda-za-vanjske-stepenice-aluminij.jpg", alt: "Aluminijska ograda za vanjske stepenice, model Ratan" },
+      { src: "/images/gradiska-model-ratan/ograda-za-ulazni-podest-aluminij.jpg", alt: "Ograda za ulazni podest od aluminija u antracit boji" },
     ],
     faq: [
       {
@@ -266,6 +268,10 @@ export const SERVICE_PAGES: ServicePage[] = [
       { src: "/images/klizna-ograda-na-daljinski/klizna1.jpg", alt: "Klizna aluminijska kapija na daljinski, ALU LINE Systems" },
       { src: "/images/klizna-ograda-na-daljinski/motor za kliznu ogradu bft.jpg", alt: "Motor BFT za kliznu kapiju, ALU LINE Systems" },
       { src: "/images/projekti/medjugorje-1.jpg", alt: "Aluminijska ograda i kapija, ALU LINE Systems" },
+      { src: "/images/nadstresnica/klizna-kapija-motor-automatsko-otvaranje.jpg", alt: "Klizna aluminijska kapija s motorom za automatsko otvaranje" },
+      { src: "/images/nadstresnica/klizna-kapija-vodilica-i-motor.jpg", alt: "Vodilica i motor klizne kapije, detalj montaže" },
+      { src: "/images/nadstresnica/klizna-kapija-zaluzina-ispuna-antracit.jpg", alt: "Klizna kapija sa žaluzina ispunom u antracit boji" },
+      { src: "/images/nadstresnica/pjesacka-kapija-aluminij-antracit.jpg", alt: "Pješačka aluminijska kapija u antracit boji" },
     ],
     faq: [
       {
@@ -434,6 +440,9 @@ export const SERVICE_PAGES: ServicePage[] = [
       { src: "/images/njemacka/aluminijska-ograda-zaluzina-antracit-ugao.jpg", alt: "Dvorišna ograda sa žaluzina lamelama u antracit boji, Njemačka" },
       { src: "/images/njemacka/dvorisna-ograda-zaluzina-lamele-antracit.jpg", alt: "Ograda za dvorište uz ulicu, žaluzina lamele i puna privatnost" },
       { src: "/images/njemacka/ograda-za-dvoriste-njemacka-antracit.jpg", alt: "Antracit ograda za dvorište na betonskom soklu, Njemačka" },
+      { src: "/images/nadstresnica/zaluzina-ograda-uz-ulicu-antracit.jpg", alt: "Dvorišna ograda sa žaluzina lamelama uz ulicu, antracit" },
+      { src: "/images/nadstresnica/dvorisna-ograda-zaluzina-uz-prilaz.jpg", alt: "Ograda za dvorište uz prilaz, žaluzina lamele i puna privatnost" },
+      { src: "/images/nadstresnica/aluminijska-ograda-i-nadstresnica-ugao.jpg", alt: "Aluminijska ograda i nadstrešnica na uglu placa" },
     ],
     faq: [
       {
@@ -564,6 +573,10 @@ export const SERVICE_PAGES: ServicePage[] = [
       { src: "/images/elegantna-bocna-montaza/bocna-montaza-aluminijske-ograde.jpg", alt: "Bočna montaža balkonske ograde na parapetni zid" },
       { src: "/images/projekti/terasa-ograda-1.jpg", alt: "Aluminijska ograda za terasu, ALU LINE Systems" },
       { src: "/images/projekti/terasa-ograda-3.jpg", alt: "Balkonska ograda po mjeri, ALU LINE Systems" },
+      { src: "/images/gradiska-model-ratan/balkonska-ograda-model-ratan-gradiska.jpg", alt: "Balkonska ograda model Ratan u antracit boji, Gradiška" },
+      { src: "/images/gradiska-model-ratan/balkonska-ograda-vertikalne-sipke-aluminij.jpg", alt: "Balkonska aluminijska ograda s vertikalnom ispunom" },
+      { src: "/images/gradiska-model-ratan/ograda-za-balkon-i-stepenice-antracit.jpg", alt: "Ograda za balkon i vanjske stepenice u istoj antracit boji" },
+      { src: "/images/gradiska-model-ratan/stepenisna-ograda-aluminij-antracit.jpg", alt: "Stepenišna aluminijska ograda u antracit boji" },
     ],
     faq: [
       {
@@ -890,7 +903,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       "aluminijske nadstrešnice cijena",
       "carport",
     ],
-    heroImage: "/images/hero-img.jpg",
+    heroImage: "/images/nadstresnica/aluminijska-nadstresnica-za-dva-auta.jpg",
     intro: [
       "Aluminijske nadstrešnice štite automobil, terasu i ulaz od kiše, snijega i sunca, a kući daju dovršen izgled. Nosiva konstrukcija je od aluminija, pa je lagana, čvrsta i ne traži održavanje.",
       "Svaku nadstrešnicu izrađujemo po mjeri prostora i montiramo sami, u boji i s pokrovom po vašem izboru. Radimo po cijeloj BiH, a po dogovoru i u Hrvatskoj, Sloveniji i Austriji.",
@@ -985,7 +998,17 @@ export const SERVICE_PAGES: ServicePage[] = [
       { title: "Bez rđe", desc: "Aluminij ne sadrži željezo, plastifikacija drži boju." },
       { title: "Besplatno mjerenje", desc: "Izlazak na teren i cijena bez obaveze." },
     ],
-    gallery: [],
+    gallery: [
+      { src: "/images/nadstresnica/aluminijska-nadstresnica-za-dva-auta.jpg", alt: "Aluminijska nadstrešnica za dva automobila u antracit boji" },
+      { src: "/images/nadstresnica/carport-nadstresnica-parking-mjesta.jpg", alt: "Carport nadstrešnica s obilježenim parking mjestima" },
+      { src: "/images/nadstresnica/nadstresnica-krovni-panel-antracit.jpg", alt: "Krovni panel aluminijske nadstrešnice i nosiva konstrukcija" },
+      { src: "/images/nadstresnica/aluminijska-nadstresnica-moderna-konstrukcija.jpg", alt: "Moderna aluminijska konstrukcija nadstrešnice s ravnim krovom" },
+      { src: "/images/nadstresnica/nadstresnica-za-auto-aluminij-antracit.jpg", alt: "Nadstrešnica za auto od aluminija u antracit boji" },
+      { src: "/images/nadstresnica/carport-nadstresnica-dva-mjesta.jpg", alt: "Carport za dva vozila, aluminijska nadstrešnica po mjeri" },
+      { src: "/images/nadstresnica/nadstresnica-uz-kucu-aluminij.jpg", alt: "Aluminijska nadstrešnica montirana uz kuću" },
+      { src: "/images/nadstresnica/nadstresnica-aluminijski-stubovi-konstrukcija.jpg", alt: "Aluminijski stubovi i nosiva konstrukcija nadstrešnice" },
+      { src: "/images/nadstresnica/nadstresnica-i-klizna-kapija-antracit.jpg", alt: "Nadstrešnica i klizna kapija u istoj antracit boji" },
+    ],
     faq: [
       {
         q: "Koliko košta aluminijska nadstrešnica?",
