@@ -3,16 +3,13 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { MapPin, Phone, Clock, ArrowRight, Facebook } from "lucide-react";
+import { useT } from "@/components/i18n/LocaleProvider";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const stats = [
-  { value: "10+", label: "godina iskustva" },
-  { value: "100+", label: "klijenata" },
-  { value: "Europa", label: "tržište" },
-];
-
 export default function ContactSection() {
+  const t = useT();
+  const c = t.contact;
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
@@ -31,13 +28,13 @@ export default function ContactSection() {
           className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8"
         >
           <div className="max-w-xl">
-            <p className="eyebrow text-alu-steel mb-4">Kontakt</p>
+            <p className="eyebrow text-alu-steel mb-4">{c.eyebrow}</p>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white leading-[1.1] tracking-tight">
-              Izmjerimo i damo ponudu, bez obaveze
+              {c.title}
             </h2>
           </div>
           <p className="text-white/50 text-sm leading-relaxed max-w-xs md:text-right">
-            Izlazimo na teren, izmjerimo i dajemo ponudu po mjeri.
+            {c.intro}
           </p>
         </motion.div>
 
@@ -59,10 +56,10 @@ export default function ContactSection() {
                 <Phone size={20} className="text-white flex-shrink-0" />
                 <div className="min-w-0">
                   <p className="text-white/70 text-[10px] font-semibold uppercase tracking-[0.18em]">
-                    Telefon · WhatsApp · Viber
+                    {c.phoneLabel}
                   </p>
                   <p className="text-white text-xl sm:text-2xl font-semibold tracking-tight">
-                    062 543 464
+                    {t.common.phoneDisplay}
                   </p>
                 </div>
               </div>
@@ -78,10 +75,10 @@ export default function ContactSection() {
                 <MapPin size={16} className="text-alu-blue flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="text-white/40 text-[10px] font-semibold uppercase tracking-[0.16em] mb-0.5">
-                    Lokacija
+                    {c.locationLabel}
                   </p>
                   <p className="text-white text-sm font-medium leading-snug">
-                    Srebrenik, BiH
+                    {c.locationValue}
                   </p>
                 </div>
               </div>
@@ -89,10 +86,10 @@ export default function ContactSection() {
                 <Clock size={16} className="text-alu-blue flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="text-white/40 text-[10px] font-semibold uppercase tracking-[0.16em] mb-0.5">
-                    Radno vrijeme
+                    {c.hoursLabel}
                   </p>
                   <p className="text-white text-sm font-medium leading-snug">
-                    Pon - Sub: 08 - 17h
+                    {c.hoursValue}
                   </p>
                 </div>
               </div>
@@ -104,7 +101,7 @@ export default function ContactSection() {
                 href="tel:+38762543464"
                 className="flex-1 group flex items-center justify-center gap-2.5 px-6 py-3.5 border border-white/25 text-white font-semibold rounded-sm text-sm tracking-wide hover:border-white/60 hover:bg-white/5 transition-colors duration-200"
               >
-                Zatraži besplatnu ponudu
+                {t.common.requestFreeQuote}
                 <ArrowRight
                   size={15}
                   className="transition-transform duration-200 group-hover:translate-x-0.5"
@@ -155,7 +152,7 @@ export default function ContactSection() {
           transition={{ duration: 0.6, ease: EASE, delay: 0.25 }}
           className="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center gap-x-10 gap-y-3"
         >
-          {stats.map((s) => (
+          {c.stats.map((s) => (
             <div key={s.label} className="flex items-baseline gap-2">
               <span className="text-lg font-semibold text-white">{s.value}</span>
               <span className="text-[11px] text-white/35 tracking-wide uppercase font-medium">

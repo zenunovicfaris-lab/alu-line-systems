@@ -1,28 +1,7 @@
 // Blog / vodiči — cilja informativne pretrage (Ahrefs KW podaci).
-import type { FaqItem } from "@/lib/content";
+import type { BlogPostBase } from "./types";
 
-export type Block =
-  | { type: "p"; text: string }
-  | { type: "h2"; text: string }
-  | { type: "ul"; items: string[] }
-  | { type: "table"; headers: string[]; rows: string[][] };
-
-export type BlogPost = {
-  slug: string;
-  title: string; // H1 na stranici
-  metaTitle: string;
-  metaDescription: string;
-  keywords: string[];
-  excerpt: string;
-  heroImage: string;
-  date: string; // ISO
-  readingMinutes: number;
-  body: Block[];
-  faq: FaqItem[];
-  relatedService: { label: string; href: string };
-};
-
-export const BLOG_POSTS: BlogPost[] = [
+export const BLOG_POSTS: BlogPostBase[] = [
   {
     slug: "ograda-za-dvoriste-vrste-i-kako-izabrati",
     title: "Ograda za dvorište: vrste i kako izabrati pravu",
@@ -346,12 +325,3 @@ export const BLOG_POSTS: BlogPost[] = [
     relatedService: { label: "Aluminijske nadstrešnice", href: "/usluge/nadstresnice" },
   },
 ];
-
-export function getPostBySlug(slug: string) {
-  return BLOG_POSTS.find((p) => p.slug === slug);
-}
-
-// Najnoviji prvi
-export const BLOG_POSTS_SORTED = [...BLOG_POSTS].sort(
-  (a, b) => +new Date(b.date) - +new Date(a.date)
-);

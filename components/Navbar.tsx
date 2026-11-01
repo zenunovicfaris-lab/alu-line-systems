@@ -5,22 +5,34 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, ChevronRight } from "lucide-react";
+import { parsePath } from "@/lib/i18n/paths";
+import { useLocalizePath, useT } from "@/components/i18n/LocaleProvider";
+import {
+  LanguageDropdown,
+  LanguageSegmented,
+} from "@/components/i18n/LanguageSwitcher";
 
+// href: bosanska putanja ili #sekcija na početnoj
 const navLinks = [
-  { label: "Početna", href: "#pocetna" },
-  { label: "Usluge", href: "/usluge" },
-  { label: "Lokacije", href: "/lokacije" },
-  { label: "Blog", href: "/blog" },
-  { label: "Projekti", href: "#projekti" },
-  { label: "Kontakt", href: "#kontakt" },
-];
+  { id: "home", href: "#pocetna" },
+  { id: "services", href: "/usluge" },
+  { id: "locations", href: "/lokacije" },
+  { id: "blog", href: "/blog" },
+  { id: "projects", href: "#projekti" },
+  { id: "contact", href: "#kontakt" },
+] as const;
+
+type NavId = (typeof navLinks)[number]["id"];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState("Početna");
+  const [activeLink, setActiveLink] = useState<NavId>("home");
   const pathname = usePathname();
   const router = useRouter();
+  const t = useT();
+  const localize = useLocalizePath();
+  const { bsPath } = parsePath(pathname);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,34 +55,30 @@ export default function Navbar() {
 
   // Aktivna stavka prati stvarnu stranicu (ne ostaje na prethodnoj nakon navigacije)
   useEffect(() => {
-    if (pathname.startsWith("/usluge")) setActiveLink("Usluge");
-    else if (pathname.startsWith("/lokacije")) setActiveLink("Lokacije");
-    else if (pathname.startsWith("/blog")) setActiveLink("Blog");
-    else if (pathname === "/") setActiveLink("Početna");
-  }, [pathname]);
+    if (bsPath.startsWith("/usluge")) setActiveLink("services");
+    else if (bsPath.startsWith("/lokacije")) setActiveLink("locations");
+    else if (bsPath.startsWith("/blog")) setActiveLink("blog");
+    else if (bsPath === "/") setActiveLink("home");
+  }, [bsPath]);
 
-  const handleNavClick = (
-    label: string,
-    href: string,
-    e?: React.MouseEvent
-  ) => {
+  const handleNavClick = (id: NavId, href: string, e?: React.MouseEvent) => {
     e?.preventDefault();
-    setActiveLink(label);
+    setActiveLink(id);
     setMenuOpen(false);
 
     // Prava ruta (npr. /usluge) — koristi router
     if (href.startsWith("/")) {
-      router.push(href);
+      router.push(localize(href));
       return;
     }
 
     // Hash link (#sekcija)
-    if (pathname === "/") {
+    if (bsPath === "/") {
       const el = document.querySelector(href);
       if (el) el.scrollIntoView({ behavior: "smooth" });
     } else {
       // S podstranice — idi na početnu pa na sekciju
-      window.location.href = `/${href}`;
+      window.location.href = localize(`/${href}`);
     }
   };
 
@@ -90,9 +98,9 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <motion.a
-              href="/"
-              onClick={(e) => handleNavClick("Početna", "#pocetna", e)}
-              className="flex items-center gap-3 group cursor-pointer"
+              href={localize("/")}
+              onClick={(e) => handleNavClick("home", "#pocetna", e)}
+              className="flex items-center gap-3 flex-shrink-0 whitespace-nowrap group cursor-pointer"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             >
@@ -125,9 +133,9 @@ export default function Navbar() {
             <nav className="hidden lg:flex items-center gap-1">
               {navLinks.map((link) => (
                 <motion.button
-                  key={link.label}
-                  onClick={() => handleNavClick(link.label, link.href)}
-                  className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 rounded-lg ${
+                  key={link.id}
+                  onClick={() => handleNavClick(link.id, link.href)}
+                  className={`relative px-2.5 xl:px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors duration-300 rounded-lg ${
                     scrolled
                       ? "text-gray-700 hover:text-alu-dark"
                       : "text-white/80 hover:text-white"
@@ -135,11 +143,11 @@ export default function Navbar() {
                   whileHover={{ y: -1 }}
                   transition={{ duration: 0.2 }}
                 >
-                  {link.label}
-                  {activeLink === link.label && (
+                  {t.nav[link.id]}
+                  {activeLink === link.id && (
                     <motion.span
                       layoutId="nav-underline"
-                      className="absolute bottom-0.5 left-4 right-4 h-0.5 bg-alu-blue rounded-full"
+                      className="absolute bottom-0.5 left-2.5 right-2.5 xl:left-4 xl:right-4 h-0.5 bg-alu-blue rounded-full"
                       transition={{ type: "spring", stiffness: 400, damping: 30 }}
                     />
                   )}
@@ -157,22 +165,29 @@ export default function Navbar() {
                 }`}
               >
                 <Phone size={14} />
-                <span>062 543 464</span>
+                <span>{t.common.phoneDisplay}</span>
               </a>
+
+              {/* Language switcher (desktop) */}
+              <div className="hidden lg:block">
+                <LanguageDropdown scrolled={scrolled} />
+              </div>
 
               {/* CTA Button */}
               <a
-                href="/#kontakt"
-                onClick={(e) => handleNavClick("Kontakt", "#kontakt", e)}
-                className="hidden lg:flex items-center gap-2 px-5 py-2.5 bg-alu-blue text-white text-sm font-semibold rounded-sm transition-colors duration-200 hover:bg-alu-light"
+                href={localize("/#kontakt")}
+                onClick={(e) => handleNavClick("contact", "#kontakt", e)}
+                className="hidden lg:flex items-center gap-2 px-4 xl:px-5 py-2.5 bg-alu-blue text-white text-sm font-semibold whitespace-nowrap rounded-sm transition-colors duration-200 hover:bg-alu-light"
               >
-                Zatraži Ponudu
+                {t.nav.requestQuote}
                 <ChevronRight size={14} />
               </a>
 
               {/* Mobile Menu Button */}
               <motion.button
                 onClick={() => setMenuOpen(!menuOpen)}
+                aria-label={menuOpen ? t.nav.closeMenu : t.nav.openMenu}
+                aria-expanded={menuOpen}
                 className={`lg:hidden p-2.5 rounded-xl transition-colors duration-300 ${
                   scrolled ? "text-alu-dark hover:bg-gray-100" : "text-white hover:bg-white/10"
                 }`}
@@ -250,6 +265,7 @@ export default function Navbar() {
                 </div>
                 <button
                   onClick={() => setMenuOpen(false)}
+                  aria-label={t.nav.closeMenu}
                   className="p-2 rounded-lg text-gray-500 hover:bg-gray-100 transition-colors"
                 >
                   <X size={20} />
@@ -260,7 +276,7 @@ export default function Navbar() {
               <nav className="flex-1 px-6 py-8 flex flex-col gap-1">
                 {navLinks.map((link, i) => (
                   <motion.button
-                    key={link.label}
+                    key={link.id}
                     initial={{ x: 30, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{
@@ -268,23 +284,33 @@ export default function Navbar() {
                       duration: 0.4,
                       ease: [0.22, 1, 0.36, 1],
                     }}
-                    onClick={() => handleNavClick(link.label, link.href)}
+                    onClick={() => handleNavClick(link.id, link.href)}
                     className={`flex items-center justify-between px-4 py-3.5 rounded-xl text-base font-medium transition-all duration-200 group ${
-                      activeLink === link.label
+                      activeLink === link.id
                         ? "bg-alu-blue text-white"
                         : "text-gray-700 hover:bg-gray-50 hover:text-alu-blue"
                     }`}
                   >
-                    {link.label}
+                    {t.nav[link.id]}
                     <ChevronRight
                       size={16}
                       className={`transition-transform duration-200 group-hover:translate-x-1 ${
-                        activeLink === link.label ? "opacity-100" : "opacity-40"
+                        activeLink === link.id ? "opacity-100" : "opacity-40"
                       }`}
                     />
                   </motion.button>
                 ))}
               </nav>
+
+              {/* Language (mobile) */}
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.35, duration: 0.4 }}
+                className="px-6 pb-5"
+              >
+                <LanguageSegmented onSelect={() => setMenuOpen(false)} />
+              </motion.div>
 
               {/* Mobile CTA */}
               <div className="px-6 pb-8 space-y-3">
@@ -296,17 +322,17 @@ export default function Navbar() {
                   className="flex items-center justify-center gap-2 w-full px-5 py-3 border-2 border-alu-blue text-alu-blue rounded-xl text-sm font-semibold hover:bg-alu-blue hover:text-white transition-all duration-300"
                 >
                   <Phone size={16} />
-                  Pozovite nas
+                  {t.nav.callUs}
                 </motion.a>
                 <motion.a
-                  href="/#kontakt"
-                  onClick={(e) => handleNavClick("Kontakt", "#kontakt", e)}
+                  href={localize("/#kontakt")}
+                  onClick={(e) => handleNavClick("contact", "#kontakt", e)}
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.5, duration: 0.4 }}
                   className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-alu-blue text-white rounded-xl text-sm font-semibold hover:bg-alu-light transition-all duration-300"
                 >
-                  Zatraži Ponudu
+                  {t.nav.requestQuote}
                   <ChevronRight size={16} />
                 </motion.a>
               </div>

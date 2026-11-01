@@ -11,50 +11,53 @@ import FaqSection from "@/components/subpage/FaqSection";
 import InternalLinks from "@/components/subpage/InternalLinks";
 import { SITE_URL, BUSINESS } from "@/lib/site";
 import {
-  SERVICE_PAGES,
-  LOCATION_PAGES,
+  getServicePages,
+  getLocationPages,
   getLocationBySlug,
 } from "@/lib/content";
+import { LOCALES, LOCALE_META, type Locale } from "@/lib/i18n/config";
+import { absoluteUrl, alternatesFor, localizePath } from "@/lib/i18n/paths";
+import { getDictionary, fmt } from "@/lib/i18n";
+
+type Params = { locale: Locale; slug: string };
 
 export function generateStaticParams() {
-  return LOCATION_PAGES.map((l) => ({ slug: l.slug }));
+  return LOCALES.flatMap((locale) =>
+    getLocationPages(locale).map((l) => ({ locale, slug: l.slug }))
+  );
 }
 
-export function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Metadata {
-  const loc = getLocationBySlug(params.slug);
+export function generateMetadata({ params }: { params: Params }): Metadata {
+  const loc = getLocationBySlug(params.locale, params.slug);
   if (!loc) return {};
-  const url = `${SITE_URL}/lokacije/${loc.slug}`;
+  const bsPath = `/lokacije/${loc.id}`;
   return {
     title: loc.metaTitleFull
       ? { absolute: loc.metaTitleFull }
       : loc.metaTitle,
     description: loc.metaDescription,
     keywords: loc.keywords,
-    alternates: { canonical: `/lokacije/${loc.slug}` },
+    alternates: alternatesFor(params.locale, bsPath),
     openGraph: {
       title: loc.metaTitleFull ?? loc.metaTitle,
       description: loc.metaDescription,
-      url,
+      url: absoluteUrl(params.locale, bsPath),
       type: "website",
-      locale: "bs_BA",
+      locale: LOCALE_META[params.locale].ogLocale,
       images: [{ url: loc.heroImage, alt: `ALU LINE Systems ${loc.city}` }],
     },
   };
 }
 
-export default function LocationPageRoute({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const loc = getLocationBySlug(params.slug);
+export default function LocationPageRoute({ params }: { params: Params }) {
+  const { locale } = params;
+  const loc = getLocationBySlug(locale, params.slug);
   if (!loc) notFound();
 
-  const url = `${SITE_URL}/lokacije/${loc.slug}`;
+  const dict = getDictionary(locale);
+  const t = dict.locationPage;
+  const href = (bsPath: string) => localizePath(locale, bsPath);
+  const url = absoluteUrl(locale, `/lokacije/${loc.id}`);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -79,12 +82,17 @@ export default function LocationPageRoute({
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Početna", item: SITE_URL },
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: dict.common.home,
+            item: absoluteUrl(locale, "/"),
+          },
           {
             "@type": "ListItem",
             position: 2,
-            name: "Lokacije",
-            item: `${SITE_URL}/lokacije`,
+            name: dict.nav.locations,
+            item: absoluteUrl(locale, "/lokacije"),
           },
           { "@type": "ListItem", position: 3, name: loc.city, item: url },
         ],
@@ -102,6 +110,7 @@ export default function LocationPageRoute({
         "@id": url,
         url,
         name: loc.metaTitle,
+        inLanguage: locale,
         speakable: {
           "@type": "SpeakableSpecification",
           cssSelector: [".faq-question", ".faq-answer"],
@@ -111,21 +120,17 @@ export default function LocationPageRoute({
   };
 
   // Usluge dostupne u ovom gradu (interno povezivanje ka uslužnim stranicama)
-  const serviceLinks = SERVICE_PAGES.map((s) => ({
+  const serviceLinks = getServicePages(locale).map((s) => ({
     label: `${s.name} ${loc.city}`,
-    href: `/usluge/${s.slug}`,
+    href: href(`/usluge/${s.id}`),
   }));
 
-  const otherCities = LOCATION_PAGES.filter((l) => l.slug !== loc.slug).map(
-    (l) => ({ label: `ALU LINE ${l.city}`, href: `/lokacije/${l.slug}` })
-  );
+  const otherCities = getLocationPages(locale)
+    .filter((l) => l.id !== loc.id)
+    .map((l) => ({ label: `ALU LINE ${l.city}`, href: href(`/lokacije/${l.id}`) }));
 
-  const features = [
-    { title: "Aluminijske ograde", desc: `Dvorišne, balkonske i grilje ograde te kapije ${loc.cityLocative}.` },
-    { title: "Roletne", desc: "Nadgradne i podgradne roletne za ALU i PVC sisteme." },
-    { title: "Garažna vrata", desc: "Rolo, sekcijska i industrijska vrata s daljinskim." },
-    { title: "Nadstrešnice", desc: "Nadstrešnice za auto, ulaz i terasu, po mjeri." },
-  ];
+  const vars = { loc: loc.cityLocative, city: loc.city, phone: dict.common.phoneDisplay };
+  const features = t.features.map((f) => ({ title: f.title, desc: fmt(f.desc, vars) }));
 
   return (
     <main className="min-h-screen bg-white">
@@ -135,27 +140,27 @@ export default function LocationPageRoute({
       />
       <Navbar />
       <SubPageHero
-        badge={`Lokacija · ${loc.city}`}
+        badge={fmt(t.badge, vars)}
         title={loc.h1}
         intro={loc.intro}
         image={loc.heroImage}
         crumbs={[
-          { label: "Početna", href: "/" },
-          { label: "Lokacije", href: "/lokacije" },
-          { label: loc.city, href: `/lokacije/${loc.slug}` },
+          { label: dict.common.home, href: href("/") },
+          { label: dict.nav.locations, href: href("/lokacije") },
+          { label: loc.city, href: href(`/lokacije/${loc.id}`) },
         ]}
       />
       <ProseSection sections={loc.body} />
       <FeatureGrid
-        heading={`Naše usluge ${loc.cityLocative}`}
-        subheading={`Sve izrađujemo i montiramo sami, po mjeri i uz pisanu garanciju. Za mjerenje i ponudu ${loc.cityLocative} pozovite 062 543 464.`}
+        heading={fmt(t.servicesIn, vars)}
+        subheading={fmt(t.servicesSub, vars)}
         features={features}
       />
-      <FaqSection items={loc.faq} />
-      <InternalLinks heading="Pogledajte usluge detaljno" links={serviceLinks} />
-      <InternalLinks heading="Radimo i u drugim gradovima" links={otherCities} />
+      <FaqSection items={loc.faq} locale={locale} />
+      <InternalLinks heading={t.seeServices} links={serviceLinks} />
+      <InternalLinks heading={t.otherCities} links={otherCities} />
       <ContactSection />
-      <Footer />
+      <Footer locale={locale} />
       <WhatsAppFAB />
     </main>
   );

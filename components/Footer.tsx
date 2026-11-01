@@ -1,17 +1,23 @@
 import Link from "next/link";
 import { Phone, Facebook } from "lucide-react";
-import { SERVICE_PAGES, LOCATION_PAGES } from "@/lib/content";
+import { getServicePages, getLocationPages } from "@/lib/content";
+import type { Locale } from "@/lib/i18n/config";
+import { localizePath } from "@/lib/i18n/paths";
+import { getDictionary } from "@/lib/i18n";
 
 const quickLinks = [
-  { label: "Početna", href: "/#pocetna" },
-  { label: "Usluge", href: "/usluge" },
-  { label: "Lokacije", href: "/lokacije" },
-  { label: "Blog", href: "/blog" },
-  { label: "Projekti", href: "/#projekti" },
-  { label: "Kontakt", href: "/#kontakt" },
-];
+  { id: "home", href: "/#pocetna" },
+  { id: "services", href: "/usluge" },
+  { id: "locations", href: "/lokacije" },
+  { id: "blog", href: "/blog" },
+  { id: "projects", href: "/#projekti" },
+  { id: "contact", href: "/#kontakt" },
+] as const;
 
-export default function Footer() {
+export default function Footer({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
+  const href = (bsPath: string) => localizePath(locale, bsPath);
+
   return (
     <footer
       className="relative border-t"
@@ -32,19 +38,18 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-gray-500 text-sm leading-relaxed max-w-xs">
-              Ugrađujemo aluminijske ograde, roletne i nadstrešnice po vašoj
-              mjeri. Sve izrađujemo i montiramo sami.
+              {t.footer.about}
             </p>
             {/* Phone */}
             <div className="flex items-center gap-3 mt-1">
               <a
                 href="tel:+38762543464"
-                aria-label="ALU LINE Systems telefon"
+                aria-label={t.footer.phoneAria}
                 className="w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 text-white/40 hover:text-white hover:border-alu-blue/60 hover:bg-alu-blue/10 transition-all duration-300"
               >
                 <Phone size={16} />
               </a>
-              <span className="text-gray-500 text-sm">062 543 464</span>
+              <span className="text-gray-500 text-sm">{t.common.phoneDisplay}</span>
             </div>
 
             {/* Social */}
@@ -53,7 +58,7 @@ export default function Footer() {
                 href="https://www.facebook.com/profile.php?id=61584092785799"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="ALU LINE Systems na Facebooku"
+                aria-label={t.footer.facebookAria}
                 className="w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 text-white/40 hover:text-white hover:border-alu-blue/60 hover:bg-alu-blue/10 transition-all duration-300"
               >
                 <Facebook size={16} />
@@ -72,17 +77,17 @@ export default function Footer() {
           {/* Col 2 — Quick Links */}
           <div className="flex flex-col gap-5">
             <h4 className="text-white text-sm font-bold tracking-widest uppercase">
-              Brzi Linkovi
+              {t.footer.quickLinks}
             </h4>
             <ul className="flex flex-col gap-2.5">
-              {quickLinks.map(({ label, href }) => (
-                <li key={label}>
+              {quickLinks.map((link) => (
+                <li key={link.id}>
                   <a
-                    href={href}
+                    href={href(link.href)}
                     className="group flex items-center gap-2 text-gray-500 text-sm hover:text-white transition-colors duration-200"
                   >
                     <span className="w-0 group-hover:w-3 h-px bg-alu-blue transition-all duration-300 overflow-hidden" />
-                    {label}
+                    {t.nav[link.id]}
                   </a>
                 </li>
               ))}
@@ -92,13 +97,13 @@ export default function Footer() {
           {/* Col 3 — Services */}
           <div className="flex flex-col gap-5">
             <h4 className="text-white text-sm font-bold tracking-widest uppercase">
-              Usluge
+              {t.footer.services}
             </h4>
             <ul className="flex flex-col gap-2.5">
-              {SERVICE_PAGES.map((s) => (
-                <li key={s.slug}>
+              {getServicePages(locale).map((s) => (
+                <li key={s.id}>
                   <Link
-                    href={`/usluge/${s.slug}`}
+                    href={href(`/usluge/${s.id}`)}
                     className="group flex items-center gap-2 text-gray-500 text-sm hover:text-white transition-colors duration-200"
                   >
                     <span className="w-2.5 h-px flex-shrink-0 bg-alu-blue opacity-70" />
@@ -112,13 +117,13 @@ export default function Footer() {
           {/* Col 4 — Locations */}
           <div className="flex flex-col gap-5">
             <h4 className="text-white text-sm font-bold tracking-widest uppercase">
-              Lokacije
+              {t.footer.locations}
             </h4>
             <ul className="flex flex-col gap-2.5">
-              {LOCATION_PAGES.map((l) => (
-                <li key={l.slug}>
+              {getLocationPages(locale).map((l) => (
+                <li key={l.id}>
                   <Link
-                    href={`/lokacije/${l.slug}`}
+                    href={href(`/lokacije/${l.id}`)}
                     className="group flex items-center gap-2 text-gray-500 text-sm hover:text-white transition-colors duration-200"
                   >
                     <span className="w-2.5 h-px flex-shrink-0 bg-alu-blue opacity-70" />
@@ -139,10 +144,10 @@ export default function Footer() {
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-gray-600 text-xs">
-            &copy; 2026 ALU LINE Systems. Srebrenik. Sva prava zadržana.
+            &copy; 2026 ALU LINE Systems. {t.footer.rights}
           </p>
           <p className="text-gray-600 text-xs">
-            Sajt izradio{" "}
+            {t.footer.madeBy}{" "}
             <a
               href="https://www.zt-media.digital/"
               target="_blank"

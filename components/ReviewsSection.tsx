@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useT } from "@/components/i18n/LocaleProvider";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -37,7 +38,9 @@ function Attribution({ name, location }: { name: string; location: string }) {
   );
 }
 
+// Recenzije ostaju u originalu (stvarne riječi klijenata), prevodi se samo okvir.
 export default function ReviewsSection() {
+  const t = useT();
   const headingRef = useRef<HTMLDivElement>(null);
   const headingInView = useInView(headingRef, { once: true, margin: "-80px" });
   const bodyRef = useRef<HTMLDivElement>(null);
@@ -56,9 +59,9 @@ export default function ReviewsSection() {
           transition={{ duration: 0.6, ease: EASE }}
           className="max-w-2xl mb-14"
         >
-          <p className="eyebrow text-alu-blue mb-4">Riječi klijenata</p>
+          <p className="eyebrow text-alu-blue mb-4">{t.reviews.eyebrow}</p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-alu-dark leading-[1.08] tracking-tight">
-            Ono što kažu ljudi za koje smo radili
+            {t.reviews.title}
           </h2>
         </motion.div>
 
@@ -77,7 +80,10 @@ export default function ReviewsSection() {
             >
               &ldquo;
             </span>
-            <blockquote className="text-2xl md:text-[1.75rem] font-light text-alu-dark leading-[1.4] tracking-tight">
+            <blockquote
+              lang="bs"
+              className="text-2xl md:text-[1.75rem] font-light text-alu-dark leading-[1.4] tracking-tight"
+            >
               {featured.text}
             </blockquote>
             <Attribution name={featured.name} location={featured.location} />
@@ -93,7 +99,10 @@ export default function ReviewsSection() {
                 transition={{ duration: 0.6, ease: EASE, delay: 0.1 + i * 0.1 }}
                 className={i > 0 ? "pt-10 border-t border-alu-line" : ""}
               >
-                <blockquote className="text-base md:text-lg font-light text-alu-dark/90 leading-relaxed">
+                <blockquote
+                  lang="bs"
+                  className="text-base md:text-lg font-light text-alu-dark/90 leading-relaxed"
+                >
                   {r.text}
                 </blockquote>
                 <Attribution name={r.name} location={r.location} />

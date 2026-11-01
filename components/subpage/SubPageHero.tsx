@@ -4,6 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ChevronRight, Phone } from "lucide-react";
+import {
+  useLocalizePath,
+  useT,
+} from "@/components/i18n/LocaleProvider";
+import { fmt } from "@/lib/i18n";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -22,6 +27,8 @@ export default function SubPageHero({
   image: string;
   crumbs: Crumb[];
 }) {
+  const t = useT();
+  const localize = useLocalizePath();
   return (
     <section className="relative min-h-[68vh] flex items-end overflow-hidden bg-alu-dark">
       {/* Background */}
@@ -50,7 +57,7 @@ export default function SubPageHero({
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: EASE }}
-          aria-label="Breadcrumb"
+          aria-label={t.subpage.breadcrumb}
           className="flex items-center gap-1.5 text-xs text-white/50 mb-6 flex-wrap"
         >
           {crumbs.map((c, i) => (
@@ -112,13 +119,13 @@ export default function SubPageHero({
             className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-alu-blue text-white font-semibold rounded-sm text-sm hover:bg-alu-light transition-colors duration-200"
           >
             <Phone size={16} />
-            Pozovi: 062 543 464
+            {fmt(t.common.call, { phone: t.common.phoneDisplay })}
           </a>
           <a
-            href="/#kontakt"
+            href={localize("/#kontakt")}
             className="inline-flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-white transition-colors"
           >
-            Zatraži besplatnu ponudu
+            {t.common.requestFreeQuote}
             <ChevronRight size={15} />
           </a>
         </motion.div>

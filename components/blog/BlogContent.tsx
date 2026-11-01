@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import type { Block } from "@/lib/blog";
+import type { Block } from "@/lib/blog/types";
 
 export default function BlogContent({ body }: { body: Block[] }) {
   return (

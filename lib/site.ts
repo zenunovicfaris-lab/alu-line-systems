@@ -38,15 +38,3 @@ export const BUSINESS = {
     closes: "17:00",
   },
 } as const;
-
-export const SERVICES = [
-  "Aluminijske ograde",
-  "Balkonske ograde",
-  "Dvorišne ograde",
-  "Ulazne i pješačke kapije",
-  "Rolo garažna vrata",
-  "Sekcijska vrata",
-  "Industrijska vrata",
-  "Nadgradne i podgradne roletne",
-  "Nadstrešnice",
-] as const;

@@ -13,15 +13,30 @@ import {
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
+import { useT } from "@/components/i18n/LocaleProvider";
+import { fmt } from "@/lib/i18n";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
+// Tekstovi projekata (naslov, opis, lokacija) su u rječniku pod projects.items[id].
 const projects = [
   {
+    id: 16,
+    year: "2026",
+    images: [
+      "/images/karlovac/dvorisna-ograda-grilje-na-betonskom-soklu.jpg",
+      "/images/karlovac/balkonska-ograda-grilje-lamele-antracit.jpg",
+      "/images/karlovac/balkonska-ograda-dva-sprata-karlovac.jpg",
+      "/images/karlovac/aluminijska-ograda-za-dvoriste-karlovac.jpg",
+      "/images/karlovac/ograda-na-betonskom-soklu-antracit.jpg",
+      "/images/karlovac/balkonske-ograde-na-kuci-antracit.jpg",
+      "/images/karlovac/ograda-za-balkon-horizontalne-lamele.jpg",
+      "/images/karlovac/dvorisna-ograda-horizontalne-lamele-antracit.jpg",
+      "/images/karlovac/aluminijska-ograda-u-vrtu-antracit.jpg",
+    ],
+  },
+  {
     id: 15,
-    title: "Nadstrešnica, klizna kapija i žalužina ograda",
-    subtitle:
-      "Cijelo dvorište u jednom antracitu: carport za dva vozila, klizna kapija s motorom za automatsko otvaranje i dvorišna ograda sa žalužina lamelama uz ulicu.",
     year: "2026",
     images: [
       "/images/nadstresnica/aluminijska-nadstresnica-za-dva-auta.jpg",
@@ -36,10 +51,6 @@ const projects = [
   },
   {
     id: 14,
-    title: "Ograda model Ratan, Gradiška",
-    subtitle:
-      "Balkonska ograda, vanjsko stepenište i ulazni podest na novoj kući, sve u modelu Ratan s vertikalnom ispunom i u istoj antracit boji.",
-    location: "Gradiška",
     year: "2026",
     images: [
       "/images/gradiska-model-ratan/balkonska-ograda-model-ratan-gradiska.jpg",
@@ -54,10 +65,6 @@ const projects = [
   },
   {
     id: 13,
-    title: "Žalužina ograda u antracitu, Njemačka",
-    subtitle:
-      "Dugačka dvorišna ograda uz prometnu ulicu, sa žalužina lamelama koje daju potpunu privatnost. Montirana na betonski sokl i vođena segmentno uz luk ulice.",
-    location: "Njemačka",
     year: "2026",
     images: [
       "/images/njemacka/aluminijska-ograda-zaluzina-antracit-ugao.jpg",
@@ -69,9 +76,6 @@ const projects = [
   },
   {
     id: 12,
-    title: "Bočna montaža ograde na krovnoj terasi",
-    subtitle:
-      "Stub 80×50 mm, lamela 100×20 mm. Montaža s unutarnje strane terase, čiste linije i moderan završni izgled.",
     year: "2026",
     images: [
       "/images/elegantna-bocna-montaza/aluminijska-ograda-terasa-horizontalne-lamele.jpg",
@@ -85,10 +89,6 @@ const projects = [
   },
   {
     id: 11,
-    title: "Aluminijska ograda - otok Krk",
-    subtitle:
-      "Stubovi 45×45 mm, ispuna cijev 2×2 cm, moderna i elegantna izvedba po mjeri",
-    location: "Otok Krk, Hrvatska",
     year: "2026",
     images: [
       "/images/projekti/krk-1.jpg",
@@ -100,10 +100,6 @@ const projects = [
   },
   {
     id: 10,
-    title: "Dvorišna ograda model Grilja - Wels",
-    subtitle:
-      "Ograda model Grilja s elegantnom dvokrilnom kapijom, precizna montaža do posljednjeg detalja",
-    location: "Wels, Austrija",
     year: "2026",
     images: [
       "/images/projekti/wels-1.jpg",
@@ -114,9 +110,6 @@ const projects = [
   },
   {
     id: 9,
-    title: "Aluminijska ograda - Siegendorf",
-    subtitle: "Ograda izrađena i montirana po mjeri, Gradišće (Burgenland)",
-    location: "Siegendorf, Austrija",
     year: "2026",
     images: [
       "/images/projekti/siegendorf-1.jpg",
@@ -127,9 +120,6 @@ const projects = [
   },
   {
     id: 8,
-    title: "Ograda model Elegant, boja Čoko",
-    subtitle: "Model Elegant u boji Čoko. Hvala Nerminu na ukazanom povjerenju.",
-    location: "BiH",
     year: "2026",
     images: [
       "/images/projekti/elegant-coko-1.jpg",
@@ -140,9 +130,6 @@ const projects = [
   },
   {
     id: 5,
-    title: "Ograda sa kamenim stubovima",
-    subtitle: "Antracit lamele u kombinaciji s kamenom oblogom stubova",
-    location: "Austria, Graz",
     year: "2026",
     images: [
       "/images/projekti/kamena-ograda-1.jpg",
@@ -154,9 +141,6 @@ const projects = [
   },
   {
     id: 6,
-    title: "Balkonska ograda - terasa",
-    subtitle: "Aluminijska ograda s okruglim profilima za krovnu terasu",
-    location: "Slovenia",
     year: "2026",
     images: [
       "/images/projekti/terasa-ograda-1.jpg",
@@ -168,9 +152,6 @@ const projects = [
   },
   {
     id: 7,
-    title: "Dekorativna ograda - dizajn stabla",
-    subtitle: "Lasersko rezanje po mjeri, motiv stabla na balkonskim ogradama",
-    location: "BiH",
     year: "2026",
     images: [
       "/images/projekti/stablo-ograda-1.jpg",
@@ -182,9 +163,6 @@ const projects = [
   },
   {
     id: 1,
-    title: "Grilje ograda - Međugorje",
-    subtitle: "Balkonska ograda model Kruška sa stabilnim rukohvatom",
-    location: "Međugorje",
     year: "2024",
     images: [
       "/images/projekti/medjugorje-1.jpg",
@@ -195,9 +173,6 @@ const projects = [
   },
   {
     id: 2,
-    title: "Grilje ograda sa kapijom - Bileća",
-    subtitle: "Ograda s maksimalnom privatnošću, izrađena i montirana po mjeri",
-    location: "Bileća",
     year: "2024",
     images: [
       "/images/projekti/bileca-1.jpg",
@@ -208,9 +183,6 @@ const projects = [
   },
   {
     id: 3,
-    title: "Grilje ograda i kapija - ugradnja",
-    subtitle: "Moderan dizajn i sigurnost, projekt po mjeri klijenta",
-    location: "BiH",
     year: "2024",
     images: [
       "/images/projekti/grilje-1.jpg",
@@ -221,9 +193,6 @@ const projects = [
   },
   {
     id: 4,
-    title: "Aluminijska ograda - Banovići",
-    subtitle: "Antracit lamele 8×2 cm, ugradnja između betonskih stubova",
-    location: "Banovići",
     year: "2025",
     images: [
       "/images/projekti/banovici-1.jpg",
@@ -233,6 +202,18 @@ const projects = [
     ],
   },
 ];
+
+type Project = (typeof projects)[number];
+
+/** Projekat + tekst u trenutnom jeziku. */
+function useProjectText(project: Project) {
+  const t = useT();
+  const text = t.projects.items[project.id];
+  return {
+    ...text,
+    meta: text.location ? `${text.location} · ${project.year}` : project.year,
+  };
+}
 
 // Lightbox
 
@@ -246,6 +227,7 @@ function Lightbox({
   onClose: () => void;
 }) {
   const [current, setCurrent] = useState(startIndex);
+  const t = useT();
 
   const prev = useCallback(
     () => setCurrent((c) => (c - 1 + images.length) % images.length),
@@ -319,7 +301,7 @@ function Lightbox({
           >
             <Image
               src={images[current]}
-              alt={`Projekt - slika ${current + 1}`}
+              alt={fmt(t.projects.imageAlt, { n: current + 1 })}
               width={1200}
               height={900}
               style={{
@@ -374,10 +356,12 @@ function Lightbox({
 
 // Lead project — large, full width
 
-function LeadProject({ project }: { project: (typeof projects)[number] }) {
+function LeadProject({ project }: { project: Project }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const t = useT();
+  const text = useProjectText(project);
 
   return (
     <>
@@ -391,7 +375,7 @@ function LeadProject({ project }: { project: (typeof projects)[number] }) {
       >
         <Image
           src={project.images[0]}
-          alt={project.title}
+          alt={text.title}
           fill
           sizes="100vw"
           style={{ objectFit: "cover" }}
@@ -408,20 +392,20 @@ function LeadProject({ project }: { project: (typeof projects)[number] }) {
         {/* Spec label — top left */}
         <div className="absolute top-5 left-5 flex items-center gap-2 text-[11px] font-semibold tracking-[0.16em] uppercase text-white/80">
           <MapPin size={11} />
-          {project.location ? `${project.location} · ${project.year}` : project.year}
+          {text.meta}
         </div>
         {/* Bottom */}
         <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8 md:p-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div className="max-w-2xl">
             <h3 className="text-xl sm:text-3xl md:text-4xl font-semibold text-white leading-tight tracking-tight mb-2">
-              {project.title}
+              {text.title}
             </h3>
             <p className="text-sm md:text-base text-white/65 leading-relaxed">
-              {project.subtitle}
+              {text.subtitle}
             </p>
           </div>
           <span className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-sm bg-white text-alu-dark text-sm font-semibold tracking-wide group-hover:bg-alu-blue group-hover:text-white transition-colors duration-200 self-start">
-            Pogledaj galeriju
+            {t.projects.viewGallery}
             <ArrowRight size={14} />
           </span>
         </div>
@@ -446,12 +430,13 @@ function ProjectCard({
   project,
   index,
 }: {
-  project: (typeof projects)[number];
+  project: Project;
   index: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const text = useProjectText(project);
 
   return (
     <>
@@ -466,7 +451,7 @@ function ProjectCard({
         <div className="relative w-full aspect-[4/3] rounded-sm overflow-hidden bg-alu-dark">
           <Image
             src={project.images[0]}
-            alt={project.title}
+            alt={text.title}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             style={{ objectFit: "cover" }}
@@ -479,13 +464,13 @@ function ProjectCard({
           <div className="min-w-0">
             <div className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.14em] uppercase text-alu-text mb-1.5">
               <MapPin size={11} className="text-alu-blue" />
-              {project.location ? `${project.location} · ${project.year}` : project.year}
+              {text.meta}
             </div>
             <h3 className="text-base sm:text-lg font-semibold text-alu-dark leading-snug">
-              {project.title}
+              {text.title}
             </h3>
             <p className="text-sm text-alu-text leading-relaxed mt-1">
-              {project.subtitle}
+              {text.subtitle}
             </p>
           </div>
           <ArrowRight
@@ -517,6 +502,8 @@ export default function ProjectsSection() {
   const ctaInView = useInView(ctaRef, { once: true, margin: "-60px" });
 
   const [showAll, setShowAll] = useState(false);
+  const t = useT();
+  const p = t.projects;
   const [lead, ...rest] = projects;
   const visibleRest = showAll ? rest : rest.slice(0, 4);
 
@@ -534,14 +521,13 @@ export default function ProjectsSection() {
           className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10"
         >
           <div className="max-w-2xl">
-            <p className="eyebrow text-alu-blue mb-4">Izvedeni radovi</p>
+            <p className="eyebrow text-alu-blue mb-4">{p.eyebrow}</p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-alu-dark leading-[1.08] tracking-tight">
-              Stvarni projekti, izrađeni i montirani po mjeri
+              {p.title}
             </h2>
           </div>
           <p className="text-alu-text text-sm leading-relaxed max-w-xs md:text-right">
-            Od prvog mjerenja na terenu do montaže. Kliknite na projekat za
-            galeriju fotografija.
+            {p.intro}
           </p>
         </motion.div>
 
@@ -562,7 +548,7 @@ export default function ProjectsSection() {
               onClick={() => setShowAll((v) => !v)}
               className="group flex items-center gap-2.5 px-7 py-3.5 rounded-sm border border-alu-dark/20 bg-transparent text-alu-dark font-semibold text-sm tracking-wide hover:border-alu-blue hover:text-alu-blue transition-colors duration-200"
             >
-              {showAll ? "Prikaži manje" : `Prikaži još projekata`}
+              {showAll ? p.showLess : p.showMore}
               {showAll ? (
                 <ChevronUp size={16} />
               ) : (
@@ -582,11 +568,9 @@ export default function ProjectsSection() {
         >
           <div>
             <p className="text-lg font-semibold text-alu-dark mb-1">
-              Želite ovakav rad kod sebe?
+              {p.ctaTitle}
             </p>
-            <p className="text-sm text-alu-text">
-              Javite se za izlazak na teren i ponudu po mjeri, bez obaveze.
-            </p>
+            <p className="text-sm text-alu-text">{p.ctaText}</p>
           </div>
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
             <a
@@ -594,13 +578,13 @@ export default function ProjectsSection() {
               className="flex items-center justify-center gap-2.5 px-7 py-3.5 bg-alu-blue text-white font-semibold rounded-sm text-sm tracking-wide hover:bg-alu-light transition-colors duration-200"
             >
               <Phone size={15} />
-              062 543 464
+              {t.common.phoneDisplay}
             </a>
             <a
               href="#kontakt"
               className="group flex items-center justify-center gap-2 px-7 py-3.5 rounded-sm border border-alu-dark/20 text-alu-dark font-semibold text-sm tracking-wide hover:border-alu-blue hover:text-alu-blue transition-colors duration-200"
             >
-              Zatraži ponudu
+              {p.ctaQuote}
               <ArrowRight size={15} />
             </a>
           </div>

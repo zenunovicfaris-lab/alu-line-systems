@@ -12,51 +12,56 @@ import FaqSection from "@/components/subpage/FaqSection";
 import InternalLinks from "@/components/subpage/InternalLinks";
 import { SITE_URL, BUSINESS } from "@/lib/site";
 import {
-  SERVICE_PAGES,
-  LOCATION_PAGES,
+  getServicePages,
+  getLocationPages,
   getServiceBySlug,
+  type ServicePage,
 } from "@/lib/content";
-import { getPostBySlug } from "@/lib/blog";
+import { getPostById } from "@/lib/blog";
+import { LOCALES, LOCALE_META, type Locale } from "@/lib/i18n/config";
+import { absoluteUrl, alternatesFor, localizePath } from "@/lib/i18n/paths";
+import { getDictionary } from "@/lib/i18n";
+
+type Params = { locale: Locale; slug: string };
 
 export function generateStaticParams() {
-  return SERVICE_PAGES.map((s) => ({ slug: s.slug }));
+  return LOCALES.flatMap((locale) =>
+    getServicePages(locale).map((s) => ({ locale, slug: s.slug }))
+  );
 }
 
-export function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Metadata {
-  const service = getServiceBySlug(params.slug);
+export function generateMetadata({ params }: { params: Params }): Metadata {
+  const service = getServiceBySlug(params.locale, params.slug);
   if (!service) return {};
-  const url = `${SITE_URL}/usluge/${service.slug}`;
+  const bsPath = `/usluge/${service.id}`;
   return {
     title: service.metaTitleFull
       ? { absolute: service.metaTitleFull }
       : service.metaTitle,
     description: service.metaDescription,
     keywords: service.keywords,
-    alternates: { canonical: `/usluge/${service.slug}` },
+    alternates: alternatesFor(params.locale, bsPath),
     openGraph: {
       title: service.metaTitleFull ?? service.metaTitle,
       description: service.metaDescription,
-      url,
+      url: absoluteUrl(params.locale, bsPath),
       type: "website",
-      locale: "bs_BA",
+      locale: LOCALE_META[params.locale].ogLocale,
       images: [{ url: service.heroImage, alt: service.name }],
     },
   };
 }
 
-export default function ServicePageRoute({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const service = getServiceBySlug(params.slug);
+export default function ServicePageRoute({ params }: { params: Params }) {
+  const { locale } = params;
+  const service = getServiceBySlug(locale, params.slug);
   if (!service) notFound();
 
-  const url = `${SITE_URL}/usluge/${service.slug}`;
+  const dict = getDictionary(locale);
+  const t = dict.servicePage;
+  const href = (bsPath: string) => localizePath(locale, bsPath);
+  const url = absoluteUrl(locale, `/usluge/${service.id}`);
+  const services = getServicePages(locale);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -67,6 +72,7 @@ export default function ServicePageRoute({
         serviceType: service.name,
         description: service.metaDescription,
         url,
+        inLanguage: locale,
         provider: {
           "@type": "HomeAndConstructionBusiness",
           "@id": `${SITE_URL}/#business`,
@@ -81,12 +87,17 @@ export default function ServicePageRoute({
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Početna", item: SITE_URL },
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: dict.common.home,
+            item: absoluteUrl(locale, "/"),
+          },
           {
             "@type": "ListItem",
             position: 2,
-            name: "Usluge",
-            item: `${SITE_URL}/usluge`,
+            name: dict.nav.services,
+            item: absoluteUrl(locale, "/usluge"),
           },
           { "@type": "ListItem", position: 3, name: service.name, item: url },
         ],
@@ -104,6 +115,7 @@ export default function ServicePageRoute({
         "@id": url,
         url,
         name: service.metaTitle,
+        inLanguage: locale,
         speakable: {
           "@type": "SpeakableSpecification",
           cssSelector: [".faq-question", ".faq-answer"],
@@ -112,26 +124,26 @@ export default function ServicePageRoute({
     ],
   };
 
-  const anchor = (s: (typeof SERVICE_PAGES)[number]) => ({
+  const anchor = (s: ServicePage) => ({
     label: s.linkLabel ?? s.name,
-    href: `/usluge/${s.slug}`,
+    href: href(`/usluge/${s.id}`),
   });
   // Kurirani linkovi drze link equity u klasteru; bez njih se linkuje na sve ostale.
   const curated = (service.relatedServiceSlugs ?? [])
-    .map((slug) => SERVICE_PAGES.find((s) => s.slug === slug))
-    .filter((s): s is (typeof SERVICE_PAGES)[number] => Boolean(s))
+    .map((id) => services.find((s) => s.id === id))
+    .filter((s): s is ServicePage => Boolean(s))
     .map(anchor);
   const otherServices = curated.length
     ? curated
-    : SERVICE_PAGES.filter((s) => s.slug !== service.slug).map(anchor);
-  const locationLinks = LOCATION_PAGES.map((l) => ({
+    : services.filter((s) => s.id !== service.id).map(anchor);
+  const locationLinks = getLocationPages(locale).map((l) => ({
     label: `${service.name} ${l.city}`,
-    href: `/lokacije/${l.slug}`,
+    href: href(`/lokacije/${l.id}`),
   }));
   const blogLinks = (service.relatedPostSlugs ?? [])
-    .map((slug) => getPostBySlug(slug))
+    .map((id) => getPostById(locale, id))
     .filter((p): p is NonNullable<typeof p> => Boolean(p))
-    .map((p) => ({ label: p.title, href: `/blog/${p.slug}` }));
+    .map((p) => ({ label: p.title, href: href(`/blog/${p.id}`) }));
 
   return (
     <main className="min-h-screen bg-white">
@@ -141,25 +153,25 @@ export default function ServicePageRoute({
       />
       <Navbar />
       <SubPageHero
-        badge="Usluga"
+        badge={t.badge}
         title={service.h1}
         intro={service.intro}
         image={service.heroImage}
         crumbs={[
-          { label: "Početna", href: "/" },
-          { label: "Usluge", href: "/usluge" },
-          { label: service.name, href: `/usluge/${service.slug}` },
+          { label: dict.common.home, href: href("/") },
+          { label: dict.nav.services, href: href("/usluge") },
+          { label: service.name, href: href(`/usluge/${service.id}`) },
         ]}
       />
       <ProseSection sections={service.body} />
-      <FeatureGrid heading="Šta nudimo" features={service.features} />
-      <GalleryGrid heading="Naši radovi" images={service.gallery} />
-      <FaqSection items={service.faq} />
-      <InternalLinks heading="Savjeti i vodiči" links={blogLinks} />
-      <InternalLinks heading="Povezane usluge" links={otherServices} />
-      <InternalLinks heading="Radimo u vašem gradu" links={locationLinks} />
+      <FeatureGrid heading={t.offer} features={service.features} />
+      <GalleryGrid heading={t.ourWork} images={service.gallery} />
+      <FaqSection items={service.faq} locale={locale} />
+      <InternalLinks heading={t.guides} links={blogLinks} />
+      <InternalLinks heading={t.related} links={otherServices} />
+      <InternalLinks heading={t.inYourCity} links={locationLinks} />
       <ContactSection />
-      <Footer />
+      <Footer locale={locale} />
       <WhatsAppFAB />
     </main>
   );

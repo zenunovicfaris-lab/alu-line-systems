@@ -4,6 +4,8 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Phone, ArrowRight } from "lucide-react";
+import { useT } from "@/components/i18n/LocaleProvider";
+import { fmt } from "@/lib/i18n";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -40,6 +42,8 @@ export default function HeroSection() {
     offset: ["start start", "end start"],
   });
   const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const t = useT();
+  const h = t.hero;
 
   return (
     <section
@@ -92,7 +96,7 @@ export default function HeroSection() {
             className="eyebrow text-white/55 mb-8"
             style={{ textShadow: "0 1px 6px rgba(0,0,0,0.6)" }}
           >
-            Srebrenik, BiH · Izrada i montaža
+            {h.eyebrow}
           </motion.p>
 
           {/* H1 — concrete, commanding */}
@@ -101,10 +105,10 @@ export default function HeroSection() {
             className="text-[2.6rem] leading-[0.98] sm:text-6xl lg:text-7xl xl:text-[5.25rem] font-semibold text-white tracking-[-0.03em]"
             style={{ textShadow: "0 2px 14px rgba(0,0,0,0.45)" }}
           >
-            Aluminijske ograde,
+            {h.titleLine1}
             <br />
-            kapije i roletne{" "}
-            <span className="font-light text-white/55">po mjeri</span>
+            {h.titleLine2}{" "}
+            <span className="font-light text-white/55">{h.titleAccent}</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -113,8 +117,7 @@ export default function HeroSection() {
             className="mt-8 max-w-lg text-base md:text-lg text-white/70 leading-relaxed"
             style={{ textShadow: "0 1px 8px rgba(0,0,0,0.6)" }}
           >
-            Izrađujemo i montiramo sami, bez podizvođača, uz pisanu garanciju na
-            rad. Radimo u BiH, Hrvatskoj, Sloveniji i Austriji.
+            {h.subtitle}
           </motion.p>
 
           {/* Authority line — proof without pills */}
@@ -123,11 +126,12 @@ export default function HeroSection() {
             className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] font-medium text-white/60"
             style={{ textShadow: "0 1px 6px rgba(0,0,0,0.6)" }}
           >
-            <span>10+ godina iskustva</span>
-            <span className="w-px h-3.5 bg-white/25" />
-            <span>Vlastita izrada i montaža</span>
-            <span className="w-px h-3.5 bg-white/25" />
-            <span>Pisana garancija</span>
+            {h.proof.map((item, i) => (
+              <span key={item} className="flex items-center gap-x-4">
+                {i > 0 && <span className="w-px h-3.5 bg-white/25" />}
+                <span>{item}</span>
+              </span>
+            ))}
           </motion.div>
 
           {/* CTAs — phone primary */}
@@ -140,13 +144,13 @@ export default function HeroSection() {
               className="group flex items-center justify-center gap-2.5 px-7 py-4 bg-alu-blue text-white font-semibold rounded-sm text-sm tracking-wide transition-colors duration-200 hover:bg-alu-light"
             >
               <Phone size={16} />
-              Pozovi: 062 543 464
+              {fmt(t.common.call, { phone: t.common.phoneDisplay })}
             </a>
             <a
               href="#projekti"
               className="group flex items-center justify-center gap-2 px-7 py-4 font-semibold rounded-sm text-sm tracking-wide text-white border border-white/25 hover:border-white/60 hover:bg-white/5 transition-colors duration-200"
             >
-              Pogledaj izvedene projekte
+              {h.viewProjects}
               <ArrowRight
                 size={15}
                 className="transition-transform duration-200 group-hover:translate-x-0.5"
@@ -165,7 +169,7 @@ export default function HeroSection() {
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex flex-col sm:flex-row sm:items-center gap-4">
           <span className="text-[10px] text-white/40 tracking-[0.22em] uppercase font-medium flex-shrink-0">
-            Sistemi s kojima radimo
+            {h.brands}
           </span>
           <div className="flex items-center gap-8 md:gap-12">
             {brands.map((brand) => (

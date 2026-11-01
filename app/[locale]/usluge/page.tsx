@@ -6,48 +6,58 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactSection from "@/components/ContactSection";
 import WhatsAppFAB from "@/components/WhatsAppFAB";
-import { SITE_URL } from "@/lib/site";
-import { SERVICE_PAGES } from "@/lib/content";
+import { getServicePages } from "@/lib/content";
+import { LOCALE_META, type Locale } from "@/lib/i18n/config";
+import { absoluteUrl, alternatesFor, localizePath } from "@/lib/i18n/paths";
+import { getDictionary } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "Usluge | Aluminijske Ograde, Roletne, Vrata i Nadstrešnice",
-  description:
-    "Pregled usluga ALU LINE Systems: aluminijske ograde i kapije, roletne, rolo i sekcijska vrata te nadstrešnice. Izrada po mjeri, montaža i garancija. Srebrenik, BiH.",
-  alternates: { canonical: "/usluge" },
-  openGraph: {
-    title: "Usluge | ALU LINE Systems",
-    description:
-      "Aluminijske ograde, roletne, vrata i nadstrešnice — po mjeri, uz montažu i garanciju.",
-    url: `${SITE_URL}/usluge`,
-    type: "website",
-    locale: "bs_BA",
-  },
-};
+export function generateMetadata({
+  params,
+}: {
+  params: { locale: Locale };
+}): Metadata {
+  const t = getDictionary(params.locale).servicesHub;
+  return {
+    title: t.metaTitle,
+    description: t.metaDescription,
+    alternates: alternatesFor(params.locale, "/usluge"),
+    openGraph: {
+      title: t.ogTitle,
+      description: t.ogDescription,
+      url: absoluteUrl(params.locale, "/usluge"),
+      type: "website",
+      locale: LOCALE_META[params.locale].ogLocale,
+    },
+  };
+}
 
-export default function UslugeHub() {
+export default function UslugeHub({ params }: { params: { locale: Locale } }) {
+  const { locale } = params;
+  const dict = getDictionary(locale);
+  const t = dict.servicesHub;
+
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
 
       <section className="relative pt-36 pb-16 bg-alu-dark overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-          <p className="eyebrow text-alu-steel mb-5">Usluge</p>
+          <p className="eyebrow text-alu-steel mb-5">{t.eyebrow}</p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-tight max-w-3xl leading-[1.06]">
-            Šta izrađujemo i ugrađujemo
+            {t.title}
           </h1>
           <p className="mt-5 text-white/65 text-base max-w-2xl leading-relaxed">
-            Aluminijske ograde i kapije, roletne, rolo i sekcijska vrata te
-            nadstrešnice. Sve po mjeri, uz montažu i pisanu garanciju.
+            {t.intro}
           </p>
         </div>
       </section>
 
       <section className="py-16 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
-          {SERVICE_PAGES.map((s) => (
+          {getServicePages(locale).map((s) => (
             <Link
-              key={s.slug}
-              href={`/usluge/${s.slug}`}
+              key={s.id}
+              href={localizePath(locale, `/usluge/${s.id}`)}
               className="group relative rounded-sm overflow-hidden border border-alu-line bg-alu-gray hover:border-alu-blue transition-colors duration-200"
             >
               <div className="relative aspect-[16/9] overflow-hidden">
@@ -68,7 +78,7 @@ export default function UslugeHub() {
                   {s.intro[0]}
                 </p>
                 <span className="inline-flex items-center gap-2 text-sm font-semibold text-alu-blue">
-                  Saznaj više
+                  {dict.common.learnMore}
                   <ArrowRight
                     size={14}
                     className="group-hover:translate-x-1 transition-transform"
@@ -81,7 +91,7 @@ export default function UslugeHub() {
       </section>
 
       <ContactSection />
-      <Footer />
+      <Footer locale={locale} />
       <WhatsAppFAB />
     </main>
   );

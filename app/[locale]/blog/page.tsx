@@ -6,33 +6,36 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactSection from "@/components/ContactSection";
 import WhatsAppFAB from "@/components/WhatsAppFAB";
-import { SITE_URL } from "@/lib/site";
-import { BLOG_POSTS_SORTED } from "@/lib/blog";
+import { getPosts } from "@/lib/blog";
+import { LOCALE_META, type Locale } from "@/lib/i18n/config";
+import { absoluteUrl, alternatesFor, localizePath } from "@/lib/i18n/paths";
+import { getDictionary, formatDate } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "Blog i Vodiči | Savjeti o Ogradama, Roletnama i Vratima",
-  description:
-    "Praktični vodiči o aluminijskim ogradama, roletnama i vratima: kako izabrati, poređenja materijala i šta utiče na cijenu. Savjeti od ALU LINE Systems.",
-  alternates: { canonical: "/blog" },
-  openGraph: {
-    title: "Blog i Vodiči | ALU LINE Systems",
-    description:
-      "Savjeti o aluminijskim ogradama, roletnama i vratima: izbor, poređenja i cijene.",
-    url: `${SITE_URL}/blog`,
-    type: "website",
-    locale: "bs_BA",
-  },
-};
-
-function formatDate(iso: string) {
-  const d = new Date(iso);
-  return `${String(d.getDate()).padStart(2, "0")}.${String(
-    d.getMonth() + 1
-  ).padStart(2, "0")}.${d.getFullYear()}.`;
+export function generateMetadata({
+  params,
+}: {
+  params: { locale: Locale };
+}): Metadata {
+  const t = getDictionary(params.locale).blogHub;
+  return {
+    title: t.metaTitle,
+    description: t.metaDescription,
+    alternates: alternatesFor(params.locale, "/blog"),
+    openGraph: {
+      title: t.ogTitle,
+      description: t.ogDescription,
+      url: absoluteUrl(params.locale, "/blog"),
+      type: "website",
+      locale: LOCALE_META[params.locale].ogLocale,
+    },
+  };
 }
 
-export default function BlogHub() {
-  const [featured, ...rest] = BLOG_POSTS_SORTED;
+export default function BlogHub({ params }: { params: { locale: Locale } }) {
+  const { locale } = params;
+  const t = getDictionary(locale).blogHub;
+  const [featured, ...rest] = getPosts(locale);
+  const postHref = (id: string) => localizePath(locale, `/blog/${id}`);
 
   return (
     <main className="min-h-screen bg-white">
@@ -40,13 +43,12 @@ export default function BlogHub() {
 
       <section className="relative pt-36 pb-16 bg-alu-dark overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-          <p className="eyebrow text-alu-steel mb-5">Blog i vodiči</p>
+          <p className="eyebrow text-alu-steel mb-5">{t.eyebrow}</p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-tight max-w-3xl leading-[1.06]">
-            Savjeti prije nego izaberete
+            {t.title}
           </h1>
           <p className="mt-5 text-white/65 text-base max-w-2xl leading-relaxed">
-            Poređenja materijala, kako izabrati i šta utiče na cijenu. Kratki,
-            praktični vodiči iz naše svakodnevne prakse.
+            {t.intro}
           </p>
         </div>
       </section>
@@ -55,7 +57,7 @@ export default function BlogHub() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           {/* Featured */}
           <Link
-            href={`/blog/${featured.slug}`}
+            href={postHref(featured.id)}
             className="group grid grid-cols-1 lg:grid-cols-2 gap-8 mb-14 rounded-sm overflow-hidden border border-alu-line bg-alu-gray hover:border-alu-blue transition-colors duration-200"
           >
             <div className="relative aspect-[16/10] lg:aspect-auto overflow-hidden">
@@ -72,7 +74,7 @@ export default function BlogHub() {
               <div className="flex items-center gap-4 text-xs text-alu-text mb-4">
                 <span className="flex items-center gap-1.5">
                   <CalendarDays size={13} className="text-alu-blue" />
-                  {formatDate(featured.date)}
+                  {formatDate(featured.date, locale)}
                 </span>
                 <span className="flex items-center gap-1.5">
                   <Clock size={13} className="text-alu-blue" />
@@ -86,7 +88,7 @@ export default function BlogHub() {
                 {featured.excerpt}
               </p>
               <span className="inline-flex items-center gap-2 text-sm font-semibold text-alu-blue">
-                Pročitaj vodič
+                {t.readGuide}
                 <ArrowRight
                   size={14}
                   className="group-hover:translate-x-1 transition-transform"
@@ -99,8 +101,8 @@ export default function BlogHub() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {rest.map((p) => (
               <Link
-                key={p.slug}
-                href={`/blog/${p.slug}`}
+                key={p.id}
+                href={postHref(p.id)}
                 className="group rounded-sm overflow-hidden border border-alu-line bg-alu-gray hover:border-alu-blue transition-colors duration-200 flex flex-col"
               >
                 <div className="relative aspect-[16/10] overflow-hidden">
@@ -117,7 +119,7 @@ export default function BlogHub() {
                   <div className="flex items-center gap-4 text-xs text-alu-text mb-3">
                     <span className="flex items-center gap-1.5">
                       <CalendarDays size={12} className="text-alu-blue" />
-                      {formatDate(p.date)}
+                      {formatDate(p.date, locale)}
                     </span>
                     <span className="flex items-center gap-1.5">
                       <Clock size={12} className="text-alu-blue" />
@@ -138,7 +140,7 @@ export default function BlogHub() {
       </section>
 
       <ContactSection />
-      <Footer />
+      <Footer locale={locale} />
       <WhatsAppFAB />
     </main>
   );

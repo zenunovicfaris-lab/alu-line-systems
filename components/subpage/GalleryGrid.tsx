@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useT } from "@/components/i18n/LocaleProvider";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -12,13 +13,14 @@ export default function GalleryGrid({
   heading: string;
   images: { src: string; alt: string }[];
 }) {
+  const t = useT();
   if (!images.length) return null;
 
   return (
     <section className="relative py-16 lg:py-24 bg-alu-gray">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="mb-10">
-          <p className="eyebrow text-alu-blue mb-4">Galerija</p>
+          <p className="eyebrow text-alu-blue mb-4">{t.subpage.galleryEyebrow}</p>
           <h2 className="text-2xl md:text-3xl font-semibold text-alu-dark tracking-tight">
             {heading}
           </h2>

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import type { Feature } from "@/lib/content";
+import { useT } from "@/components/i18n/LocaleProvider";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -15,11 +16,12 @@ export default function FeatureGrid({
   subheading?: string;
   features: Feature[];
 }) {
+  const t = useT();
   return (
     <section className="relative py-16 lg:py-24 bg-white">
       <div className="max-w-5xl mx-auto px-6 lg:px-8">
         <div className="max-w-2xl mb-10">
-          <p className="eyebrow text-alu-blue mb-4">Ponuda</p>
+          <p className="eyebrow text-alu-blue mb-4">{t.subpage.featuresEyebrow}</p>
           <h2 className="text-2xl md:text-3xl font-semibold text-alu-dark tracking-tight">
             {heading}
           </h2>

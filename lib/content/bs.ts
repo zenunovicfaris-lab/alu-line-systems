@@ -1,57 +1,7 @@
-// Sadržaj za uslužne i lokacijske stranice (SEO).
-// Svaka stranica ima jedinstven title/description i tekst.
+// Bosanski sadržaj (izvorni). Slug je ujedno i id koji povezuje prijevode.
+import type { ServicePageBase, LocationPageBase } from "./types";
 
-export type FaqItem = { q: string; a: string };
-export type Feature = { title: string; desc: string };
-
-export type ProseTable = { caption?: string; head: string[]; rows: string[][] };
-
-export type ProseSection = {
-  heading: string;
-  paragraphs: string[];
-  /** Opciona tabela ispod pasusa (cilja table featured snippet). */
-  table?: ProseTable;
-};
-
-export type ServicePage = {
-  slug: string;
-  name: string;
-  h1: string;
-  metaTitle: string;
-  /** Pun <title> (zaobilazi brend template). Koristi kad treba precizna duzina <= 60. */
-  metaTitleFull?: string;
-  metaDescription: string;
-  keywords: string[];
-  heroImage: string;
-  intro: string[];
-  body: ProseSection[];
-  features: Feature[];
-  gallery: { src: string; alt: string }[];
-  faq: FaqItem[];
-  relatedPostSlugs?: string[];
-  /** Kurirani linkovi na srodne usluge. Ako je prazno, linkuje se na sve ostale. */
-  relatedServiceSlugs?: string[];
-  /** Keyword-rich anchor tekst kad na ovu stranicu linkuje neka druga. */
-  linkLabel?: string;
-};
-
-export type LocationPage = {
-  slug: string;
-  city: string;
-  cityLocative: string; // "u Tuzli"
-  h1: string;
-  metaTitle: string;
-  /** Pun <title> (zaobilazi brend template). */
-  metaTitleFull?: string;
-  metaDescription: string;
-  keywords: string[];
-  heroImage: string;
-  intro: string[];
-  body: ProseSection[];
-  faq: FaqItem[];
-};
-
-export const SERVICE_PAGES: ServicePage[] = [
+export const SERVICE_PAGES: ServicePageBase[] = [
   {
     slug: "aluminijske-ograde",
     name: "Aluminijske ograde",
@@ -146,6 +96,8 @@ export const SERVICE_PAGES: ServicePage[] = [
       { src: "/images/njemacka/dvorisna-ograda-zaluzina-lamele-antracit.jpg", alt: "Dvorišna aluminijska ograda sa žaluzina lamelama, antracit" },
       { src: "/images/gradiska-model-ratan/ograda-za-vanjske-stepenice-aluminij.jpg", alt: "Aluminijska ograda za vanjske stepenice, model Ratan" },
       { src: "/images/gradiska-model-ratan/ograda-za-ulazni-podest-aluminij.jpg", alt: "Ograda za ulazni podest od aluminija u antracit boji" },
+      { src: "/images/karlovac/dvorisna-ograda-horizontalne-lamele-antracit.jpg", alt: "Aluminijska ograda s horizontalnim lamelama u antracit boji" },
+      { src: "/images/karlovac/aluminijska-ograda-u-vrtu-antracit.jpg", alt: "Aluminijska ograda u vrtu, model Grilja" },
     ],
     faq: [
       {
@@ -443,6 +395,9 @@ export const SERVICE_PAGES: ServicePage[] = [
       { src: "/images/nadstresnica/zaluzina-ograda-uz-ulicu-antracit.jpg", alt: "Dvorišna ograda sa žaluzina lamelama uz ulicu, antracit" },
       { src: "/images/nadstresnica/dvorisna-ograda-zaluzina-uz-prilaz.jpg", alt: "Ograda za dvorište uz prilaz, žaluzina lamele i puna privatnost" },
       { src: "/images/nadstresnica/aluminijska-ograda-i-nadstresnica-ugao.jpg", alt: "Aluminijska ograda i nadstrešnica na uglu placa" },
+      { src: "/images/karlovac/dvorisna-ograda-grilje-na-betonskom-soklu.jpg", alt: "Dvorišna ograda model Grilja na betonskom soklu, Karlovac" },
+      { src: "/images/karlovac/aluminijska-ograda-za-dvoriste-karlovac.jpg", alt: "Aluminijska ograda za dvorište s horizontalnim lamelama" },
+      { src: "/images/karlovac/ograda-na-betonskom-soklu-antracit.jpg", alt: "Ograda na betonskom soklu uz granicu placa, antracit" },
     ],
     faq: [
       {
@@ -577,6 +532,9 @@ export const SERVICE_PAGES: ServicePage[] = [
       { src: "/images/gradiska-model-ratan/balkonska-ograda-vertikalne-sipke-aluminij.jpg", alt: "Balkonska aluminijska ograda s vertikalnom ispunom" },
       { src: "/images/gradiska-model-ratan/ograda-za-balkon-i-stepenice-antracit.jpg", alt: "Ograda za balkon i vanjske stepenice u istoj antracit boji" },
       { src: "/images/gradiska-model-ratan/stepenisna-ograda-aluminij-antracit.jpg", alt: "Stepenišna aluminijska ograda u antracit boji" },
+      { src: "/images/karlovac/balkonska-ograda-grilje-lamele-antracit.jpg", alt: "Balkonska ograda s horizontalnim lamelama model Grilja, antracit" },
+      { src: "/images/karlovac/balkonska-ograda-dva-sprata-karlovac.jpg", alt: "Balkonske ograde na dva sprata, Karlovac" },
+      { src: "/images/karlovac/ograda-za-balkon-horizontalne-lamele.jpg", alt: "Ograda za balkon s horizontalnim lamelama u antracit boji" },
     ],
     faq: [
       {
@@ -1133,7 +1091,7 @@ export const SERVICE_PAGES: ServicePage[] = [
 ];
 
 // ── Lokacijske stranice ────────────────────────────────────────────
-export const LOCATION_PAGES: LocationPage[] = [
+export const LOCATION_PAGES: LocationPageBase[] = [
   {
     slug: "srebrenik",
     city: "Srebrenik",
@@ -1506,10 +1464,3 @@ export const LOCATION_PAGES: LocationPage[] = [
     ],
   },
 ];
-
-export function getServiceBySlug(slug: string) {
-  return SERVICE_PAGES.find((s) => s.slug === slug);
-}
-export function getLocationBySlug(slug: string) {
-  return LOCATION_PAGES.find((l) => l.slug === slug);
-}

@@ -5,48 +5,58 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactSection from "@/components/ContactSection";
 import WhatsAppFAB from "@/components/WhatsAppFAB";
-import { SITE_URL } from "@/lib/site";
-import { LOCATION_PAGES } from "@/lib/content";
+import { getLocationPages } from "@/lib/content";
+import { LOCALE_META, type Locale } from "@/lib/i18n/config";
+import { absoluteUrl, alternatesFor, localizePath } from "@/lib/i18n/paths";
+import { getDictionary } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "Lokacije | Gdje Radimo — Srebrenik, Tuzla, Gračanica, Gradačac",
-  description:
-    "ALU LINE Systems radi u Srebreniku, Tuzli, Gračanici, Gradačcu i okolini. Aluminijske ograde, roletne i vrata po mjeri, uz montažu i garanciju. Pozovite 062 543 464.",
-  alternates: { canonical: "/lokacije" },
-  openGraph: {
-    title: "Lokacije | ALU LINE Systems",
-    description:
-      "Radimo u Srebreniku, Tuzli, Gračanici, Gradačcu i okolini.",
-    url: `${SITE_URL}/lokacije`,
-    type: "website",
-    locale: "bs_BA",
-  },
-};
+export function generateMetadata({
+  params,
+}: {
+  params: { locale: Locale };
+}): Metadata {
+  const t = getDictionary(params.locale).locationsHub;
+  return {
+    title: t.metaTitle,
+    description: t.metaDescription,
+    alternates: alternatesFor(params.locale, "/lokacije"),
+    openGraph: {
+      title: t.ogTitle,
+      description: t.ogDescription,
+      url: absoluteUrl(params.locale, "/lokacije"),
+      type: "website",
+      locale: LOCALE_META[params.locale].ogLocale,
+    },
+  };
+}
 
-export default function LokacijeHub() {
+export default function LokacijeHub({ params }: { params: { locale: Locale } }) {
+  const { locale } = params;
+  const dict = getDictionary(locale);
+  const t = dict.locationsHub;
+
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
 
       <section className="relative pt-36 pb-16 bg-alu-dark overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-          <p className="eyebrow text-alu-steel mb-5">Lokacije</p>
+          <p className="eyebrow text-alu-steel mb-5">{t.eyebrow}</p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-tight max-w-3xl leading-[1.06]">
-            Gdje radimo
+            {t.title}
           </h1>
           <p className="mt-5 text-white/65 text-base max-w-2xl leading-relaxed">
-            Iz Srebrenika pokrivamo Tuzlanski kanton i okolinu. Izaberite grad i
-            saznajte više o našim uslugama u vašem mjestu.
+            {t.intro}
           </p>
         </div>
       </section>
 
       <section className="py-16 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
-          {LOCATION_PAGES.map((l) => (
+          {getLocationPages(locale).map((l) => (
             <Link
-              key={l.slug}
-              href={`/lokacije/${l.slug}`}
+              key={l.id}
+              href={localizePath(locale, `/lokacije/${l.id}`)}
               className="group flex items-start gap-5 p-7 rounded-sm border border-alu-line bg-alu-gray hover:border-alu-blue transition-colors duration-200"
             >
               <div className="w-11 h-11 rounded-sm flex items-center justify-center flex-shrink-0 bg-alu-blue/10">
@@ -60,7 +70,7 @@ export default function LokacijeHub() {
                   {l.intro[0]}
                 </p>
                 <span className="inline-flex items-center gap-2 text-sm font-semibold text-alu-blue">
-                  Saznaj više
+                  {dict.common.learnMore}
                   <ArrowRight
                     size={14}
                     className="group-hover:translate-x-1 transition-transform"
@@ -73,7 +83,7 @@ export default function LokacijeHub() {
       </section>
 
       <ContactSection />
-      <Footer />
+      <Footer locale={locale} />
       <WhatsAppFAB />
     </main>
   );

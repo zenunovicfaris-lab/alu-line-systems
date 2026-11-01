@@ -1,13 +1,20 @@
 "use client";
 
+import { useT } from "@/components/i18n/LocaleProvider";
+
 export default function WhatsAppFAB() {
+  const t = useT();
+  const href = t.whatsapp.message
+    ? `https://wa.me/38762543464?text=${encodeURIComponent(t.whatsapp.message)}`
+    : "https://wa.me/38762543464";
+
   return (
     <div style={{ position: "fixed", bottom: 24, right: 24, zIndex: 50, width: 56, height: 56 }}>
       <a
-        href="https://wa.me/38762543464"
+        href={href}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Kontaktirajte nas na WhatsApp"
+        aria-label={t.whatsapp.aria}
         className="hover:scale-110 active:scale-95 transition-transform duration-200"
         style={{
           position: "relative",

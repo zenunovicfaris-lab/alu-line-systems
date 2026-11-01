@@ -5,64 +5,51 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight, Phone, Ruler, Zap, Shield, MapPin } from "lucide-react";
+import {
+  useLocalizePath,
+  useT,
+} from "@/components/i18n/LocaleProvider";
+import { fmt, type Dictionary } from "@/lib/i18n";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
+// Tekst (naslov, opis, tagovi) je u rječniku pod products.items, istim redom.
 const services = [
   {
     n: "01",
-    title: "Aluminijske ograde i kapije",
-    desc: "Dvorišne, balkonske i grilje ograde te klizne i pješačke kapije. Po mjeri vašeg placa, u boji koja se uklapa uz fasadu.",
-    tags: ["Dvorišne", "Balkonske", "Klizne kapije"],
     href: "/usluge/aluminijske-ograde",
     image: "/images/projekti/terasa-ograda-1.jpg",
   },
   {
     n: "02",
-    title: "Rolo i sekcijska vrata",
-    desc: "Garažna rolo vrata, sekcijska i industrijska vrata s daljinskim upravljanjem. Isporuka, ugradnja i podešavanje.",
-    tags: ["Rolo", "Sekcijska", "Daljinski"],
     href: "/usluge/garazna-i-sekcijska-vrata",
     image: "/images/garazna i sekcijska vrata/Garazna vrata.jpg",
   },
   {
     n: "03",
-    title: "Roletne",
-    desc: "Nadgradne i podgradne roletne za aluminijske i PVC sisteme. Zaštita od sunca, buke i toplotni gubici pod kontrolom.",
-    tags: ["Nadgradne", "Podgradne", "ALU i PVC"],
     href: "/usluge/roletne",
     image: "/images/roletne/roletna1.jpg",
   },
   {
     n: "04",
-    title: "Drvena vrata po mjeri",
-    desc: "Sobna i ulazna drvena vrata po narudžbi, s dovratnikom. Odaberete model, a mjerenje i montažu preuzimamo mi.",
-    tags: ["Sobna", "Ulazna", "S dovratnikom"],
     href: "/usluge/drvena-vrata",
     image: "/images/vrata katalog/Model mo-1.jpeg",
   },
   {
     n: "05",
-    title: "Nadstrešnice",
-    desc: "Aluminijske nadstrešnice za auto, ulaz i terasu. Trajan zaklon koji ne rđa i ne traži održavanje.",
-    tags: ["Carport", "Ulaz", "Terasa"],
     href: "/usluge/nadstresnice",
     image: "/images/hero-img.jpg",
   },
 ];
 
-const perks = [
-  { icon: Ruler, label: "Izrada po vašim dimenzijama" },
-  { icon: Zap, label: "Montaža u dogovorenom roku" },
-  { icon: Shield, label: "Pisana garancija na rad" },
-  { icon: MapPin, label: "BiH · HR · SLO · AT" },
-];
+const perkIcons = [Ruler, Zap, Shield, MapPin];
 
 function ServiceRow({
   service,
   index,
 }: {
-  service: (typeof services)[number];
+  service: (typeof services)[number] &
+    Dictionary["products"]["items"][number];
   index: number;
 }) {
   const ref = useRef<HTMLAnchorElement>(null);
@@ -125,6 +112,8 @@ function ServiceRow({
 }
 
 export default function ProductsSection() {
+  const t = useT();
+  const localize = useLocalizePath();
   const headingRef = useRef<HTMLDivElement>(null);
   const headingInView = useInView(headingRef, { once: true, margin: "-80px" });
   const perksRef = useRef<HTMLDivElement>(null);
@@ -142,21 +131,28 @@ export default function ProductsSection() {
           className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-4"
         >
           <div className="max-w-2xl">
-            <p className="eyebrow text-alu-blue mb-4">Šta radimo</p>
+            <p className="eyebrow text-alu-blue mb-4">{t.products.eyebrow}</p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-alu-dark leading-[1.08] tracking-tight">
-              Aluminijski sistemi i vrata, izrađeni i montirani sami
+              {t.products.title}
             </h2>
           </div>
           <p className="text-alu-text text-sm leading-relaxed max-w-xs md:text-right">
-            Bez podizvođača. Za kvalitet, rok i cijenu odgovaramo mi, uz pisanu
-            garanciju na svaki rad.
+            {t.products.intro}
           </p>
         </motion.div>
 
         {/* Service rows */}
         <div className="border-b border-alu-line mb-14">
           {services.map((service, i) => (
-            <ServiceRow key={service.href} service={service} index={i} />
+            <ServiceRow
+              key={service.href}
+              service={{
+                ...service,
+                ...t.products.items[i],
+                href: localize(service.href),
+              }}
+              index={i}
+            />
           ))}
         </div>
 
@@ -168,12 +164,15 @@ export default function ProductsSection() {
           transition={{ duration: 0.6, ease: EASE }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-4 mb-14"
         >
-          {perks.map(({ icon: Icon, label }) => (
+          {t.products.perks.map((label, i) => {
+            const Icon = perkIcons[i];
+            return (
             <div key={label} className="flex items-center gap-3">
               <Icon size={18} className="text-alu-blue flex-shrink-0" />
               <p className="text-sm font-medium text-alu-dark">{label}</p>
             </div>
-          ))}
+            );
+          })}
         </motion.div>
 
         {/* CTA */}
@@ -183,13 +182,13 @@ export default function ProductsSection() {
             className="flex items-center justify-center gap-2.5 px-7 py-4 bg-alu-blue text-white font-semibold rounded-sm text-sm tracking-wide hover:bg-alu-light transition-colors duration-200 w-full sm:w-auto"
           >
             <Phone size={16} />
-            Pozovi: 062 543 464
+            {fmt(t.common.call, { phone: t.common.phoneDisplay })}
           </a>
           <a
             href="#kontakt"
             className="group inline-flex items-center gap-2 text-sm font-semibold text-alu-blue hover:text-alu-light transition-colors"
           >
-            Ili pošalji upit online
+            {t.products.online}
             <ArrowRight
               size={14}
               className="transition-transform duration-200 group-hover:translate-x-0.5"

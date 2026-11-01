@@ -34,3 +34,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# radni materijal za video reel (izvori, kes, renderi) - ne ide na sajt
+/video-reel/
+
+# neobradjeni originali iz WhatsAppa i Facebooka
+# (u repo idu samo kompresovane slike s opisnim nazivima)
+WhatsApp Image *.jpeg
+WhatsApp Image *.jpg
+WhatsApp Video *.mp4
+public/images/**/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]_*_n.jpg
