@@ -470,9 +470,6 @@ export const SERVICES: ServiceTranslation[] = [
       "Balkonska aluminijasta ograja z navpičnim polnilom",
       "Ograja za balkon in zunanje stopnice v istem antracitu",
       "Stopniščna aluminijasta ograja v antracitu",
-      "Balkonska ograja z vodoravnimi lamelami, model Grilja, antracit",
-      "Balkonske ograje v dveh nadstropjih, Karlovac",
-      "Balkonska ograja z vodoravnimi lamelami v antracitu",
     ],
     faq: [
       {

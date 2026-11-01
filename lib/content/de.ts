@@ -470,9 +470,6 @@ export const SERVICES: ServiceTranslation[] = [
       "Balkongeländer aus Aluminium mit senkrechter Füllung",
       "Geländer für Balkon und Außentreppe im selben Anthrazit",
       "Treppengeländer aus Aluminium in Anthrazit",
-      "Balkongeländer mit waagerechten Lamellen, Modell Grilja, Anthrazit",
-      "Balkongeländer über zwei Etagen, Karlovac",
-      "Balkongeländer mit waagerechten Lamellen in Anthrazit",
     ],
     faq: [
       {

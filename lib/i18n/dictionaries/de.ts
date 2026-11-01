@@ -90,9 +90,9 @@ const de: Dictionary = {
     ctaQuote: "Angebot anfordern",
     items: {
       16: {
-        title: "Balkongeländer und Gartenzaun, Karlovac",
+        title: "Gartenzaun, Karlovac",
         subtitle:
-          "Balkongeländer über zwei Etagen und ein langer Gartenzaun auf Betonsockel, alles im Modell Grilja mit waagerechten Lamellen in Anthrazit.",
+          "Langer Gartenzaun auf Betonsockel, Modell Grilja mit waagerechten Lamellen in Anthrazit. Im selben Modell und Farbton wurden auch die Geländer am Haus ausgeführt.",
         location: "Karlovac, Kroatien",
       },
       15: {

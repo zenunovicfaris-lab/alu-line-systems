@@ -90,9 +90,9 @@ const sl: Dictionary = {
     ctaQuote: "Zahtevaj ponudbo",
     items: {
       16: {
-        title: "Balkonske ograje in dvoriščna ograja, Karlovac",
+        title: "Dvoriščna ograja, Karlovac",
         subtitle:
-          "Balkonske ograje v dveh nadstropjih in dolga dvoriščna ograja na betonskem podzidku, vse v modelu Grilja z vodoravnimi lamelami v antracitu.",
+          "Dolga dvoriščna ograja na betonskem podzidku, model Grilja z vodoravnimi lamelami v antracitu. V istem modelu in barvi so izvedene tudi ograje na hiši.",
         location: "Karlovac, Hrvaška",
       },
       15: {

@@ -532,9 +532,6 @@ export const SERVICE_PAGES: ServicePageBase[] = [
       { src: "/images/gradiska-model-ratan/balkonska-ograda-vertikalne-sipke-aluminij.jpg", alt: "Balkonska aluminijska ograda s vertikalnom ispunom" },
       { src: "/images/gradiska-model-ratan/ograda-za-balkon-i-stepenice-antracit.jpg", alt: "Ograda za balkon i vanjske stepenice u istoj antracit boji" },
       { src: "/images/gradiska-model-ratan/stepenisna-ograda-aluminij-antracit.jpg", alt: "Stepenišna aluminijska ograda u antracit boji" },
-      { src: "/images/karlovac/balkonska-ograda-grilje-lamele-antracit.jpg", alt: "Balkonska ograda s horizontalnim lamelama model Grilja, antracit" },
-      { src: "/images/karlovac/balkonska-ograda-dva-sprata-karlovac.jpg", alt: "Balkonske ograde na dva sprata, Karlovac" },
-      { src: "/images/karlovac/ograda-za-balkon-horizontalne-lamele.jpg", alt: "Ograda za balkon s horizontalnim lamelama u antracit boji" },
     ],
     faq: [
       {

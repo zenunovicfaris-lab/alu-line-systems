@@ -91,9 +91,9 @@ const bs = {
     ctaQuote: "Zatraži ponudu",
     items: {
       16: {
-        title: "Balkonske ograde i dvorišna ograda, Karlovac",
+        title: "Dvorišna ograda, Karlovac",
         subtitle:
-          "Dva sprata balkonskih ograda i dugačka dvorišna ograda na betonskom soklu, sve u modelu Grilja s horizontalnim lamelama u antracit boji.",
+          "Dugačka dvorišna ograda na betonskom soklu, model Grilja s horizontalnim lamelama u antracit boji. U istom modelu i boji urađene su i ograde na kući.",
         location: "Karlovac, Hrvatska",
       },
       15: {
