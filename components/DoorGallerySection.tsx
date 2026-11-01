@@ -137,15 +137,15 @@ function Lightbox({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.25 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/92 backdrop-blur-sm"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-sm"
       onClick={onClose}
     >
       {/* Close */}
       <button
-        className="absolute top-5 right-5 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 flex items-center justify-center transition-colors"
+        className="absolute top-4 right-4 z-20 w-12 h-12 rounded-full bg-black/60 hover:bg-black/80 border border-white/40 flex items-center justify-center transition-colors"
         onClick={onClose}
       >
-        <X size={18} className="text-white" />
+        <X size={22} className="text-white" />
       </button>
 
       {/* Counter */}

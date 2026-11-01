@@ -93,7 +93,7 @@ export default function AboutSection() {
                   transition={{ delay: 0.4 + i * 0.1, duration: 0.6, ease: EASE }}
                   className="flex flex-col items-start gap-2"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-alu-blue/8 border border-alu-blue/15 flex items-center justify-center"
+                  <div className="w-10 h-10 rounded-xl bg-alu-blue/10 border border-alu-blue/15 flex items-center justify-center"
                     style={{ background: "rgba(20,60,95,0.06)" }}>
                     <Icon size={18} className="text-alu-blue" />
                   </div>
